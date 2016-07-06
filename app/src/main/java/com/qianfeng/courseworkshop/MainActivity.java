@@ -8,6 +8,8 @@ package com.qianfeng.courseworkshop;
         import android.widget.RadioButton;
         import android.widget.RadioGroup;
 
+        import com.qianfeng.courseworkshop.coursefragment.CourseFragment;
+
 
 public class MainActivity extends AppCompatActivity {
     private Fragment fragment1;
