@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         supportFragmentManager = getSupportFragmentManager();
         rg_main_id=(RadioGroup)findViewById(R.id.rg_main_id);
         fragment1=new Fragment1();
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.ll_content_id, fragment);
 
         transaction.commit();
+
 
     }
 }

@@ -29,4 +29,6 @@ dependencies {
     androidTestCompile 'com.android.support:support-annotations:24.0.0'
     compile files('libs/android-support-v4.jar')
     compile 'com.mcxiaoke.pulltorefresh:library:2.5.4'
+    compile files('libs/jsoup-1.9.2.jar')
+
 }

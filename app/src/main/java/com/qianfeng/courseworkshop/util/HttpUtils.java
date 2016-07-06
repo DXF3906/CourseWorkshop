@@ -1,0 +1,57 @@
+package com.qianfeng.courseworkshop.util;
+
+
+import android.os.Environment;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+/**
+ * 网络资源访问工具类
+ * fdb
+ * Created by asus on 2016/7/6.
+ */
+
+public class HttpUtils {
+    //返回缓存的文件名
+    public static String getData(String urlStr){
+        String fileName=urlStr.substring(urlStr.lastIndexOf("/"));
+        File file=new File(Environment.getExternalStorageDirectory(),fileName+".html");
+        OutputStream os=null;
+        InputStream is=null;
+        HttpURLConnection coon=null;
+        try {
+            os=new FileOutputStream(file);
+            //1.声明网络访问的路径，url 网络资源
+            URL url=new URL(urlStr);
+
+            //2.通过路径得到一个连接 http的连接
+            coon= (HttpURLConnection) url.openConnection();
+
+            // 3.判断服务器给我们返回的状态信息
+            int code=coon.getResponseCode();
+            if (code==HttpURLConnection.HTTP_OK){
+                // 4.利用链接成功的 conn 得到输入流
+                is=coon.getInputStream();
+                //缓存到本地SD卡上
+                byte [] bytes=new byte[1024];
+                int len=0;
+                while ((len=is.read())!=-1){
+                    os.write(bytes,0,len);
+                    os.flush();
+                }
+            }
+            return fileName;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return fileName;
+    }
+}
