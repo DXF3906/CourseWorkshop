@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
               if(((RadioButton)radioGroup.getChildAt(0)).isChecked()){
                   replaceContainerWidget(fragment1);
+
               }
               if(((RadioButton)radioGroup.getChildAt(1)).isChecked()){
                   replaceContainerWidget(fragment2);
@@ -52,6 +53,12 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.ll_content_id, fragment);
 
         transaction.commit();
+
+
+    }
+    public void morefragment() {
+        ((RadioButton)rg_main_id.getChildAt(1)).setChecked(true);
+        replaceContainerWidget(fragment2);
 
 
     }
