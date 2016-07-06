@@ -36,11 +36,15 @@
     <com.handmark.pulltorefresh.library.PullToRefreshScrollView
        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 <RelativeLayout
     android:id="@+id/rl_main_id"
     android:layout_width="match_parent"
-    android:layout_height="100dp">
+    android:layout_height="130dp">
         <android.support.v4.view.ViewPager
             android:id="@+id/vp_main_fragment_id"
             android:layout_width="match_parent"
@@ -49,10 +53,12 @@
         android:id="@+id/iv_main_dot_id"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/main_dot_selector"/>
     <ImageView
+        android:layout_marginBottom="10dp"
         android:layout_alignParentBottom="true"
         android:id="@+id/iv_main_dot2_id"
         android:layout_toLeftOf="@+id/iv_main_dot_id"
@@ -60,6 +66,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/main_dot_selector"/>
     <ImageView
+        android:layout_marginBottom="10dp"
         android:id="@+id/iv_main_dot3_id"
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/iv_main_dot2_id"
@@ -67,6 +74,62 @@
         android:layout_height="wrap_content"
         android:background="@drawable/main_dot_selector"/>
 </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal">
+                <ImageView
+                    android:layout_marginLeft="25dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@mipmap/button_index_tab3"/>
+                <ImageView
+                    android:layout_marginLeft="50dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@mipmap/button_index_tab4"/>
+                <ImageView
+                    android:layout_marginLeft="50dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@mipmap/button_index_tab1"/>
+                <ImageView
+                    android:layout_marginLeft="50dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@mipmap/button_index_tab2"/>
+            </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:gravity="center_horizontal"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+
+                android:text="研发·编程"/>
+            <TextView
+                android:gravity="center_horizontal"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="运营·推广"/>
+            <TextView
+                android:gravity="center_horizontal"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="视觉·创新"/>
+            <TextView
+                android:gravity="center_horizontal"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="网络·安全"/>
+        </LinearLayout>
         <!--<LinearLayout-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="wrap_content"></LinearLayout>-->
@@ -76,9 +139,7 @@
         <!--<LinearLayout-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="wrap_content"></LinearLayout>-->
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"></LinearLayout>-->
+        </LinearLayout>
     </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
 
 
