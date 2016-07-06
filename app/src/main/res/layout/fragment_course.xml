@@ -1,46 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/drwaerlLayout_id"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue">
+    android:orientation="vertical">
 
-    <LinearLayout
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#ffffff">
+        android:layout_height="wrap_content"
+        android:background="#f1000000">
+        <!--触发侧滑按钮-->
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:src="@mipmap/button_catolgue"
+            android:onClick="OpenLeftMenu" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#f1000000">
-            <!--触发侧滑按钮-->
-            <Button
-                android:layout_width="40dp"
-                android:layout_height="30dp"
-                android:layout_alignParentLeft="true"
-                android:background="@mipmap/button_catolgue"
-                android:onClick="OpenLeftMenu"
-                android:layout_alignTop="@+id/textView" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_centerInParent="true"
-                android:text="全部课程"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:id="@+id/textView" />
-            <!--搜索按钮-->
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:src="@mipmap/abc_ic_search_api_mtrl_alpha" />
-        </RelativeLayout>
-    </LinearLayout>
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="全部课程"
+            android:textColor="@color/white" />
+        <!--搜索按钮-->
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:src="@mipmap/abc_ic_search_api_mtrl_alpha" />
+    </RelativeLayout>
 
 
-
-</android.support.v4.widget.DrawerLayout>
+</LinearLayout>

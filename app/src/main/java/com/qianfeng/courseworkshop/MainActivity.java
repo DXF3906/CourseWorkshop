@@ -4,14 +4,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -21,10 +17,10 @@ import com.qianfeng.courseworkshop.coursefragment.CourseLeftFragment;
 
 
 public class MainActivity extends FragmentActivity {
-    private DrawerLayout drwaerLyout;
-    private Fragment fragment1;
-    private Fragment fragment2;
-    private RadioGroup rg_main_id;
+    private DrawerLayout drwaerLyout;//抽屉控件
+    private Fragment fragment1;//首页
+    private Fragment fragment2;//课程
+    private RadioGroup rg_main_id;//底部界面切换控件
     private FragmentManager supportFragmentManager;
 
     @Override
@@ -52,23 +48,20 @@ public class MainActivity extends FragmentActivity {
      * 关于侧滑动画的操作
      */
     private void initEvents() {
-        drwaerLyout.setDrawerListener(new DrawerLayout.DrawerListener()
-        {
+        drwaerLyout.setDrawerListener(new DrawerLayout.DrawerListener() {
+
             @Override
-            public void onDrawerStateChanged(int newState)
-            {
+            public void onDrawerStateChanged(int newState) {
             }
 
             @Override
-            public void onDrawerSlide(View drawerView, float slideOffset)
-            {
+            public void onDrawerSlide(View drawerView, float slideOffset) {
                 View mContent = drwaerLyout.getChildAt(0);
                 View mMenu = drawerView;
                 float scale = 1 - slideOffset;
                 float rightScale = 0.8f + scale * 0.2f;
 
-               if (drawerView.getTag().equals("LEFT"))
-                {
+                if (drawerView.getTag().equals("LEFT")) {
 
                     float leftScale = 1 - 0.3f * scale;
 
@@ -86,13 +79,11 @@ public class MainActivity extends FragmentActivity {
             }
 
             @Override
-            public void onDrawerOpened(View drawerView)
-            {
+            public void onDrawerOpened(View drawerView) {
             }
 
             @Override
-            public void onDrawerClosed(View drawerView)
-            {
+            public void onDrawerClosed(View drawerView) {
 
             }
         });
@@ -108,22 +99,28 @@ public class MainActivity extends FragmentActivity {
 
         //②给RadioButton添加监听器
         rg_main_id.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                //首页
                 if (((RadioButton) radioGroup.getChildAt(0)).isChecked()) {
                     replaceContainerWidget(fragment1, null);
                 }
+                //课程
                 if (((RadioButton) radioGroup.getChildAt(1)).isChecked()) {
-                    replaceContainerWidget(fragment1, new CourseLeftFragment());
+                    replaceContainerWidget(fragment2, new CourseLeftFragment());
                 }
+                //社区
                 if (((RadioButton) radioGroup.getChildAt(2)).isChecked()) {
-//                  replaceContainerWidget(fragment2);
+                    //replaceContainerWidget(fragment2);
                 }
+                //题库
                 if (((RadioButton) radioGroup.getChildAt(3)).isChecked()) {
-//                  replaceContainerWidget(fragment2);
+                    //replaceContainerWidget(fragment2);
                 }
+                //我
                 if (((RadioButton) radioGroup.getChildAt(4)).isChecked()) {
-//                  replaceContainerWidget(fragment2);
+                    //replaceContainerWidget(fragment2);
                 }
             }
         });
@@ -149,7 +146,6 @@ public class MainActivity extends FragmentActivity {
 
     /**
      * 替换占位的fragment控件
-     *
      * @param fragment
      * @param leftFragment
      */
@@ -162,14 +158,21 @@ public class MainActivity extends FragmentActivity {
 
         //如果当前界面是课程或社区，将指定的左侧滑动的界面替换
         if (leftFragment != null) {
-            drwaerLyout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+            drwaerLyout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);//滑动解锁
             transaction.replace(R.id.id_left_menu, leftFragment);
         } else {
-            drwaerLyout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+            drwaerLyout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);//滑动锁定，不允许滑动
         }
-
         transaction.commit();
 
 
     }
+    /**
+     * 点击触发侧滑效果(三横线)
+     * @param view
+     */
+    public void OpenLeftMenu(View view){
+        drwaerLyout.openDrawer(Gravity.LEFT);
+    }
+
 }

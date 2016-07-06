@@ -20,8 +20,11 @@ import java.net.URL;
 
 public class HttpUtils {
     //返回缓存的文件名
-    public static String getData(String urlStr){
-        String fileName=urlStr.substring(urlStr.lastIndexOf("/"));
+    public static String getData(String urlStr,String fileName){
+        //如果传过来的有文件名，说明是目录文件（json格式的数据），否则，是html数据重新给定文件名
+        if (fileName.length()<=0){
+            fileName=urlStr.substring(urlStr.lastIndexOf("/"));
+        }
         File file=new File(Environment.getExternalStorageDirectory(),fileName+".html");
         OutputStream os=null;
         InputStream is=null;
