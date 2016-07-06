@@ -13,6 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.LinkedList;
@@ -32,6 +35,13 @@ public class Fragment1 extends Fragment {
     private boolean mIsChanged = false;
     private int mCurrentPagePosition = 1;
     private ScheduledExecutorService scheduledExecutorService;
+    private ImageView iv_button_index_id;
+    private ImageView iv_button_index_id2;
+    private ImageView iv_button_index_id3;
+    private ImageView iv_button_index_id4;
+    private TextView tv_icon_edit_id;
+    private TextView tv_icon_edit_id2;
+    private TextView tv_icon_edit_id3;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +56,13 @@ public class Fragment1 extends Fragment {
         iv_main_dot_id = (ImageView) view.findViewById(R.id.iv_main_dot_id);
         iv_main_dot2_id = (ImageView) view.findViewById(R.id.iv_main_dot2_id);
         iv_main_dot3_id = (ImageView) view.findViewById(R.id.iv_main_dot3_id);
+        iv_button_index_id = (ImageView) view.findViewById(R.id.iv_button_index_id);
+        iv_button_index_id2 = (ImageView) view.findViewById(R.id.iv_button_index_id2);
+        iv_button_index_id3 = (ImageView) view.findViewById(R.id.iv_button_index_id3);
+        iv_button_index_id4 = (ImageView) view.findViewById(R.id.iv_button_index_id4);
+        tv_icon_edit_id = (TextView) view.findViewById(R.id.tv_icon_edit_id);
+        tv_icon_edit_id2 = (TextView) view.findViewById(R.id.tv_icon_edit_id2);
+        tv_icon_edit_id3 = (TextView) view.findViewById(R.id.tv_icon_edit_id3);
         ds = new LinkedList<>();
         int[] imageIds = { R.mipmap.shili3,R.mipmap.shili, R.mipmap.shili2, R.mipmap.shili3,R.mipmap.shili};
         for (int imageId : imageIds) {
@@ -60,43 +77,6 @@ public class Fragment1 extends Fragment {
         vp_main_fragment_id.setAdapter(adapter);
 
         vp_main_fragment_id.setCurrentItem(1);
-//        handler = new Handler() {
-//
-//            @Override
-//            public void handleMessage(Message msg) {
-//                switch (msg.what) {
-//                    case 200:
-//                        // 获取子线程传递过来的数据
-//                        int arg1 = msg.arg1;
-//                        // 修改ui控件
-//
-//                        vp_main_fragment_id.setCurrentItem(arg1, false);
-//                        break;
-//
-//
-//                    default:
-//                        break;
-//                }
-//            }
-//        };
-//        new Thread() {
-//
-//            @Override
-//            public void run() {
-//                while (true) {
-//                    mCurrentPagePosition++;
-//                    SystemClock.sleep(1500);
-//
-//                }
-//                Message message= Message.obtain();
-//                message.what = 200;// 消息码，用来定义消息的状态（正常，异常，xxx）,可以任意定制
-//
-//                message.arg1 = mCurrentPagePosition;
-//                handler.sendMessage(message);
-//            }
-//
-//
-//        }.start();
 
         vp_main_fragment_id.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -150,7 +130,19 @@ public class Fragment1 extends Fragment {
 
 
         });
-
+        View.OnClickListener listener= new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity)getActivity()).morefragment();
+            }
+        };
+        iv_button_index_id.setOnClickListener(listener);
+        iv_button_index_id2.setOnClickListener(listener);
+        iv_button_index_id3.setOnClickListener(listener);
+        iv_button_index_id4.setOnClickListener(listener);
+        tv_icon_edit_id.setOnClickListener(listener);
+        tv_icon_edit_id2.setOnClickListener(listener);
+        tv_icon_edit_id3.setOnClickListener(listener);
 
 
         return view;
@@ -224,4 +216,6 @@ public class Fragment1 extends Fragment {
             container.removeView((View) ds.get(position));
         }
     }
+
+
 }
