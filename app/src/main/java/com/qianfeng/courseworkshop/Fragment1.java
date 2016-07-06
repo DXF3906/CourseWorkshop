@@ -1,16 +1,24 @@
 package com.qianfeng.courseworkshop;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.LinkedList;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 
 public class Fragment1 extends Fragment {
@@ -20,6 +28,10 @@ public class Fragment1 extends Fragment {
     private ImageView iv_main_dot2_id;
     private ImageView iv_main_dot3_id;
     private LinkedList<View> ds;
+    private int count;
+    private boolean mIsChanged = false;
+    private int mCurrentPagePosition = 1;
+    private ScheduledExecutorService scheduledExecutorService;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,7 +47,7 @@ public class Fragment1 extends Fragment {
         iv_main_dot2_id = (ImageView) view.findViewById(R.id.iv_main_dot2_id);
         iv_main_dot3_id = (ImageView) view.findViewById(R.id.iv_main_dot3_id);
         ds = new LinkedList<>();
-        int[] imageIds = {R.mipmap.shili, R.mipmap.shili2, R.mipmap.shili3};
+        int[] imageIds = { R.mipmap.shili3,R.mipmap.shili, R.mipmap.shili2, R.mipmap.shili3,R.mipmap.shili};
         for (int imageId : imageIds) {
             ImageView iv = new ImageView(getActivity());
             iv.setImageResource(imageId);
@@ -44,31 +56,48 @@ public class Fragment1 extends Fragment {
 
 
         //③设置适配器
-        vp_main_fragment_id.setAdapter(new PagerAdapter() {
-            @Override
-            public int getCount() {
-                return ds.size();
-            }
+        PagerAdapter adapter=new MyAdapter();
+        vp_main_fragment_id.setAdapter(adapter);
 
-            @Override
-            public boolean isViewFromObject(View arg0, Object arg1) {
-                return arg0 == arg1;
-            }
-
-            @Override
-            public Object instantiateItem(ViewGroup container, int position) {
-                View iv =  ds.get(position);
-
-                container.addView(iv);// ？，此处容易忽略！不要忘了！作用：在ViewPager容器控件中添加上相应的视图。
-                return iv;
-            }
-
-//            @Override
-//            public void destroyItem(ViewGroup container, int position, Object object) {
+        vp_main_fragment_id.setCurrentItem(1);
+//        handler = new Handler() {
 //
-//                container.removeView((View) ds.get(position));
+//            @Override
+//            public void handleMessage(Message msg) {
+//                switch (msg.what) {
+//                    case 200:
+//                        // 获取子线程传递过来的数据
+//                        int arg1 = msg.arg1;
+//                        // 修改ui控件
+//
+//                        vp_main_fragment_id.setCurrentItem(arg1, false);
+//                        break;
+//
+//
+//                    default:
+//                        break;
+//                }
 //            }
-        });
+//        };
+//        new Thread() {
+//
+//            @Override
+//            public void run() {
+//                while (true) {
+//                    mCurrentPagePosition++;
+//                    SystemClock.sleep(1500);
+//
+//                }
+//                Message message= Message.obtain();
+//                message.what = 200;// 消息码，用来定义消息的状态（正常，异常，xxx）,可以任意定制
+//
+//                message.arg1 = mCurrentPagePosition;
+//                handler.sendMessage(message);
+//            }
+//
+//
+//        }.start();
+
         vp_main_fragment_id.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
@@ -77,26 +106,122 @@ public class Fragment1 extends Fragment {
 
             @Override
             public void onPageSelected(int i) {
+                mIsChanged = true;
+                if (i >3) {
+                    mCurrentPagePosition = 1;
+                } else if (i < 1) {
+                    mCurrentPagePosition = 3;
+                } else {
+                    mCurrentPagePosition = i;
+                }
+
+                vp_main_fragment_id.setCurrentItem(mCurrentPagePosition);
                 iv_main_dot_id.setEnabled(true);
                 iv_main_dot2_id.setEnabled(true);
                 iv_main_dot3_id.setEnabled(true);
+                if (i == 3) {
+                    iv_main_dot_id.setEnabled(false);
+                }
                 if (i == 0) {
                     iv_main_dot_id.setEnabled(false);
                 }
-                if (i == 1) {
+                if (i == 2) {
                     iv_main_dot2_id.setEnabled(false);
                 }
-                if (i == 2) {
+                if (i == 1) {
                     iv_main_dot3_id.setEnabled(false);
+
+                }
+                if (i == 4) {
+                    iv_main_dot3_id.setEnabled(false);
+
                 }
             }
 
             @Override
             public void onPageScrollStateChanged(int i) {
-
+                if (ViewPager.SCROLL_STATE_IDLE == i) {
+                    if (mIsChanged) {
+                        mIsChanged = false;
+                        vp_main_fragment_id.setCurrentItem(mCurrentPagePosition, false);
+                    }
+                }
             }
+
+
         });
+
+
+
         return view;
     }
+    @Override
+    public void onStart() {
+        //用一个定时器  来完成图片切换
+        //Timer 与 ScheduledExecutorService 实现定时器的效果
 
+        scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
+        //通过定时器 来完成 每2秒钟切换一个图片
+        //经过指定的时间后，执行所指定的任务
+        //scheduleAtFixedRate(command, initialDelay, period, unit)
+        //command 所要执行的任务
+        //initialDelay 第一次启动时 延迟启动时间
+        //period  每间隔多次时间来重新启动任务
+        //unit 时间单位
+        scheduledExecutorService.scheduleAtFixedRate(new ViewPagerTask(), 1, 3, TimeUnit.SECONDS);
+
+        super.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        //停止图片切换
+        scheduledExecutorService.shutdown();
+
+        super.onStop();
+    }
+
+    //用来完成图片切换的任务
+    private class ViewPagerTask implements Runnable{
+
+        public void run() {
+            //实现我们的操作
+            //改变当前页面
+            mCurrentPagePosition = (mCurrentPagePosition + 1) % ds.size();
+            //Handler来实现图片切换
+            handler.obtainMessage().sendToTarget();
+        }
+    }
+    private Handler handler = new Handler(){
+
+        @Override
+        public void handleMessage(Message msg) {
+            //设定viewPager当前页面
+            vp_main_fragment_id.setCurrentItem(mCurrentPagePosition);
+        }
+    };
+    public class MyAdapter extends PagerAdapter{
+        @Override
+        public int getCount() {
+            return ds.size();
+        }
+
+        @Override
+        public boolean isViewFromObject(View arg0, Object arg1) {
+            return arg0 == arg1;
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            View iv = ds.get(position);
+
+            container.addView(iv);// ？，此处容易忽略！不要忘了！作用：在ViewPager容器控件中添加上相应的视图。
+            return iv;
+        }
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+
+            container.removeView((View) ds.get(position));
+        }
+    }
 }
