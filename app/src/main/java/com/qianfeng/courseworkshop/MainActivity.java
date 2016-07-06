@@ -34,13 +34,13 @@ public class MainActivity extends AppCompatActivity {
                   replaceContainerWidget(fragment2);
               }
               if(((RadioButton)radioGroup.getChildAt(2)).isChecked()){
-                  replaceContainerWidget(fragment2);
+//                  replaceContainerWidget(fragment2);
               }
               if(((RadioButton)radioGroup.getChildAt(3)).isChecked()){
-                  replaceContainerWidget(fragment2);
+//                  replaceContainerWidget(fragment2);
               }
               if(((RadioButton)radioGroup.getChildAt(4)).isChecked()){
-                  replaceContainerWidget(fragment2);
+//                  replaceContainerWidget(fragment2);
               }
             }
         });
