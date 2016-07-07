@@ -14,6 +14,7 @@ import android.widget.RadioGroup;
 import com.nineoldandroids.view.ViewHelper;
 import com.qianfeng.courseworkshop.coursefragment.CourseFragment;
 import com.qianfeng.courseworkshop.coursefragment.CourseLeftFragment;
+import com.qianfeng.courseworkshop.shequfragment.ShequFragment;
 
 
 public class MainActivity extends FragmentActivity {
