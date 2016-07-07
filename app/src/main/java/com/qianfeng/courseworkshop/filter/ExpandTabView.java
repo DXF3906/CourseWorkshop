@@ -75,9 +75,13 @@ public class ExpandTabView extends LinearLayout implements FilterTabView.OnClick
      */
     public void setExpandView(View expandView) {
         if (expandView == null) return;
+
         container.setVisibility(View.VISIBLE);
-        view_container.removeAllViews();
-        view_container.addView(expandView);
+
+
+            view_container.removeAllViews();
+            view_container.addView(expandView);
+
     }
 
     /**

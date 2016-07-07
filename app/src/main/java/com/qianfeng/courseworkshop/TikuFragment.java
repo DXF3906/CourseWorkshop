@@ -64,8 +64,10 @@ public class TikuFragment extends Fragment implements ExpandTabView.OnFilterSele
         expandTabView.setOnFilterSelected(this);
         //数据源
         nameList = new ArrayList<>();
-        nameList.add("性别");
-        nameList.add("地点");
+        nameList.add("技能分类");
+        nameList.add("最新试题");
+        nameList.add("知名企业");
+        nameList.add("试题难度");
         expandTabView.setNameList(nameList);
         ptrlv_tiku_id = (PullToRefreshListView) view
                 .findViewById(R.id.ptrlv_tiku_id);
@@ -122,25 +124,47 @@ public class TikuFragment extends Fragment implements ExpandTabView.OnFilterSele
         }
     }
     //筛选下拉框数据
-    private ListView getGenderView() {
+    private ListView getjinengView() {
         ListView listView = new ListView(getActivity());
         listView.setAdapter(new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_list_item_1, Arrays.asList(new String[]{"不限", "男", "女"})));
         return listView;
     }
     //筛选下拉框数据
-    private View getAreaView() {
-        View inflate = LayoutInflater.from(getActivity()).inflate(R.layout.frag_area, null);
-        return inflate;
+    private View getzuixinView() {
+        ListView listView = new ListView(getActivity());
+        listView.setAdapter(new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_list_item_1, Arrays.asList(new String[]{"不限", "男", "女"})));
+        return listView;
+    }
+    private View getzhimingView() {
+        ListView listView = new ListView(getActivity());
+        listView.setAdapter(new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_list_item_1, Arrays.asList(new String[]{"不限", "男", "女"})));
+        return listView;
+    }
+    private View getnanduView() {
+        ListView listView = new ListView(getActivity());
+        listView.setAdapter(new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_list_item_1, Arrays.asList(new String[]{"不限", "男", "女"})));
+        return listView;
     }
     //筛选选择
     @Override
     public void onSelected(FilterTabView tabView, int position, boolean singleCheck) {
         if (singleCheck) {
             if (position == 0) {
-                expandTabView.setExpandView(getGenderView());
-            } else {
-                expandTabView.setExpandView(getAreaView());
+
+                expandTabView.setExpandView(getjinengView());
+            }
+            if (position == 1) {
+                expandTabView.setExpandView(getzuixinView());
+            }
+            if (position == 2) {
+                expandTabView.setExpandView(getzhimingView());
+            }
+            if (position == 3) {
+                expandTabView.setExpandView(getnanduView());
             }
         }
     }
