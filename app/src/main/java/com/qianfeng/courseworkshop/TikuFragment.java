@@ -12,6 +12,7 @@ import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -69,8 +70,9 @@ public class TikuFragment extends Fragment implements ExpandTabView.OnFilterSele
         nameList.add("知名企业");
         nameList.add("试题难度");
         expandTabView.setNameList(nameList);
-        ptrlv_tiku_id = (PullToRefreshListView) view
-                .findViewById(R.id.ptrlv_tiku_id);
+
+
+        ptrlv_tiku_id = (PullToRefreshListView) view.findViewById(R.id.ptrlv_tiku_id);
         //下拉刷新
         ptrlv_tiku_id.setMode(PullToRefreshBase.Mode.BOTH);
         ptrlv_tiku_id.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
@@ -88,8 +90,7 @@ public class TikuFragment extends Fragment implements ExpandTabView.OnFilterSele
                 new GetDataTask().execute();
             }
         });
-        ptrlv_tiku_id
-                .setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+        ptrlv_tiku_id.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
 
                     @Override
                     public void onLastItemVisible() {
