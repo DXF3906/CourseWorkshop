@@ -309,6 +309,10 @@
     <color name="lawngreen">#7CFC00</color>
     - <!-- 草绿色
   -->
+    <!-- 分割线颜色 -->
+    <color name="divider_color">#333333</color>
+    <!-- 选中颜色 -->
+    <color name="filter_bg">#eeeeee</color>
     <color name="mediumslateblue">#7B68EE</color>
     - <!-- 中暗蓝色
   -->

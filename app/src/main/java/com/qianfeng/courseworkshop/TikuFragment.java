@@ -12,6 +12,7 @@ import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -19,7 +20,11 @@ import android.widget.TextView;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.qianfeng.courseworkshop.filter.ExpandTabView;
+import com.qianfeng.courseworkshop.filter.FilterTabView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -29,7 +34,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 
-public class TikuFragment extends Fragment {
+public class TikuFragment extends Fragment implements ExpandTabView.OnFilterSelected {
 
     private FragmentActivity activity;
     private View view;
@@ -37,7 +42,8 @@ public class TikuFragment extends Fragment {
     private LinkedList<Map<String, Object>> data;
     private Map<String, Object> map;
     private SimpleAdapter adapter;
-
+    private ExpandTabView expandTabView;
+    private ArrayList<String> nameList;//顶部tab条目列表
     @Override
     public void onCreate(Bundle savedInstanceState) {
         activity = getActivity();
@@ -53,8 +59,18 @@ public class TikuFragment extends Fragment {
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
+        //筛选功能
+        expandTabView = (ExpandTabView)view. findViewById(R.id.expand_tabview);
+        expandTabView.setOnFilterSelected(this);
+        //数据源
+        nameList = new ArrayList<>();
+        nameList.add("性别");
+        nameList.add("地点");
+        expandTabView.setNameList(nameList);
         ptrlv_tiku_id = (PullToRefreshListView) view
                 .findViewById(R.id.ptrlv_tiku_id);
+        //下拉刷新
+        ptrlv_tiku_id.setMode(PullToRefreshBase.Mode.BOTH);
         ptrlv_tiku_id.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
@@ -105,6 +121,30 @@ public class TikuFragment extends Fragment {
             data.add(map);
         }
     }
+    //筛选下拉框数据
+    private ListView getGenderView() {
+        ListView listView = new ListView(getActivity());
+        listView.setAdapter(new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_list_item_1, Arrays.asList(new String[]{"不限", "男", "女"})));
+        return listView;
+    }
+    //筛选下拉框数据
+    private View getAreaView() {
+        View inflate = LayoutInflater.from(getActivity()).inflate(R.layout.frag_area, null);
+        return inflate;
+    }
+    //筛选选择
+    @Override
+    public void onSelected(FilterTabView tabView, int position, boolean singleCheck) {
+        if (singleCheck) {
+            if (position == 0) {
+                expandTabView.setExpandView(getGenderView());
+            } else {
+                expandTabView.setExpandView(getAreaView());
+            }
+        }
+    }
+
     private class GetDataTask extends AsyncTask<Void, Void, String[]> {
 
         @Override
