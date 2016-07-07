@@ -124,6 +124,7 @@ public class WelcomeActivity extends AppCompatActivity{
         for (int imageId : imageIds) {
             ImageView iv = new ImageView(this);
             iv.setImageResource(imageId);
+
             ds.add(iv);
         }
         //最后一张图片通过布局文件来单独定制

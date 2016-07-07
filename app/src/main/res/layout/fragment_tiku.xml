@@ -16,13 +16,10 @@
         android:textColor="@color/white"
         android:textSize="30sp" />
 
-
     <com.handmark.pulltorefresh.library.PullToRefreshListView
-        android:id="@+id/ptrlv_kecheng_id"
+        android:id="@+id/ptrlv_tiku_id"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-
     </com.handmark.pulltorefresh.library.PullToRefreshListView>
 
 
