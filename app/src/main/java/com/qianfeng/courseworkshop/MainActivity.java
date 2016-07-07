@@ -14,12 +14,14 @@ import android.widget.RadioGroup;
 import com.nineoldandroids.view.ViewHelper;
 import com.qianfeng.courseworkshop.coursefragment.CourseFragment;
 import com.qianfeng.courseworkshop.coursefragment.CourseLeftFragment;
+import com.qianfeng.courseworkshop.shequfragment.ShequFragment;
 
 
 public class MainActivity extends FragmentActivity {
     private DrawerLayout drwaerLyout;//抽屉控件
     private Fragment fragment1;//首页
     private Fragment fragment2;//课程
+    private Fragment fragment3;//社区
     private Fragment fragment4;//题库
     private RadioGroup rg_main_id;//底部界面切换控件
     private FragmentManager supportFragmentManager;
@@ -113,7 +115,7 @@ public class MainActivity extends FragmentActivity {
                 }
                 //社区
                 if (((RadioButton) radioGroup.getChildAt(2)).isChecked()) {
-                    //replaceContainerWidget(fragment2);
+                    replaceContainerWidget(fragment3, new CourseLeftFragment());
                 }
                 //题库
                 if (((RadioButton) radioGroup.getChildAt(3)).isChecked()) {
@@ -143,6 +145,7 @@ public class MainActivity extends FragmentActivity {
         fragment1 = new Fragment1();
         //课程对应的fragment
         fragment2 = new CourseFragment();
+        fragment3 = new ShequFragment();
         fragment4 = new TikuFragment();
     }
 
