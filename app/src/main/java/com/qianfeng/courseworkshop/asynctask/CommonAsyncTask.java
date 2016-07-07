@@ -19,7 +19,7 @@ public class CommonAsyncTask extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... params) {
         //将资源缓存到本地，返回本地的文件名
-        return HttpUtils.getData(params[0]);
+        return HttpUtils.getData(params[0],null);
     }
 
     @Override
