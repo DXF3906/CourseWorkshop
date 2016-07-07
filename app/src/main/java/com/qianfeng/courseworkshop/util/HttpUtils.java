@@ -3,7 +3,10 @@ package com.qianfeng.courseworkshop.util;
 
 import android.os.Environment;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,11 +25,11 @@ public class HttpUtils {
     //返回缓存的文件名
     public static String getData(String urlStr,String fileName){
         //如果传过来的有文件名，说明是目录文件（json格式的数据），否则，是html数据重新给定文件名
-        if (fileName.length()<=0){
+        if (fileName==null){
             fileName=urlStr.substring(urlStr.lastIndexOf("/"));
         }
         File file=new File(Environment.getExternalStorageDirectory(),fileName+".html");
-        OutputStream os=null;
+        FileOutputStream os=null;
         InputStream is=null;
         HttpURLConnection coon=null;
         try {
@@ -36,18 +39,20 @@ public class HttpUtils {
 
             //2.通过路径得到一个连接 http的连接
             coon= (HttpURLConnection) url.openConnection();
+            coon.setConnectTimeout(6* 1000);
 
             // 3.判断服务器给我们返回的状态信息
             int code=coon.getResponseCode();
             if (code==HttpURLConnection.HTTP_OK){
                 // 4.利用链接成功的 conn 得到输入流
                 is=coon.getInputStream();
+
                 //缓存到本地SD卡上
                 byte [] bytes=new byte[1024];
-                int len=0;
-                while ((len=is.read())!=-1){
+                int len=-1;
+                while ((len=is.read(bytes))!=-1){
                     os.write(bytes,0,len);
-                    os.flush();
+                   // os.flush();
                 }
             }
             return fileName;

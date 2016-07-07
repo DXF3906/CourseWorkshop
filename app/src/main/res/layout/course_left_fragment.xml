@@ -3,13 +3,16 @@
     android:id="@+id/sv_id"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00000000">
-
+    android:background="@mipmap/background_course"
+    android:orientation="vertical"
+    android:scrollbars="none">
+    <!--android:scrollbars="none"取消滚动条-->
+    <!--android:background="#00000000"-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
+        <!--全部课程-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -17,8 +20,8 @@
 
             <ImageView
                 android:id="@+id/iv_allCourse_id"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_margin="10dp"
                 android:src="@mipmap/icon_all_course" />
 
@@ -26,7 +29,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="全部课程" />
+                android:text="全部课程"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tv_allcourse_id"
@@ -34,58 +39,228 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="/807"
-                android:textColor="@color/gray"
+                android:textColor="@color/wheat"
+                android:textSize="10sp" />
+        </LinearLayout>
+        <!--研发.编程-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_program"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_margin="10dp"
+                android:src="@mipmap/icon_program" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="研发♥编程"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_program_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="/6666"
+                android:textColor="@color/wheat"
                 android:textSize="10sp" />
         </LinearLayout>
 
         <ListView
             android:id="@+id/lv_program_id"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_height="600dp">
 
         </ListView>
+        <!--运营♥推广-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_spread"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_margin="10dp"
+                android:src="@mipmap/ic_spread" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="运营♥推广"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_spread_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="/6666"
+                android:textColor="@color/wheat"
+                android:textSize="10sp" />
+        </LinearLayout>
 
         <ListView
             android:id="@+id/lv_spread_id"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_height="247dp">
 
         </ListView>
+        <!--视觉♥创意-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_seeing"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_margin="10dp"
+                android:src="@mipmap/ic_seeing" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="视觉♥创意"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_seeing_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="/6666"
+                android:textColor="@color/wheat"
+                android:textSize="10sp" />
+        </LinearLayout>
 
         <ListView
             android:id="@+id/lv_seeing_id"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_height="247dp">
 
         </ListView>
+        <!--网络♥安全-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_net"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_margin="10dp"
+                android:src="@mipmap/ic_net" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="网络♥安全"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_net_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="/6666"
+                android:textColor="@color/wheat"
+                android:textSize="10sp" />
+        </LinearLayout>
 
         <ListView
             android:id="@+id/lv_net_id"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_height="176dp">
 
         </ListView>
+        <!--职场♥心理-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_carrer"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_margin="10dp"
+                android:src="@mipmap/ic_carrer" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="职场♥心理"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_carrer_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="/52"
+                android:textColor="@color/wheat"
+                android:textSize="10sp" />
+        </LinearLayout>
 
         <ListView
             android:id="@+id/lv_carrer_id"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_height="141dp">
 
         </ListView>
+        <!--考试♥认证-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_exam"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_margin="10dp"
+                android:src="@mipmap/ic_exam" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="考试♥认证"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_exam_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="/6666"
+                android:textColor="@color/wheat"
+                android:textSize="10sp" />
+        </LinearLayout>
 
         <ListView
             android:id="@+id/lv_exam_id"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-
-        </ListView>
+            android:layout_height="71dp"></ListView>
     </LinearLayout>
-
-
 </ScrollView>

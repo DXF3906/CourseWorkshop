@@ -64,7 +64,7 @@ public class Fragment1 extends Fragment {
         tv_icon_edit_id2 = (TextView) view.findViewById(R.id.tv_icon_edit_id2);
         tv_icon_edit_id3 = (TextView) view.findViewById(R.id.tv_icon_edit_id3);
         ds = new LinkedList<>();
-        int[] imageIds = { R.mipmap.shili3,R.mipmap.shili, R.mipmap.shili2, R.mipmap.shili3,R.mipmap.shili};
+        int[] imageIds = {R.mipmap.shili3, R.mipmap.shili, R.mipmap.shili2, R.mipmap.shili3, R.mipmap.shili};
         for (int imageId : imageIds) {
             ImageView iv = new ImageView(getActivity());
             iv.setImageResource(imageId);
@@ -73,7 +73,7 @@ public class Fragment1 extends Fragment {
 
 
         //③设置适配器
-        PagerAdapter adapter=new MyAdapter();
+        PagerAdapter adapter = new MyAdapter();
         vp_main_fragment_id.setAdapter(adapter);
 
         vp_main_fragment_id.setCurrentItem(1);
@@ -87,7 +87,7 @@ public class Fragment1 extends Fragment {
             @Override
             public void onPageSelected(int i) {
                 mIsChanged = true;
-                if (i >3) {
+                if (i > 3) {
                     mCurrentPagePosition = 1;
                 } else if (i < 1) {
                     mCurrentPagePosition = 3;
@@ -130,10 +130,10 @@ public class Fragment1 extends Fragment {
 
 
         });
-        View.OnClickListener listener= new View.OnClickListener() {
+        View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity)getActivity()).morefragment();
+                ((MainActivity) getActivity()).morefragment();
             }
         };
         iv_button_index_id.setOnClickListener(listener);
@@ -147,6 +147,7 @@ public class Fragment1 extends Fragment {
 
         return view;
     }
+
     @Override
     public void onStart() {
         //用一个定时器  来完成图片切换
@@ -174,7 +175,7 @@ public class Fragment1 extends Fragment {
     }
 
     //用来完成图片切换的任务
-    private class ViewPagerTask implements Runnable{
+    private class ViewPagerTask implements Runnable {
 
         public void run() {
             //实现我们的操作
@@ -184,7 +185,8 @@ public class Fragment1 extends Fragment {
             handler.obtainMessage().sendToTarget();
         }
     }
-    private Handler handler = new Handler(){
+
+    private Handler handler = new Handler() {
 
         @Override
         public void handleMessage(Message msg) {
@@ -192,7 +194,8 @@ public class Fragment1 extends Fragment {
             vp_main_fragment_id.setCurrentItem(mCurrentPagePosition);
         }
     };
-    public class MyAdapter extends PagerAdapter{
+
+    public class MyAdapter extends PagerAdapter {
         @Override
         public int getCount() {
             return ds.size();
@@ -210,6 +213,7 @@ public class Fragment1 extends Fragment {
             container.addView(iv);// ？，此处容易忽略！不要忘了！作用：在ViewPager容器控件中添加上相应的视图。
             return iv;
         }
+
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
 
