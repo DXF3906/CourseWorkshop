@@ -123,7 +123,8 @@ public class WelcomeActivity extends AppCompatActivity{
         int[] imageIds = {R.mipmap.guide_1, R.mipmap.guide_2, R.mipmap.guide_3, R.mipmap.guide_4,};
         for (int imageId : imageIds) {
             ImageView iv = new ImageView(this);
-            iv.setImageResource(imageId);
+//            iv.setImageResource(imageId);
+            iv.setBackgroundResource(imageId);
             ds.add(iv);
         }
         //最后一张图片通过布局文件来单独定制
