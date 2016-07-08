@@ -23,6 +23,14 @@ public class ExpandTabView extends LinearLayout implements FilterTabView.OnClick
     private ArrayList<FilterTabView> tabViews = new ArrayList<FilterTabView>();//存储动态创建的tab
     private int position = -1;//当前点击的view为list中的position
 
+    public void setTabViews(ArrayList<FilterTabView> tabViews) {
+        this.tabViews = tabViews;
+    }
+
+    public ArrayList<FilterTabView> getTabViews() {
+        return tabViews;
+    }
+
     public ExpandTabView(Context context) {
         super(context);
         init();
@@ -66,6 +74,7 @@ public class ExpandTabView extends LinearLayout implements FilterTabView.OnClick
                 tab_container.addView(line);
             }
         }
+
     }
 
     /**

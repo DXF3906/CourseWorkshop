@@ -130,13 +130,17 @@ public class TikuFragment extends Fragment implements ExpandTabView.OnFilterSele
     private ListView getjinengView() {
         ListView listView = new ListView(getActivity());
         final String []jineng=new String[]{"不限", "男", "女"};
-        listView.setAdapter(new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1, Arrays.asList(jineng)));
+        final ArrayAdapter adapter=new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_list_item_1, Arrays.asList(jineng));
+        listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                nameList.set(0,jineng[i]);
-                expandTabView.setNameList(nameList);
+//                nameList.set(0,jineng[i]);
+                expandTabView.getTabViews().get(0).setText(jineng[i]);
+//                nameList.notifyAll();
+//                expandTabView.setNameList(nameList);
+
             }
         });
         return listView;
