@@ -92,6 +92,7 @@ public class ExpandTabView extends LinearLayout implements FilterTabView.OnClick
         view_container.removeAllViews();
     }
 
+
     /**
      * 外部调用，清除展现的布局，并取消所有tab的选中效果
      */
