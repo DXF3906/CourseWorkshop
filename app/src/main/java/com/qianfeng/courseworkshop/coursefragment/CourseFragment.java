@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
+import com.handmark.pulltorefresh.library.PullToRefreshAdapterViewBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.lidroid.xutils.BitmapUtils;
@@ -98,6 +99,36 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
         //拉动效果配置
         ptrlv_course_id.setMode(PullToRefreshBase.Mode.BOTH);
 
+        //刷新（待处理）
+        ptrlv_course_id.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
+            @Override
+            public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+                String label = DateUtils.formatDateTime(getActivity(),
+                        System.currentTimeMillis(), DateUtils.FORMAT_SHOW_TIME
+                                | DateUtils.FORMAT_SHOW_DATE
+                                | DateUtils.FORMAT_ABBREV_ALL);
+
+                // Update the LastUpdatedLabel
+                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+            }
+
+            @Override
+            public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+
+            }
+
+
+
+        });
+        //到底刷新（待处理）
+        ptrlv_course_id.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+
+            @Override
+            public void onLastItemVisible() {
+
+            }
+        });
+
         //开启异步任务下载目录数据
         //TODO
         CommonAsyncTask asyncTask = new CommonAsyncTask(this, fileName);
@@ -140,27 +171,7 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
         // 经典之处：将适配器设置到ListView中
         // setListAdapter(adapter);
         ptrlv_course_id.setAdapter(adapter);
-        //刷新（待处理）
-        ptrlv_course_id.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
-            @Override
-            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                String label = DateUtils.formatDateTime(getActivity(),
-                        System.currentTimeMillis(), DateUtils.FORMAT_SHOW_TIME
-                                | DateUtils.FORMAT_SHOW_DATE
-                                | DateUtils.FORMAT_ABBREV_ALL);
 
-                // Update the LastUpdatedLabel
-                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
-            }
-        });
-        //到底刷新（待处理）
-        ptrlv_course_id.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
-
-            @Override
-            public void onLastItemVisible() {
-
-            }
-        });
 
     }
 
