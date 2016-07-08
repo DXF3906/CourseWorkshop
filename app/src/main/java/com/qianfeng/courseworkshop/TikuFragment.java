@@ -12,6 +12,7 @@ import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -22,6 +23,8 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.qianfeng.courseworkshop.filter.ExpandTabView;
 import com.qianfeng.courseworkshop.filter.FilterTabView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -126,8 +129,16 @@ public class TikuFragment extends Fragment implements ExpandTabView.OnFilterSele
     //筛选下拉框数据
     private ListView getjinengView() {
         ListView listView = new ListView(getActivity());
+        final String []jineng=new String[]{"不限", "男", "女"};
         listView.setAdapter(new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1, Arrays.asList(new String[]{"不限", "男", "女"})));
+                android.R.layout.simple_list_item_1, Arrays.asList(jineng)));
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                nameList.set(0,jineng[i]);
+                expandTabView.setNameList(nameList);
+            }
+        });
         return listView;
     }
     //筛选下拉框数据
