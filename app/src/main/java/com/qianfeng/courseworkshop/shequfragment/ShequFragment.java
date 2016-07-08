@@ -12,7 +12,10 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SimpleAdapter;
 import android.support.v4.app.FragmentManager;
+
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.qianfeng.courseworkshop.Fragment1;
 import com.qianfeng.courseworkshop.R;
 import com.qianfeng.courseworkshop.TikuFragment;
@@ -30,7 +33,6 @@ public class ShequFragment extends Fragment {
 
     private FragmentActivity activity;
     private View view;
-    private PullToRefreshListView ptrlv_tiku_id;
     private LinkedList<Map<String, Object>> data;
     private Map<String, Object> map;
     private SimpleAdapter adapter;
@@ -40,6 +42,7 @@ public class ShequFragment extends Fragment {
     private RadioGroup rg_shequ_id;
     private WentiFragment wenti;
     private TieziFragment tiezi;
+    private PullToRefreshScrollView ptrsv_shequ_id;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -100,6 +103,7 @@ public class ShequFragment extends Fragment {
 
         //RadioGroup控件
         rg_shequ_id = (RadioGroup)view. findViewById(R.id.rg_shequ_id);
+        ptrsv_shequ_id = (PullToRefreshScrollView)view. findViewById(R.id.ptrsv_shequ_id);
         tiezi = new TieziFragment();
         wenti = new WentiFragment();
         supportFragmentManager =getActivity().getSupportFragmentManager();

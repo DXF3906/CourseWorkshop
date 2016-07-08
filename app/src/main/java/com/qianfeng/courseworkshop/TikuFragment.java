@@ -24,6 +24,8 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.qianfeng.courseworkshop.filter.ExpandTabView;
 import com.qianfeng.courseworkshop.filter.FilterTabView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -127,8 +129,20 @@ public class TikuFragment extends Fragment implements ExpandTabView.OnFilterSele
     //筛选下拉框数据
     private ListView getjinengView() {
         ListView listView = new ListView(getActivity());
-        listView.setAdapter(new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1, Arrays.asList(new String[]{"不限", "男", "女"})));
+        final String []jineng=new String[]{"不限", "男", "女"};
+        final ArrayAdapter adapter=new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_list_item_1, Arrays.asList(jineng));
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                nameList.set(0,jineng[i]);
+                expandTabView.getTabViews().get(0).setText(jineng[i]);
+//                nameList.notifyAll();
+//                expandTabView.setNameList(nameList);
+
+            }
+        });
         return listView;
     }
     //筛选下拉框数据

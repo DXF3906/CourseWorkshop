@@ -26,9 +26,12 @@
     </RelativeLayout>
 
     <com.handmark.pulltorefresh.library.PullToRefreshScrollView
+        xmlns:ptr= "http://schemas.android.com/apk/res-auto"
         android:id="@+id/ptrsv_shequ_id"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+
+        ptr:ptrMode= "both" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -42,7 +45,128 @@
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="60dp"></HorizontalScrollView>
+                android:layout_height="60dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="60dp"
+                            android:layout_height="35dp"
+                            android:src="@mipmap/icon_program_java" />
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="60dp"
+                            android:layout_height="35dp"
+                            android:src="@mipmap/icon_program" />
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="60dp"
+                            android:layout_height="35dp"
+                            android:src="@mipmap/icon_program_java" />
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="60dp"
+                            android:layout_height="35dp"
+                            android:src="@mipmap/icon_program_java" />
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="60dp"
+                            android:layout_height="35dp"
+                            android:src="@mipmap/icon_program_java" />
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="60dp"
+                            android:layout_height="35dp"
+                            android:src="@mipmap/icon_program_java" />
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="60dp"
+                            android:layout_height="35dp"
+                            android:src="@mipmap/icon_program_java" />
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="60dp"
+                            android:layout_height="35dp"
+                            android:src="@mipmap/icon_program_java" />
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="60dp"
+                            android:layout_height="35dp"
+                            android:src="@mipmap/icon_program_java" />
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="60dp"
+                            android:layout_height="35dp"
+                            android:src="@mipmap/icon_program_java" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="60dp"
+                            android:layout_height="25dp"
+                            android:text="java" />
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="60dp"
+                            android:layout_height="25dp"
+                            android:text="有奖活动" />
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="60dp"
+                            android:layout_height="25dp"
+                            android:text="灌水贴图" />
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="60dp"
+                            android:layout_height="25dp"
+                            android:text="新手报到" />
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="60dp"
+                            android:layout_height="25dp"
+                            android:text="电子书籍" />
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="60dp"
+                            android:layout_height="25dp"
+                            android:text="UI设计" />
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="60dp"
+                            android:layout_height="25dp"
+                            android:text="Android" />
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="60dp"
+                            android:layout_height="25dp"
+                            android:text="软件下载" />
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="60dp"
+                            android:layout_height="25dp"
+                            android:text="设计大赛" />
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="60dp"
+                            android:layout_height="25dp"
+                            android:text="提个建议" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </HorizontalScrollView>
 
             <View
                 android:layout_width="match_parent"
@@ -51,9 +175,9 @@
 
             <RadioGroup
                 android:id="@+id/rg_shequ_id"
-                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:orientation="horizontal">
 
                 <RadioButton
@@ -66,10 +190,10 @@
                     android:text="全部帖子" />
 
                 <RadioButton
-                    android:background="@drawable/sq_rb_selector"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_weight="1"
+                    android:background="@drawable/sq_rb_selector"
                     android:button="@null"
                     android:gravity="center"
                     android:text="待解决问题" />
@@ -79,6 +203,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/gray" />
+
             <LinearLayout
                 android:id="@+id/ll_shequ_content"
                 android:layout_width="match_parent"
