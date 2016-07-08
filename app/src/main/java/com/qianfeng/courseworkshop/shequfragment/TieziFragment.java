@@ -70,6 +70,7 @@ public class TieziFragment extends Fragment {
         // setListAdapter(adapter);
         lv_shequ_jingpin.setAdapter(adapter);
         lv_shequ_tiezi.setAdapter(adapter2);
+
         setListViewHeight(lv_shequ_jingpin);
         setListViewHeight(lv_shequ_tiezi);
 

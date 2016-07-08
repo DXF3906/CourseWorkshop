@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -64,7 +65,7 @@ public class ShequFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-         view = inflater.inflate(R.layout.fragment_shequ, null);
+        view = inflater.inflate(R.layout.fragment_shequ, null);
 
         return view;
     }
@@ -74,14 +75,14 @@ public class ShequFragment extends Fragment {
         initView();
         rg2_shequ_id.setVisibility(View.GONE);
         replaceContainerWidget(tiezi);
-        ((RadioButton)rg_shequ_id.getChildAt(0)).setChecked(true);
+        ((RadioButton) rg_shequ_id.getChildAt(0)).setChecked(true);
         rg_shequ_id.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(((RadioButton)radioGroup.getChildAt(0)).isChecked()){
+                if (((RadioButton) radioGroup.getChildAt(0)).isChecked()) {
                     replaceContainerWidget(tiezi);
                 }
-                if(((RadioButton)radioGroup.getChildAt(1)).isChecked()){
+                if (((RadioButton) radioGroup.getChildAt(1)).isChecked()) {
                     replaceContainerWidget(wenti);
                 }
 
@@ -90,60 +91,58 @@ public class ShequFragment extends Fragment {
         rg2_shequ_id.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(((RadioButton)radioGroup.getChildAt(0)).isChecked()){
+                if (((RadioButton) radioGroup.getChildAt(0)).isChecked()) {
                     replaceContainerWidget(tiezi);
                 }
-                if(((RadioButton)radioGroup.getChildAt(1)).isChecked()){
+                if (((RadioButton) radioGroup.getChildAt(1)).isChecked()) {
                     replaceContainerWidget(wenti);
                 }
             }
         });
-
-
-
-        ptrsv_shequ_id.setOnTouchListener(new View.OnTouchListener() {
-            private int lastY = 0;
-            private int touchEventId = -9983761;
-            Handler handler = new Handler() {
-                public void handleMessage(Message msg) {
-                    super.handleMessage(msg);
-                    if (msg.what == touchEventId) {
-                        if (lastY != ptrsv_shequ_id.getScrollY()) {
-                            //scrollview一直在滚动，会触发
-                            handler.sendMessageDelayed(
-                                    handler.obtainMessage(touchEventId, ptrsv_shequ_id), 5);
-                            lastY = ptrsv_shequ_id.getScrollY();
-                            rg_shequ_id.getLocationOnScreen(location);
-                            rg2_shequ_id.getLocationOnScreen(location2);
-                            //动的到静的位置时，静的显示。动的实际上还是网上滚动，但我们看到的是静止的那个
-                            if (location[1] <= location2[1]) {
-                                Toast.makeText(getActivity(), ""+location[1]+"", Toast.LENGTH_SHORT).show();
-                                rg2_shequ_id.setVisibility(View.VISIBLE);
-                            } else {
-                                //静止的隐藏了
-                                rg2_shequ_id.setVisibility(View.GONE);
-                            }
-                        }
-                    }
-                }
-            };
-
-            public boolean onTouch(View v, MotionEvent event) {
-                //必须两个都搞上，不然会有瑕疵
-                //没有这段，手指按住拖动的时候没有效果
-                if (event.getAction() == MotionEvent.ACTION_MOVE) {
-                    handler.sendMessageDelayed(
-                            handler.obtainMessage(touchEventId, v), 5);
-                }
-                //没有这段，手指松开scroll继续滚动的时候，没有效果
-                if (event.getAction() == MotionEvent.ACTION_UP) {
-                    handler.sendMessageDelayed(
-                            handler.obtainMessage(touchEventId, v), 5);
-                }
-                return false;
-            }
-        });
-
+        //设置rg_shequ_id不可见时显示rg2_shequ_id。。未完成，有bug
+//        ptrsv_shequ_id.setOnTouchListener(new View.OnTouchListener() {
+//            private int lastY = 0;
+//            private int touchEventId = -9983761;
+//            Handler handler = new Handler() {
+//                public void handleMessage(Message msg) {
+//                    super.handleMessage(msg);
+//                    if (msg.what == touchEventId) {
+//                        if (lastY != ptrsv_shequ_id.getScrollY()) {
+//                            //scrollview一直在滚动，会触发
+//                            handler.sendMessageDelayed(
+//                                    handler.obtainMessage(touchEventId, ptrsv_shequ_id), 5);
+//                            lastY = ptrsv_shequ_id.getScrollY();
+//                            rg_shequ_id.getLocationOnScreen(location);
+//                            rg2_shequ_id.getLocationOnScreen(location2);
+//                            //动的到静的位置时，静的显示。动的实际上还是网上滚动，但我们看到的是静止的那个
+//                            Toast.makeText(getActivity(), "" + location[1] + "", Toast.LENGTH_SHORT).show();
+//                            if (location[1] <= location2[1]) {
+//                                rg2_shequ_id.setVisibility(View.VISIBLE);
+//                            } else {
+//                                //静止的隐藏了
+//                                rg2_shequ_id.setVisibility(View.GONE);
+//                            }
+//                        }
+//                    }
+//                }
+//            };
+//
+//            public boolean onTouch(View v, MotionEvent event) {
+//                //必须两个都搞上，不然会有瑕疵
+//                //没有这段，手指按住拖动的时候没有效果
+//                if (event.getAction() == MotionEvent.ACTION_MOVE) {
+//                    handler.sendMessageDelayed(
+//                            handler.obtainMessage(touchEventId, v), 5);
+//                }
+//                //没有这段，手指松开scroll继续滚动的时候，没有效果
+//                if (event.getAction() == MotionEvent.ACTION_UP) {
+//                    handler.sendMessageDelayed(
+//                            handler.obtainMessage(touchEventId, v), 5);
+//                }
+//                return false;
+//            }
+//
+//        });
 
         super.onActivityCreated(savedInstanceState);
     }
@@ -152,7 +151,7 @@ public class ShequFragment extends Fragment {
         for (int i = 1; i <= 20; i++) {
             map = new LinkedHashMap<>();
             map.put("tk_textView5", i);
-            map.put("tk_textView1",  i);
+            map.put("tk_textView1", i);
             map.put("tk_textView2", i);
             data.add(map);
         }
@@ -170,19 +169,20 @@ public class ShequFragment extends Fragment {
 
 
     }
+
     private void initView() {
 
 
         //RadioGroup控件
-        rg_shequ_id = (RadioGroup)view. findViewById(R.id.rg_shequ_id);
-        lv_shequ_jingpin = (ListView)view. findViewById(R.id.lv_shequ_jingpin);
-        lv_shequ_tiezi = (ListView)view. findViewById(R.id.lv_shequ_tiezi);
-        lv_shequ_wenti = (ListView)view. findViewById(R.id.lv_shequ_wenti);
-        rg2_shequ_id = (RadioGroup)view. findViewById(R.id.rg2_shequ_id);
-        ptrsv_shequ_id = (PullToRefreshScrollView)view. findViewById(R.id.ptrsv_shequ_id);
+        rg_shequ_id = (RadioGroup) view.findViewById(R.id.rg_shequ_id);
+        lv_shequ_jingpin = (ListView) view.findViewById(R.id.lv_shequ_jingpin);
+        lv_shequ_tiezi = (ListView) view.findViewById(R.id.lv_shequ_tiezi);
+        lv_shequ_wenti = (ListView) view.findViewById(R.id.lv_shequ_wenti);
+        rg2_shequ_id = (RadioGroup) view.findViewById(R.id.rg2_shequ_id);
+        ptrsv_shequ_id = (PullToRefreshScrollView) view.findViewById(R.id.ptrsv_shequ_id);
         tiezi = new TieziFragment();
         wenti = new WentiFragment();
-        supportFragmentManager =getActivity().getSupportFragmentManager();
+        supportFragmentManager = getActivity().getSupportFragmentManager();
 
     }
 
