@@ -136,11 +136,8 @@ public class TikuFragment extends Fragment implements ExpandTabView.OnFilterSele
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                nameList.set(0,jineng[i]);
                 expandTabView.getTabViews().get(0).setText(jineng[i]);
-//                nameList.notifyAll();
-//                expandTabView.setNameList(nameList);
-
+                expandTabView.closeExpand();
             }
         });
         return listView;
@@ -148,20 +145,45 @@ public class TikuFragment extends Fragment implements ExpandTabView.OnFilterSele
     //筛选下拉框数据
     private View getzuixinView() {
         ListView listView = new ListView(getActivity());
+        final String []zuixin=new String[]{"不限", "男", "女"};
         listView.setAdapter(new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1, Arrays.asList(new String[]{"不限", "男", "女"})));
+                android.R.layout.simple_list_item_1, Arrays.asList(zuixin)));
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                expandTabView.getTabViews().get(1).setText(zuixin[i]);
+                expandTabView.closeExpand();
+            }
+        });
         return listView;
     }
     private View getzhimingView() {
         ListView listView = new ListView(getActivity());
+        final String []zhiming=new String[]{"不限", "男", "女"};
         listView.setAdapter(new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1, Arrays.asList(new String[]{"不限", "男", "女"})));
+                android.R.layout.simple_list_item_1, Arrays.asList(zhiming)));
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                expandTabView.getTabViews().get(2).setText(zhiming[i]);
+                expandTabView.closeExpand();
+
+            }
+        });
         return listView;
     }
     private View getnanduView() {
         ListView listView = new ListView(getActivity());
+        final String []nandu=new String[]{"不限", "男", "女"};
         listView.setAdapter(new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1, Arrays.asList(new String[]{"不限", "男", "女"})));
+                android.R.layout.simple_list_item_1, Arrays.asList(nandu)));
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                expandTabView.getTabViews().get(3).setText(nandu[i]);
+                expandTabView.closeExpand();
+            }
+        });
         return listView;
     }
     //筛选选择
