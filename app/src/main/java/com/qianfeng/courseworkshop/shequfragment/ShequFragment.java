@@ -73,9 +73,11 @@ public class ShequFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         initView();
+        //设置不可见
         rg2_shequ_id.setVisibility(View.GONE);
         replaceContainerWidget(tiezi);
         ((RadioButton) rg_shequ_id.getChildAt(0)).setChecked(true);
+        //监听器
         rg_shequ_id.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {

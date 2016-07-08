@@ -56,9 +56,8 @@ public class WentiFragment extends Fragment {
                 "sq_textView1", "sq_textView2"}, new int[]{
                 R.id.sq_textView1, R.id.sq_textView2});
 
-        // 经典之处：将适配器设置到ListView中
-        // setListAdapter(adapter);
         lv_shequ_wenti.setAdapter(adapter);
+        //设置listview高度
         setListViewHeight(lv_shequ_wenti);
         super.onActivityCreated(savedInstanceState);
     }

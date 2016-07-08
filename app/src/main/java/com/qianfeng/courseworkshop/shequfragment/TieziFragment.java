@@ -66,11 +66,9 @@ public class TieziFragment extends Fragment {
                  "sq_textView1","sq_textView2" }, new int[] {
                  R.id.sq_textView1 ,R.id.sq_textView2 });
 
-        // 经典之处：将适配器设置到ListView中
-        // setListAdapter(adapter);
         lv_shequ_jingpin.setAdapter(adapter);
         lv_shequ_tiezi.setAdapter(adapter2);
-
+        //设置listview高度
         setListViewHeight(lv_shequ_jingpin);
         setListViewHeight(lv_shequ_tiezi);
 

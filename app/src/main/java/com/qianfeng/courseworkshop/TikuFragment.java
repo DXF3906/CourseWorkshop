@@ -111,8 +111,6 @@ public class TikuFragment extends Fragment implements ExpandTabView.OnFilterSele
                 "tk_textView5", "tk_textView1", "tk_textView2" }, new int[] {
                 R.id.tk_textView5, R.id.tk_textView1, R.id.tk_textView2 });
 
-        // 经典之处：将适配器设置到ListView中
-        // setListAdapter(adapter);
         ptrlv_tiku_id.setAdapter(adapter);
         super.onActivityCreated(savedInstanceState);
     }
@@ -222,7 +220,7 @@ public class TikuFragment extends Fragment implements ExpandTabView.OnFilterSele
         protected void onPostExecute(String[] result) {
             // mListItems.addFirst("Added after refresh...");
             //刷新增加数据
-            data.add(map);
+//            data.add(map);
             fillDataSouce(data);
             adapter.notifyDataSetChanged();
 
