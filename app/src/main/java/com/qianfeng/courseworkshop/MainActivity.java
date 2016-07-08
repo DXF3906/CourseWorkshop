@@ -23,6 +23,7 @@ public class MainActivity extends FragmentActivity {
     private Fragment fragment2;//课程
     private Fragment fragment3;//社区
     private Fragment fragment4;//题库
+    private Fragment fragment5;//我
     private RadioGroup rg_main_id;//底部界面切换控件
     private FragmentManager supportFragmentManager;
 
@@ -123,7 +124,7 @@ public class MainActivity extends FragmentActivity {
                 }
                 //我
                 if (((RadioButton) radioGroup.getChildAt(4)).isChecked()) {
-                    //replaceContainerWidget(fragment2);
+                    replaceContainerWidget(fragment5,null);
                 }
             }
         });
@@ -147,6 +148,7 @@ public class MainActivity extends FragmentActivity {
         fragment2 = new CourseFragment();
         fragment3 = new ShequFragment();
         fragment4 = new TikuFragment();
+        fragment5 = new MeFragment();
     }
 
     /**
