@@ -36,6 +36,22 @@
             android:layout_alignParentTop="true"
             android:src="@mipmap/abc_ic_search_api_mtrl_alpha" />
     </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            android:id="@+id/ptrlv_course_id"
+            android:layout_marginTop="55dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </com.handmark.pulltorefresh.library.PullToRefreshListView>
+        <com.qianfeng.courseworkshop.filter.ExpandTabView
+            android:id="@+id/expand_tabview_course_id"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
 
 
 </LinearLayout>
