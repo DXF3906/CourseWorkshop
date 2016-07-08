@@ -11,15 +11,17 @@ public class Course {
     private String title;//标题名字
     private String studyNum;//学习人数
     private String money;//k币
+    private String description;//简介
 
     public Course() {
     }
 
-    public Course(String studyNum, String imgUrlStr, String title, String money) {
+    public Course(String studyNum, String imgUrlStr, String title, String money,String description) {
         this.studyNum = studyNum;
         this.imgUrlStr = imgUrlStr;
         this.title = title;
         this.money = money;
+        this.description=description;
     }
 
     public String getImgUrlStr() {
@@ -54,6 +56,14 @@ public class Course {
         this.money = money;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String toString() {
         return "Course{" +
@@ -61,6 +71,7 @@ public class Course {
                 ", title='" + title + '\'' +
                 ", studyNum='" + studyNum + '\'' +
                 ", money='" + money + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 }

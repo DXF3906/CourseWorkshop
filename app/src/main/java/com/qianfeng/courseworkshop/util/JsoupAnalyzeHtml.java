@@ -46,12 +46,18 @@ public class JsoupAnalyzeHtml {
                 String studyNum = courseItem.select("span").get(1).text();
 
                 //获得K币
-                String money = courseItem.select("span").get(2).text();
+                String money = courseItem.select("div").get(7).text();
+
+                //获得简介
+                String description=courseItem.select("div").get(3).text();
+
                 course.setTitle(title);
                 course.setImgUrlStr(imgUrlStr);
                 course.setStudyNum(studyNum);
                 course.setMoney(money);
+                course.setDescription(description);
                 courseDatas.add(course);
+
 
             }
             return courseDatas;
