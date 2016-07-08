@@ -32,4 +32,6 @@ dependencies {
     compile files('libs/jsoup-1.9.2.jar')
     compile 'com.android.support:design:24.0.0'
     compile files('libs/nineoldandroids-2.4.0.jar')
+    compile files('libs/picasso-2.5.2.jar')
+    compile files('libs/xUtils-2.6.2.jar')
 }

@@ -4,8 +4,10 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -64,10 +66,12 @@ public class TieziFragment extends Fragment {
                  "sq_textView1","sq_textView2" }, new int[] {
                  R.id.sq_textView1 ,R.id.sq_textView2 });
 
-        // 经典之处：将适配器设置到ListView中
-        // setListAdapter(adapter);
         lv_shequ_jingpin.setAdapter(adapter);
         lv_shequ_tiezi.setAdapter(adapter2);
+        //设置listview高度
+        setListViewHeight(lv_shequ_jingpin);
+        setListViewHeight(lv_shequ_tiezi);
+
         super.onActivityCreated(savedInstanceState);
     }
     private void fillDataSouce(List<Map<String, Object>> data) {
@@ -91,7 +95,30 @@ public class TieziFragment extends Fragment {
     }
 
 
+    /**
+     * 重新计算ListView的高度，解决ScrollView和ListView两个View都有滚动的效果，在嵌套使用时起冲突的问题
+     * @param listView
+     */
+    public void setListViewHeight(ListView listView) {
 
+        // 获取ListView对应的Adapter
+
+        ListAdapter listAdapter = listView.getAdapter();
+
+        if (listAdapter == null) {
+            return;
+        }
+        int totalHeight = 0;
+        for (int i = 0, len = listAdapter.getCount(); i < len; i++) { // listAdapter.getCount()返回数据项的数目
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(0, 0); // 计算子项View 的宽高
+            totalHeight += listItem.getMeasuredHeight(); // 统计所有子项的总高度
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+    }
 
 
 }

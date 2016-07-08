@@ -15,7 +15,7 @@
 
         <!-- 初始界面-->
         <activity
-            android:name=".MainActivity"
+            android:name=".welcome.InitActivity"
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -26,10 +26,17 @@
         </activity>
 
         <!-- 欢迎界面-->
+        <activity
+            android:name=".welcome.WelcomeActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
 
         <!--主界面-->
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
 
-
+        </activity>
 
 
     </application>

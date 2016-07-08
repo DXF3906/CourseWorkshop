@@ -12,6 +12,7 @@ import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -22,6 +23,8 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.qianfeng.courseworkshop.filter.ExpandTabView;
 import com.qianfeng.courseworkshop.filter.FilterTabView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -69,8 +72,9 @@ public class TikuFragment extends Fragment implements ExpandTabView.OnFilterSele
         nameList.add("知名企业");
         nameList.add("试题难度");
         expandTabView.setNameList(nameList);
-        ptrlv_tiku_id = (PullToRefreshListView) view
-                .findViewById(R.id.ptrlv_tiku_id);
+
+
+        ptrlv_tiku_id = (PullToRefreshListView) view.findViewById(R.id.ptrlv_tiku_id);
         //下拉刷新
         ptrlv_tiku_id.setMode(PullToRefreshBase.Mode.BOTH);
         ptrlv_tiku_id.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
@@ -88,8 +92,7 @@ public class TikuFragment extends Fragment implements ExpandTabView.OnFilterSele
                 new GetDataTask().execute();
             }
         });
-        ptrlv_tiku_id
-                .setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+        ptrlv_tiku_id.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
 
                     @Override
                     public void onLastItemVisible() {
@@ -108,8 +111,6 @@ public class TikuFragment extends Fragment implements ExpandTabView.OnFilterSele
                 "tk_textView5", "tk_textView1", "tk_textView2" }, new int[] {
                 R.id.tk_textView5, R.id.tk_textView1, R.id.tk_textView2 });
 
-        // 经典之处：将适配器设置到ListView中
-        // setListAdapter(adapter);
         ptrlv_tiku_id.setAdapter(adapter);
         super.onActivityCreated(savedInstanceState);
     }
@@ -126,27 +127,61 @@ public class TikuFragment extends Fragment implements ExpandTabView.OnFilterSele
     //筛选下拉框数据
     private ListView getjinengView() {
         ListView listView = new ListView(getActivity());
-        listView.setAdapter(new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1, Arrays.asList(new String[]{"不限", "男", "女"})));
+        final String []jineng=new String[]{"不限", "男", "女"};
+        final ArrayAdapter adapter=new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_list_item_1, Arrays.asList(jineng));
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                expandTabView.getTabViews().get(0).setText(jineng[i]);
+                expandTabView.closeExpand();
+            }
+        });
         return listView;
     }
     //筛选下拉框数据
     private View getzuixinView() {
         ListView listView = new ListView(getActivity());
+        final String []zuixin=new String[]{"不限", "男", "女"};
         listView.setAdapter(new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1, Arrays.asList(new String[]{"不限", "男", "女"})));
+                android.R.layout.simple_list_item_1, Arrays.asList(zuixin)));
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                expandTabView.getTabViews().get(1).setText(zuixin[i]);
+                expandTabView.closeExpand();
+            }
+        });
         return listView;
     }
     private View getzhimingView() {
         ListView listView = new ListView(getActivity());
+        final String []zhiming=new String[]{"不限", "男", "女"};
         listView.setAdapter(new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1, Arrays.asList(new String[]{"不限", "男", "女"})));
+                android.R.layout.simple_list_item_1, Arrays.asList(zhiming)));
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                expandTabView.getTabViews().get(2).setText(zhiming[i]);
+                expandTabView.closeExpand();
+
+            }
+        });
         return listView;
     }
     private View getnanduView() {
         ListView listView = new ListView(getActivity());
+        final String []nandu=new String[]{"不限", "男", "女"};
         listView.setAdapter(new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1, Arrays.asList(new String[]{"不限", "男", "女"})));
+                android.R.layout.simple_list_item_1, Arrays.asList(nandu)));
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                expandTabView.getTabViews().get(3).setText(nandu[i]);
+                expandTabView.closeExpand();
+            }
+        });
         return listView;
     }
     //筛选选择
@@ -185,7 +220,7 @@ public class TikuFragment extends Fragment implements ExpandTabView.OnFilterSele
         protected void onPostExecute(String[] result) {
             // mListItems.addFirst("Added after refresh...");
             //刷新增加数据
-            data.add(map);
+//            data.add(map);
             fillDataSouce(data);
             adapter.notifyDataSetChanged();
 

@@ -23,9 +23,9 @@
         android:layout_height="match_parent">
     </com.handmark.pulltorefresh.library.PullToRefreshListView>
         <com.qianfeng.courseworkshop.filter.ExpandTabView
-            android:id="@+id/expand_tabview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+        android:id="@+id/expand_tabview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
     </RelativeLayout>
 
 </LinearLayout>
