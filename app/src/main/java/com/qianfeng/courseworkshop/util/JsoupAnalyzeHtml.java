@@ -25,7 +25,8 @@ public class JsoupAnalyzeHtml {
         List<Course> courseDatas = new LinkedList<>();
         try {
             //1.获取文档对象
-            Document doc = Jsoup.parse(file, "utf-8", "view-source:http://www.kgc.cn/list.shtml");
+            //TODO
+            Document doc = Jsoup.parse(file, "utf-8");
 
             //2. 获取class="course_detail"的所有元素
             Elements courseList = doc.getElementsByClass("course_detail");
