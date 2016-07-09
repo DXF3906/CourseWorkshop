@@ -3,20 +3,15 @@ package com.qianfeng.courseworkshop;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.LinkedList;
 import java.util.concurrent.Executors;
@@ -25,6 +20,7 @@ import java.util.concurrent.TimeUnit;
 
 
 public class Fragment1 extends Fragment {
+
     private FragmentActivity activity;
     private ViewPager vp_main_fragment_id;
     private ImageView iv_main_dot_id;

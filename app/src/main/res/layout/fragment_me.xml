@@ -6,14 +6,27 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:background="#f1000000"
-        android:gravity="center"
+        android:layout_height="45dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:text="个人中心"
         android:textColor="@color/white"
-        android:textSize="30sp" />
+        android:textSize="16dp" />
+
+        <ImageView
+            android:src="@mipmap/button_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/setting_id"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
     <RelativeLayout
         android:background="@mipmap/background_half"
         android:layout_width="match_parent"
@@ -40,6 +53,7 @@
 
         <Button
             android:text="注册"
+            android:onClick="toLogin"
             android:background="@mipmap/background_exam_progress"
             android:textColor="@color/white"
             android:layout_width="100dp"
@@ -52,6 +66,7 @@
 
         <Button
             android:text="登录"
+            android:onClick="toRegist"
             android:background="@mipmap/background_exam_progress"
             android:textColor="@color/white"
             android:layout_width="100dp"
@@ -64,6 +79,7 @@
     </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/ll_rt_id"
         android:layout_width="match_parent"
         android:layout_weight="4"
         android:layout_height="0dp"
