@@ -14,6 +14,9 @@
         android:orientation="vertical">
         <!--全部课程-->
         <LinearLayout
+            android:id="@+id/ll_allcourse_id"
+            android:clickable="true"
+            android:onClick="CloseLeftCourseMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -44,6 +47,9 @@
         </LinearLayout>
         <!--研发.编程-->
         <LinearLayout
+            android:id="@+id/ll_program_id"
+            android:onClick="CloseLeftCourseMenu"
+            android:clickable="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -81,6 +87,9 @@
         </ListView>
         <!--运营♥推广-->
         <LinearLayout
+            android:id="@+id/ll_spread_id"
+            android:onClick="CloseLeftCourseMenu"
+            android:clickable="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -118,6 +127,9 @@
         </ListView>
         <!--视觉♥创意-->
         <LinearLayout
+            android:id="@+id/ll_seeing_id"
+            android:onClick="CloseLeftCourseMenu"
+            android:clickable="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -155,6 +167,9 @@
         </ListView>
         <!--网络♥安全-->
         <LinearLayout
+            android:id="@+id/ll_net_id"
+            android:onClick="CloseLeftCourseMenu"
+            android:clickable="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -192,6 +207,9 @@
         </ListView>
         <!--职场♥心理-->
         <LinearLayout
+            android:id="@+id/ll_carrer_id"
+            android:onClick="CloseLeftCourseMenu"
+            android:clickable="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -229,6 +247,9 @@
         </ListView>
         <!--考试♥认证-->
         <LinearLayout
+            android:id="@+id/ll_exam_id"
+            android:onClick="CloseLeftCourseMenu"
+            android:clickable="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
