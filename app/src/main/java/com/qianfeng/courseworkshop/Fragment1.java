@@ -1,5 +1,6 @@
 package com.qianfeng.courseworkshop;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -17,6 +18,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.qianfeng.courseworkshop.welcome.InitActivity;
+import com.squareup.picasso.Picasso;
 
 import java.util.LinkedList;
 import java.util.concurrent.Executors;
@@ -70,7 +74,11 @@ public class Fragment1 extends Fragment {
             iv.setImageResource(imageId);
             ds.add(iv);
         }
-
+        Picasso.with(getActivity()).load("http://assets.kgc.cn/upload/ad/20160606/1465195545571261.jpg").into((ImageView)ds.get(0));
+        Picasso.with(getActivity()).load("http://assets.kgc.cn/upload/ad/20160623/1466665711913388.jpg").into((ImageView)ds.get(1));
+        Picasso.with(getActivity()).load("http://assets.kgc.cn/upload/ad/20160517/1463450580414471.jpg").into((ImageView)ds.get(2));
+        Picasso.with(getActivity()).load("http://assets.kgc.cn/upload/ad/20160606/1465195545571261.jpg").into((ImageView)ds.get(3));
+        Picasso.with(getActivity()).load("http://assets.kgc.cn/upload/ad/20160623/1466665711913388.jpg").into((ImageView)ds.get(4));
 
         //③设置适配器
         PagerAdapter adapter = new MyAdapter();
@@ -80,22 +88,45 @@ public class Fragment1 extends Fragment {
 
         vp_main_fragment_id.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
+            public void onPageScrollStateChanged(int i) {
+                //循环效果
+                if (i == ViewPager.SCROLL_STATE_IDLE) {
+                    if (mCurrentPagePosition == vp_main_fragment_id.getAdapter().getCount() - 1) {
+                        //false:表示无动画
+                        vp_main_fragment_id.setCurrentItem(1, false);
+                    }
+                    else if (mCurrentPagePosition == 0) {
+                        vp_main_fragment_id.setCurrentItem(vp_main_fragment_id.getAdapter().getCount() - 2, false);
+                    }
+                }
+            }
+            @Override
             public void onPageScrolled(int i, float v, int i1) {
 
             }
 
             @Override
-            public void onPageSelected(int i) {
-                mIsChanged = true;
-                if (i > 3) {
-                    mCurrentPagePosition = 1;
-                } else if (i < 1) {
-                    mCurrentPagePosition = 3;
-                } else {
-                    mCurrentPagePosition = i;
-                }
+            public void onPageSelected(final int i) {
+                mCurrentPagePosition=i;
 
-                vp_main_fragment_id.setCurrentItem(mCurrentPagePosition);
+                //广告监听器
+                ds.get(i).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent=new Intent();
+                        intent.setClass(getActivity(), WebViewActivity.class);
+                        if(i==1){
+                            intent.putExtra("100","http://www.kgc.cn/course/16028.shtml");
+                        }
+                        if(i==2){
+                            intent.putExtra("100","http://www.kgc.cn/course/17801.shtml");
+                        }
+                        if(i==3){
+                            intent.putExtra("100","http://www.kgc.cn/course/17802.shtml");
+                        }
+                        startActivity(intent);
+                    }
+                });
                 iv_main_dot_id.setEnabled(true);
                 iv_main_dot2_id.setEnabled(true);
                 iv_main_dot3_id.setEnabled(true);
@@ -118,18 +149,11 @@ public class Fragment1 extends Fragment {
                 }
             }
 
-            @Override
-            public void onPageScrollStateChanged(int i) {
-                if (ViewPager.SCROLL_STATE_IDLE == i) {
-                    if (mIsChanged) {
-                        mIsChanged = false;
-                        vp_main_fragment_id.setCurrentItem(mCurrentPagePosition, false);
-                    }
-                }
-            }
+
 
 
         });
+//
         //回调morefragment()方法，跳转界面
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
