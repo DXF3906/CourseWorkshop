@@ -5,8 +5,6 @@ import android.os.AsyncTask;
 import com.qianfeng.courseworkshop.inner.GetFileNameCallBack;
 import com.qianfeng.courseworkshop.util.HttpUtils;
 
-import static android.R.attr.data;
-
 /**
  * 自定义异步任务类，用来开启网络下载任务
  * fdb

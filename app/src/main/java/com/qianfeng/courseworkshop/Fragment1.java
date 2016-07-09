@@ -19,6 +19,9 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.qianfeng.courseworkshop.welcome.InitActivity;
 import com.squareup.picasso.Picasso;
 
@@ -46,16 +49,23 @@ public class Fragment1 extends Fragment {
     private TextView tv_icon_edit_id;
     private TextView tv_icon_edit_id2;
     private TextView tv_icon_edit_id3;
-
+    @ViewInject(R.id.iv_main_1_id)
+    private ImageView img;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         activity = getActivity();
         super.onCreate(savedInstanceState);
     }
-
+    @OnClick({ R.id.iv_main_1_id})
+    public void clickMethod(View v) {
+        Toast.makeText(getActivity(), "you clicked button!",
+                Toast.LENGTH_SHORT).show();
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, null);
+        ViewUtils.inject(getActivity());
+
         vp_main_fragment_id = (ViewPager) view.findViewById(R.id.vp_main_fragment_id);
         iv_main_dot_id = (ImageView) view.findViewById(R.id.iv_main_dot_id);
         iv_main_dot2_id = (ImageView) view.findViewById(R.id.iv_main_dot2_id);
@@ -67,6 +77,7 @@ public class Fragment1 extends Fragment {
         tv_icon_edit_id = (TextView) view.findViewById(R.id.tv_icon_edit_id);
         tv_icon_edit_id2 = (TextView) view.findViewById(R.id.tv_icon_edit_id2);
         tv_icon_edit_id3 = (TextView) view.findViewById(R.id.tv_icon_edit_id3);
+
         ds = new LinkedList<>();
         int[] imageIds = {R.mipmap.shili3, R.mipmap.shili, R.mipmap.shili2, R.mipmap.shili3, R.mipmap.shili};
         for (int imageId : imageIds) {
