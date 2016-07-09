@@ -7,15 +7,11 @@ import android.os.AsyncTask;
 import android.os.Environment;
 import android.util.Base64;
 
-import com.qianfeng.courseworkshop.inner.GetFileBitmapCallBack;
-import com.qianfeng.courseworkshop.inner.GetFileNameCallBack;
-import com.qianfeng.courseworkshop.util.HttpUtils;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
