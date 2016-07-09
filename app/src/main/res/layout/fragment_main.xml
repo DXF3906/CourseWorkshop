@@ -43,7 +43,7 @@
             <RelativeLayout
                 android:id="@+id/rl_main_id"
                 android:layout_width="match_parent"
-                android:layout_height="125dp">
+                android:layout_height="127dp">
 
                 <android.support.v4.view.ViewPager
                     android:id="@+id/vp_main_fragment_id"

@@ -17,7 +17,7 @@
             android:layout_height="50dp"
             android:layout_alignParentLeft="true"
             android:src="@mipmap/button_catolgue"
-            android:onClick="OpenLeftMenu" />
+            android:onClick="OpenLeftCourseMenu" />
 
         <TextView
             android:id="@+id/textView"

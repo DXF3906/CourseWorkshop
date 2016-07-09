@@ -7,9 +7,11 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.qianfeng.courseworkshop.R;
@@ -71,6 +73,7 @@ public class TieziFragment extends Fragment {
         //设置listview高度
         setListViewHeight(lv_shequ_jingpin);
         setListViewHeight(lv_shequ_tiezi);
+
 
         super.onActivityCreated(savedInstanceState);
     }

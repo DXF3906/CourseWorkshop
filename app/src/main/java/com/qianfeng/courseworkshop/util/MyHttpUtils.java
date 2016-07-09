@@ -2,6 +2,7 @@ package com.qianfeng.courseworkshop.util;
 
 
 import android.os.Environment;
+import android.util.Log;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -21,12 +22,16 @@ import java.net.URL;
  * Created by asus on 2016/7/6.
  */
 
-public class HttpUtils {
+public class MyHttpUtils {
     //返回缓存的文件名
     public static String getData(String urlStr,String fileName){
         //如果传过来的有文件名，说明是目录文件（json格式的数据），否则，是html数据重新给定文件名
-        if (fileName==null){
+        if (fileName.length()<=0){
             fileName=urlStr.substring(urlStr.lastIndexOf("/"));
+            Log.i("tag","根据url修改的文件名"+fileName);
+        }else{
+            Log.i("tag","传过来的文件名"+fileName);
+
         }
         File file=new File(Environment.getExternalStorageDirectory(),fileName+".html");
         FileOutputStream os=null;

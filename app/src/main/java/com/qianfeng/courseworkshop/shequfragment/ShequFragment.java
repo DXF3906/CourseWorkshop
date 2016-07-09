@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -101,6 +102,7 @@ public class ShequFragment extends Fragment {
                 }
             }
         });
+
         //设置rg_shequ_id不可见时显示rg2_shequ_id。。未完成，有bug
 //        ptrsv_shequ_id.setOnTouchListener(new View.OnTouchListener() {
 //            private int lastY = 0;
@@ -148,6 +150,7 @@ public class ShequFragment extends Fragment {
 
         super.onActivityCreated(savedInstanceState);
     }
+
     private void fillDataSouce(List<Map<String, Object>> data) {
         // TODO
         for (int i = 1; i <= 20; i++) {

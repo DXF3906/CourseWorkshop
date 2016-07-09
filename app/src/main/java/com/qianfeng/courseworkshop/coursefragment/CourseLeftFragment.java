@@ -7,6 +7,8 @@ import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -15,6 +17,7 @@ import com.qianfeng.courseworkshop.R;
 import com.qianfeng.courseworkshop.asynctask.CommonAsyncTask;
 import com.qianfeng.courseworkshop.bean.CommonData;
 import com.qianfeng.courseworkshop.bean.CourseLogcat;
+import com.qianfeng.courseworkshop.inner.GetCourseLeftUrlCallBack;
 import com.qianfeng.courseworkshop.inner.GetFileNameCallBack;
 import com.qianfeng.courseworkshop.util.JsonAnalyze;
 
@@ -23,7 +26,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutionException;
 
 /**
  * 课程对应的侧滑界面
@@ -37,6 +39,8 @@ public class CourseLeftFragment extends Fragment implements GetFileNameCallBack 
     private String fileName = "courseLogcat";//目录json数据缓存到本地的文件名
     private List<CourseLogcat> courseLogcats = new LinkedList<>();
 
+    private GetCourseLeftUrlCallBack callCourseLeftUrlCallBack;
+
     //每个大类对应的课程数控件
     private TextView tv_allcourse_id;
     private TextView tv_program_id;
@@ -45,6 +49,14 @@ public class CourseLeftFragment extends Fragment implements GetFileNameCallBack 
     private TextView tv_net_id;
     private TextView tv_carrer_id;
     private TextView tv_exam_id;
+
+    private LinearLayout ll_allcourse_id;
+    private LinearLayout ll_program_id;
+    private LinearLayout ll_spread_id;
+    private LinearLayout ll_seeing_id;
+    private LinearLayout ll_net_id;
+    private LinearLayout ll_carrer_id;
+    private LinearLayout ll_exam_id;
 
     //每个大类对应的ListView控件
     private ListView lv_program_id;
@@ -92,6 +104,12 @@ public class CourseLeftFragment extends Fragment implements GetFileNameCallBack 
     private SimpleAdapter carrerAdapter;
     private SimpleAdapter examAdapter;
 
+    public CourseLeftFragment() {
+    }
+
+    public CourseLeftFragment(GetCourseLeftUrlCallBack callCourseLeftUrlCallBack) {
+        this.callCourseLeftUrlCallBack = callCourseLeftUrlCallBack;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -126,8 +144,15 @@ public class CourseLeftFragment extends Fragment implements GetFileNameCallBack 
         //绑定适配器
         bindAdapter();
 
+        //添加监听器
+        aboutListener();
+
+
+
         return view;
     }
+
+
 
     /**
      * 绑定适配器
@@ -190,6 +215,10 @@ public class CourseLeftFragment extends Fragment implements GetFileNameCallBack 
                 listem.put("imgId", imgProgramIds[i]);
                 listem.put("name", courseLogcat.getName());
                 listem.put("total", courseLogcat.getTotal());
+
+                listem.put("catalogId",courseLogcat.getCatalogId());
+                listem.put("isJob",courseLogcat.getIsJob());
+
                 programData.add(listem);
             }
             //推广
@@ -203,6 +232,8 @@ public class CourseLeftFragment extends Fragment implements GetFileNameCallBack 
                 listem.put("imgId", imgspreadIds[i]);
                 listem.put("name", courseLogcat.getName());
                 listem.put("total", courseLogcat.getTotal());
+                listem.put("catalogId",courseLogcat.getCatalogId());
+                listem.put("isJob",courseLogcat.getIsJob());
                 spreadData.add(listem);
             }
             //视觉
@@ -216,6 +247,8 @@ public class CourseLeftFragment extends Fragment implements GetFileNameCallBack 
                 listem.put("imgId", imgseeingIds[i]);
                 listem.put("name", courseLogcat.getName());
                 listem.put("total", courseLogcat.getTotal());
+                listem.put("catalogId",courseLogcat.getCatalogId());
+                listem.put("isJob",courseLogcat.getIsJob());
                 seeingData.add(listem);
             }
             //网络
@@ -229,6 +262,8 @@ public class CourseLeftFragment extends Fragment implements GetFileNameCallBack 
                 listem.put("imgId", imgnetIds[i]);
                 listem.put("name", courseLogcat.getName());
                 listem.put("total", courseLogcat.getTotal());
+                listem.put("catalogId",courseLogcat.getCatalogId());
+                listem.put("isJob",courseLogcat.getIsJob());
                 netData.add(listem);
             }
             //职场心理
@@ -242,6 +277,8 @@ public class CourseLeftFragment extends Fragment implements GetFileNameCallBack 
                 listem.put("imgId", imgcarrerIds[i]);
                 listem.put("name", courseLogcat.getName());
                 listem.put("total", courseLogcat.getTotal());
+                listem.put("catalogId",courseLogcat.getCatalogId());
+                listem.put("isJob",courseLogcat.getIsJob());
                 carrerData.add(listem);
             }
             //考试
@@ -255,6 +292,8 @@ public class CourseLeftFragment extends Fragment implements GetFileNameCallBack 
                 listem.put("imgId", imgexamIds[i]);
                 listem.put("name", courseLogcat.getName());
                 listem.put("total", courseLogcat.getTotal());
+                listem.put("catalogId",courseLogcat.getCatalogId());
+                listem.put("isJob",courseLogcat.getIsJob());
                 examData.add(listem);
             }
         }
@@ -266,26 +305,138 @@ public class CourseLeftFragment extends Fragment implements GetFileNameCallBack 
      * 初始化所有子控件
      */
     private void initView(View view) {
+        //TODO
+        ll_allcourse_id=(LinearLayout) view.findViewById(R.id.ll_allcourse_id);
         tv_allcourse_id = (TextView) view.findViewById(R.id.tv_allcourse_id);//全部课程数
 
+        ll_program_id=(LinearLayout) view.findViewById(R.id.ll_program_id);
         tv_program_id = (TextView) view.findViewById(R.id.tv_program_id);//研发.编程
         lv_program_id = (ListView) view.findViewById(R.id.lv_program_id);//研发.编程
 
+        ll_spread_id=(LinearLayout) view.findViewById(R.id.ll_spread_id);
         tv_spread_id = (TextView) view.findViewById(R.id.tv_spread_id);//运营.推广
         lv_spread_id = (ListView) view.findViewById(R.id.lv_spread_id);//运营.推广
 
+        ll_seeing_id=(LinearLayout) view.findViewById(R.id.ll_seeing_id);
         tv_seeing_id = (TextView) view.findViewById(R.id.tv_seeing_id);//视觉.创意
         lv_seeing_id = (ListView) view.findViewById(R.id.lv_seeing_id);//视觉.创意
 
+        ll_net_id=(LinearLayout) view.findViewById(R.id.ll_net_id);
         tv_net_id = (TextView) view.findViewById(R.id.tv_net_id);//网络.安全
         lv_net_id = (ListView) view.findViewById(R.id.lv_net_id);//网络.安全
 
+        ll_carrer_id=(LinearLayout) view.findViewById(R.id.ll_carrer_id);
         tv_carrer_id = (TextView) view.findViewById(R.id.tv_carrer_id);//职场.心里
         lv_carrer_id = (ListView) view.findViewById(R.id.lv_carrer_id);//职场.心里
 
+        ll_exam_id=(LinearLayout) view.findViewById(R.id.ll_exam_id);
         tv_exam_id = (TextView) view.findViewById(R.id.tv_exam_id);//考试.认证
         lv_exam_id = (ListView) view.findViewById(R.id.lv_exam_id);//考试.认证
     }
+
+    /**
+     * 添加监听器
+     */
+    private void aboutListener() {
+        //编程监听器
+        lv_program_id.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //TODO
+                String courseUrl=new String();
+                String catalogId = (String) programData.get(i).get("catalogId");
+                int isJob = (int) programData.get(i).get("isJob");
+                if (isJob==1){
+                    courseUrl="http://www.kgc.cn/list/230-1-6-9-9.shtml";
+                }else{
+                    courseUrl="http://www.kgc.cn/list/"+catalogId+"-1-6-9-9.shtml";
+                }
+                callCourseLeftUrlCallBack.gettCourseLeftUrl(courseUrl);
+            }
+        });
+        //编程监听器
+        lv_spread_id.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //TODO
+                String courseUrl=new String();
+                String catalogId = (String) spreadData.get(i).get("catalogId");
+                int isJob = (int) spreadData.get(i).get("isJob");
+                if (isJob==1){
+                    courseUrl="http://www.kgc.cn/list/230-1-6-9-9.shtml";
+                }else{
+                    courseUrl="http://www.kgc.cn/list/"+catalogId+"-1-6-9-9.shtml";
+                }
+                callCourseLeftUrlCallBack.gettCourseLeftUrl(courseUrl);
+            }
+        });
+        //推广监听
+        lv_seeing_id.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //TODO
+                String courseUrl=new String();
+                String catalogId = (String) seeingData.get(i).get("catalogId");
+                int isJob = (int) seeingData.get(i).get("isJob");
+                if (isJob==1){
+                    courseUrl="http://www.kgc.cn/list/230-1-6-9-9.shtml";
+                }else{
+                    courseUrl="http://www.kgc.cn/list/"+catalogId+"-1-6-9-9.shtml";
+                }
+                callCourseLeftUrlCallBack.gettCourseLeftUrl(courseUrl);
+            }
+        });
+        //网络监听
+        lv_net_id.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //TODO
+                String courseUrl=new String();
+                String catalogId = (String) netData.get(i).get("catalogId");
+                int isJob = (int) netData.get(i).get("isJob");
+                if (isJob==1){
+                    courseUrl="http://www.kgc.cn/list/230-1-6-9-9.shtml";
+                }else{
+                    courseUrl="http://www.kgc.cn/list/"+catalogId+"-1-6-9-9.shtml";
+                }
+                callCourseLeftUrlCallBack.gettCourseLeftUrl(courseUrl);
+            }
+        });
+        //职场监听
+        lv_carrer_id.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //TODO
+                String courseUrl=new String();
+                String catalogId = (String) carrerData.get(i).get("catalogId");
+                int isJob = (int) carrerData.get(i).get("isJob");
+                if (isJob==1){
+                    courseUrl="http://www.kgc.cn/list/230-1-6-9-9.shtml";
+                }else{
+                    courseUrl="http://www.kgc.cn/list/"+catalogId+"-1-6-9-9.shtml";
+                }
+                callCourseLeftUrlCallBack.gettCourseLeftUrl(courseUrl);
+            }
+        });
+        //考试监听
+        lv_exam_id.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //TODO
+                String courseUrl=new String();
+                String catalogId = (String) examData.get(i).get("catalogId");
+                int isJob = (int) examData.get(i).get("isJob");
+                if (isJob==1){
+                    courseUrl="http://www.kgc.cn/list/230-1-6-9-9.shtml";
+                }else{
+                    courseUrl="http://www.kgc.cn/list/"+catalogId+"-1-6-9-9.shtml";
+                }
+                callCourseLeftUrlCallBack.gettCourseLeftUrl(courseUrl);
+            }
+        });
+    }
+
+
 
     /**
      * 接口回调文件名
