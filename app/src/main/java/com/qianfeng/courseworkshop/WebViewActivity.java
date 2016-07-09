@@ -114,10 +114,11 @@ public class WebViewActivity extends AppCompatActivity {
         // webView_main.loadUrl("file:///android_asset/aboutus.html");
     }
 
+
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
-        wv_main_id.stopLoading();
-        wv_main_id.destroy();
     }
 
     @Override
@@ -126,6 +127,7 @@ public class WebViewActivity extends AppCompatActivity {
             if (wv_main_id.canGoBack()) {
                 wv_main_id.goBack(); //goBack()表示返回WebView的上一页面
             } else {
+
                 finish();
             }
         }
