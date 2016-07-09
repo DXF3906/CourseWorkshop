@@ -12,16 +12,26 @@ public class Course {
     private String studyNum;//学习人数
     private String money;//k币
     private String description;//简介
+    private String courseUrl;//用于跳转的网站
 
     public Course() {
     }
 
-    public Course(String studyNum, String imgUrlStr, String title, String money,String description) {
+    public Course(String studyNum, String imgUrlStr, String title, String money,String description,String courseUrl) {
         this.studyNum = studyNum;
         this.imgUrlStr = imgUrlStr;
         this.title = title;
         this.money = money;
         this.description=description;
+        this.courseUrl=courseUrl;
+    }
+
+    public String getCourseUrl() {
+        return courseUrl;
+    }
+
+    public void setCourseUrl(String courseUrl) {
+        this.courseUrl = courseUrl;
     }
 
     public String getImgUrlStr() {
@@ -72,6 +82,7 @@ public class Course {
                 ", studyNum='" + studyNum + '\'' +
                 ", money='" + money + '\'' +
                 ", description='" + description + '\'' +
+                ", courseUrl='" + courseUrl + '\'' +
                 '}';
     }
 }
