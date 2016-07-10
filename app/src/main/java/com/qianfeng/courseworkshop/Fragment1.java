@@ -1,30 +1,47 @@
 package com.qianfeng.courseworkshop;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.qianfeng.courseworkshop.welcome.InitActivity;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.google.gson.Gson;
+import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.qianfeng.courseworkshop.asynctask.CommonAsyncTask;
+import com.qianfeng.courseworkshop.bean.Course;
+import com.qianfeng.courseworkshop.bean.MainBeen;
+import com.qianfeng.courseworkshop.inner.GetFileNameCallBack;
+import com.qianfeng.courseworkshop.util.JsonMain;
 import com.squareup.picasso.Picasso;
 
+
+import java.io.File;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 
-public class Fragment1 extends Fragment {
-
+public class Fragment1 extends Fragment implements GetFileNameCallBack {
     private FragmentActivity activity;
     private ViewPager vp_main_fragment_id;
     private ImageView iv_main_dot_id;
@@ -42,6 +59,40 @@ public class Fragment1 extends Fragment {
     private TextView tv_icon_edit_id;
     private TextView tv_icon_edit_id2;
     private TextView tv_icon_edit_id3;
+    private List<MainBeen> courses;
+    @ViewInject(R.id.iv_main_1_id)
+    private ImageView img1;
+    @ViewInject(R.id.iv_main_2_id)
+    private ImageView img2;
+    @ViewInject(R.id.iv_main_3_id)
+    private ImageView img3;
+    @ViewInject(R.id.iv_main_4_id)
+    private ImageView img4;
+    @ViewInject(R.id.tv_main_textView1_1)
+    private TextView tv_main_textView1_1;
+    @ViewInject(R.id.tv_main_textView1_2)
+    private TextView tv_main_textView1_2;
+    @ViewInject(R.id.tv_main_textView1_3)
+    private TextView tv_main_textView1_3;
+    @ViewInject(R.id.tv_main_textView2_1)
+    private TextView tv_main_textView2_1;
+    @ViewInject(R.id.tv_main_textView2_2)
+    private TextView tv_main_textView2_2;
+    @ViewInject(R.id.tv_main_textView2_3)
+    private TextView tv_main_textView2_3;
+    @ViewInject(R.id.tv_main_textView3_1)
+    private TextView tv_main_textView3_1;
+    @ViewInject(R.id.tv_main_textView3_2)
+    private TextView tv_main_textView3_2;
+    @ViewInject(R.id.tv_main_textView3_3)
+    private TextView tv_main_textView3_3;
+    @ViewInject(R.id.tv_main_textView4_1)
+    private TextView tv_main_textView4_1;
+    @ViewInject(R.id.tv_main_textView4_2)
+    private TextView tv_main_textView4_2;
+    @ViewInject(R.id.tv_main_textView4_3)
+    private TextView tv_main_textView4_3;
+    private CommonAsyncTask asyncTask;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,9 +100,18 @@ public class Fragment1 extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+    @OnClick({R.id.iv_main_1_id})
+    public void clickMethod(View v) {
+        Toast.makeText(getActivity(), "you clicked button!",
+                Toast.LENGTH_SHORT).show();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_main, null);
+        ViewUtils.inject(this, view);
+
         vp_main_fragment_id = (ViewPager) view.findViewById(R.id.vp_main_fragment_id);
         iv_main_dot_id = (ImageView) view.findViewById(R.id.iv_main_dot_id);
         iv_main_dot2_id = (ImageView) view.findViewById(R.id.iv_main_dot2_id);
@@ -63,6 +123,8 @@ public class Fragment1 extends Fragment {
         tv_icon_edit_id = (TextView) view.findViewById(R.id.tv_icon_edit_id);
         tv_icon_edit_id2 = (TextView) view.findViewById(R.id.tv_icon_edit_id2);
         tv_icon_edit_id3 = (TextView) view.findViewById(R.id.tv_icon_edit_id3);
+
+
         ds = new LinkedList<>();
         int[] imageIds = {R.mipmap.shili3, R.mipmap.shili, R.mipmap.shili2, R.mipmap.shili3, R.mipmap.shili};
         for (int imageId : imageIds) {
@@ -70,11 +132,11 @@ public class Fragment1 extends Fragment {
             iv.setImageResource(imageId);
             ds.add(iv);
         }
-        Picasso.with(getActivity()).load("http://assets.kgc.cn/upload/ad/20160606/1465195545571261.jpg").into((ImageView)ds.get(0));
-        Picasso.with(getActivity()).load("http://assets.kgc.cn/upload/ad/20160623/1466665711913388.jpg").into((ImageView)ds.get(1));
-        Picasso.with(getActivity()).load("http://assets.kgc.cn/upload/ad/20160517/1463450580414471.jpg").into((ImageView)ds.get(2));
-        Picasso.with(getActivity()).load("http://assets.kgc.cn/upload/ad/20160606/1465195545571261.jpg").into((ImageView)ds.get(3));
-        Picasso.with(getActivity()).load("http://assets.kgc.cn/upload/ad/20160623/1466665711913388.jpg").into((ImageView)ds.get(4));
+        Picasso.with(getActivity()).load("http://assets.kgc.cn/upload/ad/20160606/1465195545571261.jpg").into((ImageView) ds.get(0));
+        Picasso.with(getActivity()).load("http://assets.kgc.cn/upload/ad/20160623/1466665711913388.jpg").into((ImageView) ds.get(1));
+        Picasso.with(getActivity()).load("http://assets.kgc.cn/upload/ad/20160517/1463450580414471.jpg").into((ImageView) ds.get(2));
+        Picasso.with(getActivity()).load("http://assets.kgc.cn/upload/ad/20160606/1465195545571261.jpg").into((ImageView) ds.get(3));
+        Picasso.with(getActivity()).load("http://assets.kgc.cn/upload/ad/20160623/1466665711913388.jpg").into((ImageView) ds.get(4));
 
         //③设置适配器
         PagerAdapter adapter = new MyAdapter();
@@ -90,12 +152,12 @@ public class Fragment1 extends Fragment {
                     if (mCurrentPagePosition == vp_main_fragment_id.getAdapter().getCount() - 1) {
                         //false:表示无动画
                         vp_main_fragment_id.setCurrentItem(1, false);
-                    }
-                    else if (mCurrentPagePosition == 0) {
+                    } else if (mCurrentPagePosition == 0) {
                         vp_main_fragment_id.setCurrentItem(vp_main_fragment_id.getAdapter().getCount() - 2, false);
                     }
                 }
             }
+
             @Override
             public void onPageScrolled(int i, float v, int i1) {
 
@@ -103,22 +165,22 @@ public class Fragment1 extends Fragment {
 
             @Override
             public void onPageSelected(final int i) {
-                mCurrentPagePosition=i;
+                mCurrentPagePosition = i;
 
                 //广告监听器
                 ds.get(i).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent=new Intent();
+                        Intent intent = new Intent();
                         intent.setClass(getActivity(), WebViewActivity.class);
-                        if(i==1){
-                            intent.putExtra("100","http://www.kgc.cn/course/16028.shtml");
+                        if (i == 1) {
+                            intent.putExtra("100", "http://www.kgc.cn/course/16028.shtml");
                         }
-                        if(i==2){
-                            intent.putExtra("100","http://www.kgc.cn/course/17801.shtml");
+                        if (i == 2) {
+                            intent.putExtra("100", "http://www.kgc.cn/course/17801.shtml");
                         }
-                        if(i==3){
-                            intent.putExtra("100","http://www.kgc.cn/course/17802.shtml");
+                        if (i == 3) {
+                            intent.putExtra("100", "http://www.kgc.cn/course/17802.shtml");
                         }
                         startActivity(intent);
                     }
@@ -146,8 +208,6 @@ public class Fragment1 extends Fragment {
             }
 
 
-
-
         });
 //
         //回调morefragment()方法，跳转界面
@@ -167,6 +227,21 @@ public class Fragment1 extends Fragment {
 
 
         return view;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        asyncTask = new CommonAsyncTask(this, "main");
+        asyncTask.execute("http://api.kgc.cn/services/youke?free_num=4&hot_num=4&mechanism=kgc&method=homepage&new_num=4&osType=android&osVersion=3.9.1&showJob=true&auth=3afd110774603f7121276fd4fb9fd706");
+
+        if(asyncTask.isCancelled()){
+
+            fillDataSouce();
+        }
+
+
+
+        super.onActivityCreated(savedInstanceState);
     }
 
     @Override
@@ -194,6 +269,15 @@ public class Fragment1 extends Fragment {
 
         super.onStop();
     }
+
+    @Override
+    public void getFileName(String fileName) {
+
+            fillDataSouce();
+
+
+    }
+
 
     //用来完成图片切换的任务
     private class ViewPagerTask implements Runnable {
@@ -239,6 +323,47 @@ public class Fragment1 extends Fragment {
         public void destroyItem(ViewGroup container, int position, Object object) {
 
             container.removeView((View) ds.get(position));
+        }
+    }
+
+    private void fillDataSouce() {
+//        SystemClock.sleep(7000);
+        File file = new File(Environment.getExternalStorageDirectory(), "main.html");
+
+
+        courses = JsonMain.mainBeen(file);
+        ;
+        Picasso.with(getActivity()).load(courses.get(0).getInfo().getNewX().get(0).getPic()).into(img1);
+        Picasso.with(getActivity()).load(courses.get(0).getInfo().getNewX().get(1).getPic()).into(img2);
+        Picasso.with(getActivity()).load(courses.get(0).getInfo().getNewX().get(2).getPic()).into(img3);
+        Picasso.with(getActivity()).load(courses.get(0).getInfo().getNewX().get(3).getPic()).into(img4);
+        tv_main_textView1_1.setText(courses.get(0).getInfo().getNewX().get(0).getTitle());
+        tv_main_textView1_2.setText(courses.get(0).getInfo().getNewX().get(0).getStuNums()+"");
+        if("0".equals(courses.get(0).getInfo().getNewX().get(0).getBeans())){
+            tv_main_textView1_3.setText("免费");
+        }else{
+            tv_main_textView1_3.setText(courses.get(0).getInfo().getNewX().get(0).getBeans()+"k币");
+        }
+        tv_main_textView2_1.setText(courses.get(0).getInfo().getNewX().get(1).getTitle());
+        tv_main_textView2_2.setText(courses.get(0).getInfo().getNewX().get(1).getStuNums()+"");
+        if("0".equals(courses.get(0).getInfo().getNewX().get(1).getBeans())){
+            tv_main_textView2_3.setText("免费");
+        }else{
+            tv_main_textView2_3.setText(courses.get(0).getInfo().getNewX().get(1).getBeans()+"k币");
+        }
+        tv_main_textView3_1.setText(courses.get(0).getInfo().getNewX().get(2).getTitle());
+        tv_main_textView3_2.setText(courses.get(0).getInfo().getNewX().get(2).getStuNums()+"");
+        if("0".equals(courses.get(0).getInfo().getNewX().get(2).getBeans())){
+            tv_main_textView3_3.setText("免费");
+        }else{
+            tv_main_textView3_3.setText(courses.get(0).getInfo().getNewX().get(2).getBeans()+"k币");
+        }
+        tv_main_textView4_1.setText(courses.get(0).getInfo().getNewX().get(3).getTitle());
+        tv_main_textView4_2.setText(courses.get(0).getInfo().getNewX().get(3).getStuNums()+"");
+        if("0".equals(courses.get(0).getInfo().getNewX().get(3).getBeans())){
+            tv_main_textView4_3.setText("免费");
+        }else{
+            tv_main_textView4_3.setText(courses.get(0).getInfo().getNewX().get(3).getBeans()+"k币");
         }
     }
 

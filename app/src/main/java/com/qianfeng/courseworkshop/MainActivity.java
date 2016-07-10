@@ -35,6 +35,7 @@ public class MainActivity extends FragmentActivity implements GetCourseLeftUrlCa
 
     private Fragment courseLeftFragment;
 
+
     //使用get和set传递值
     private String courseUrl;
     public String getCourseUrl() {
@@ -48,6 +49,8 @@ public class MainActivity extends FragmentActivity implements GetCourseLeftUrlCa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         //1.初始化操作
         supportFragmentManager = getSupportFragmentManager();
 
@@ -64,6 +67,7 @@ public class MainActivity extends FragmentActivity implements GetCourseLeftUrlCa
         initEvents();
 
     }
+
 
     /**
      * 关于侧滑动画的操作
@@ -168,7 +172,6 @@ public class MainActivity extends FragmentActivity implements GetCourseLeftUrlCa
         fragment5 = new MeFragment();
 
         courseLeftFragment=new CourseLeftFragment(this);
-
 
 
     }

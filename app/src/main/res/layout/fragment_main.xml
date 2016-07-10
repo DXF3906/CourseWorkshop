@@ -197,22 +197,24 @@
                     android:columnCount="2">
 
                     <LinearLayout
-                        android:paddingLeft="60dp"
-                        android:paddingTop="20dp"
+                        android:paddingLeft="15dp"
+                        android:paddingTop="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        >
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:id="@+id/iv_main_1_id"
+                            android:layout_width="160dp"
+                            android:layout_height="130dp"
                             android:src="@mipmap/button_index_tab4" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="升级项目应用"
-                            android:id="@+id/textView2" />
+                            android:id="@+id/tv_main_textView1_1" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -220,6 +222,7 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:id="@+id/tv_main_textView1_2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="0"
@@ -234,6 +237,7 @@
                                 android:layout_height="13dp"
                                 android:background="@color/gray"/>
                             <TextView
+                                android:id="@+id/tv_main_textView1_3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="25K币"
@@ -242,18 +246,20 @@
 
                     </LinearLayout>
                     <LinearLayout
-                        android:paddingLeft="60dp"
-                        android:paddingTop="20dp"
+                        android:paddingLeft="15dp"
+                        android:paddingTop="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:id="@+id/iv_main_2_id"
+                            android:layout_width="160dp"
+                            android:layout_height="130dp"
                             android:src="@mipmap/button_index_tab4" />
 
                         <TextView
+                            android:id="@+id/tv_main_textView2_1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="升级项目应用" />
@@ -264,6 +270,7 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:id="@+id/tv_main_textView2_2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="0"
@@ -278,6 +285,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:background="@color/gray"/>
                             <TextView
+                                android:id="@+id/tv_main_textView2_3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="25K币"
@@ -286,18 +294,20 @@
 
                     </LinearLayout>
                     <LinearLayout
-                        android:paddingLeft="60dp"
-                        android:paddingTop="20dp"
+                        android:paddingLeft="15dp"
+                        android:paddingTop="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:id="@+id/iv_main_3_id"
+                            android:layout_width="160dp"
+                            android:layout_height="130dp"
                             android:src="@mipmap/button_index_tab4" />
 
                         <TextView
+                            android:id="@+id/tv_main_textView3_1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="升级项目应用" />
@@ -308,6 +318,7 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:id="@+id/tv_main_textView3_2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="0"
@@ -322,6 +333,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:background="@color/gray"/>
                             <TextView
+                                android:id="@+id/tv_main_textView3_3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="25K币"
@@ -330,18 +342,20 @@
 
                     </LinearLayout>
                     <LinearLayout
-                        android:paddingLeft="60dp"
-                        android:paddingTop="20dp"
+                        android:paddingLeft="15dp"
+                        android:paddingTop="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:id="@+id/iv_main_4_id"
+                            android:layout_width="160dp"
+                            android:layout_height="130dp"
                             android:src="@mipmap/button_index_tab4" />
 
                         <TextView
+                            android:id="@+id/tv_main_textView4_1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="升级项目应用" />
@@ -352,6 +366,7 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:id="@+id/tv_main_textView4_2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="0"
@@ -366,6 +381,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:background="@color/gray"/>
                             <TextView
+                                android:id="@+id/tv_main_textView4_3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="25K币"
