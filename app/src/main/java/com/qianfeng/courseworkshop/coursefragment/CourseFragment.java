@@ -21,6 +21,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshAdapterViewBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.lidroid.xutils.BitmapUtils;
+import com.qianfeng.courseworkshop.MainActivity;
 import com.qianfeng.courseworkshop.R;
 import com.qianfeng.courseworkshop.TikuFragment;
 import com.qianfeng.courseworkshop.asynctask.CommonAsyncTask;
@@ -70,6 +71,12 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
     @Override
     public void onCreate(Bundle savedInstanceState) {
         activity = getActivity();
+        MainActivity activity1 = (MainActivity) getActivity();
+        courseUrlStr = activity1.getCourseUrl();
+        if (courseUrlStr==null){
+            courseUrlStr = CommonData.allCourse;
+        }
+
         super.onCreate(savedInstanceState);
     }
 
@@ -112,6 +119,7 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
 
     /**
      * 筛选选择
+     *
      * @param tabView     选中的tab
      * @param position    选中tab的position
      * @param singleCheck 是否为单次选中，为true的时候调出选择view，为false的时候隐藏选择view
@@ -193,7 +201,7 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
 
         //开启异步任务下载目录数据
 
-        courseUrlStr = "http://www.kgc.cn/list/230-1-6-9-9.shtml";
+        //courseUrlStr = "http://www.kgc.cn/list/230-1-6-9-9.shtml";
         CommonAsyncTask asyncTask = new CommonAsyncTask(this, fileName);
         asyncTask.execute(courseUrlStr);
 
@@ -320,7 +328,6 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
         }
 
     }
-
 
 
     /**

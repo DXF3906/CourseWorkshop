@@ -22,7 +22,7 @@ import java.net.URL;
  * Created by asus on 2016/7/6.
  */
 
-public class HttpUtils {
+public class MyHttpUtils {
     //返回缓存的文件名
     public static String getData(String urlStr,String fileName){
         //如果传过来的有文件名，说明是目录文件（json格式的数据），否则，是html数据重新给定文件名

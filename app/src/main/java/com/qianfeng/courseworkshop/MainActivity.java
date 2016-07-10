@@ -12,12 +12,16 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.nineoldandroids.view.ViewHelper;
+import com.qianfeng.courseworkshop.bean.CommonData;
 import com.qianfeng.courseworkshop.coursefragment.CourseFragment;
 import com.qianfeng.courseworkshop.coursefragment.CourseLeftFragment;
+import com.qianfeng.courseworkshop.inner.GetCourseLeftUrlCallBack;
 import com.qianfeng.courseworkshop.shequfragment.ShequFragment;
 
 
-public class MainActivity extends FragmentActivity {
+
+
+public class MainActivity extends FragmentActivity implements GetCourseLeftUrlCallBack {
     private DrawerLayout drwaerLyout;//抽屉控件
     private Fragment fragment1;//首页
     private Fragment fragment2;//课程
@@ -27,10 +31,24 @@ public class MainActivity extends FragmentActivity {
     private RadioGroup rg_main_id;//底部界面切换控件
     private FragmentManager supportFragmentManager;
 
+    private Fragment courseLeftFragment;
+
+
+    //使用get和set传递值
+    private String courseUrl;
+    public String getCourseUrl() {
+        return courseUrl;
+    }
+    public void setCourseUrl(String courseUrl) {
+        this.courseUrl = courseUrl;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         //1.初始化操作
         supportFragmentManager = getSupportFragmentManager();
 
@@ -47,6 +65,7 @@ public class MainActivity extends FragmentActivity {
         initEvents();
 
     }
+
 
     /**
      * 关于侧滑动画的操作
@@ -112,11 +131,11 @@ public class MainActivity extends FragmentActivity {
                 }
                 //课程
                 if (((RadioButton) radioGroup.getChildAt(1)).isChecked()) {
-                    replaceContainerWidget(fragment2, new CourseLeftFragment());
+                    replaceContainerWidget(fragment2, courseLeftFragment);
                 }
                 //社区
                 if (((RadioButton) radioGroup.getChildAt(2)).isChecked()) {
-                    replaceContainerWidget(fragment3, new CourseLeftFragment());
+                    replaceContainerWidget(fragment3, courseLeftFragment);
                 }
                 //题库
                 if (((RadioButton) radioGroup.getChildAt(3)).isChecked()) {
@@ -149,12 +168,14 @@ public class MainActivity extends FragmentActivity {
         fragment3 = new ShequFragment();
         fragment4 = new TikuFragment();
         fragment5 = new MeFragment();
+
+        courseLeftFragment=new CourseLeftFragment(this);
+
+
     }
 
     /**
      * 替换占位的fragment控件
-     * @param fragment
-     * @param leftFragment
      */
     private void replaceContainerWidget(Fragment fragment, Fragment leftFragment) {
 
@@ -176,12 +197,54 @@ public class MainActivity extends FragmentActivity {
     }
     /**
      * 点击触发侧滑效果(三横线)
-     * @param view
      */
-    public void OpenLeftMenu(View view){
+    public void OpenLeftCourseMenu(View view){
         drwaerLyout.openDrawer(Gravity.LEFT);
     }
+
+    /**
+     * 课程目录点击监听事件
+     */
+    public void CloseLeftCourseMenu(View view){
+        switch (view.getId()) {
+            case R.id.ll_allcourse_id:
+                setCourseUrl(CommonData.allCourse);
+                break;
+            case R.id.ll_program_id:
+                setCourseUrl(CommonData.programCourse);
+                break;
+            case R.id.ll_spread_id:
+                setCourseUrl(CommonData.spreadCourse);
+                break;
+            case R.id.ll_seeing_id:
+                setCourseUrl(CommonData.seeingCourse);
+                break;
+            case R.id.ll_net_id:
+                setCourseUrl(CommonData.netCourse);
+                break;
+            case R.id.ll_exam_id:
+                setCourseUrl(CommonData.examCourse);
+                break;
+            default:
+        }
+        replaceContainerWidget(new CourseFragment(),courseLeftFragment);
+        drwaerLyout.closeDrawer(Gravity.LEFT);
+
+    }
+
     public  void morefragment(){
         ((RadioButton) rg_main_id.getChildAt(1)).setChecked(true);
+    }
+
+    /**
+     * 接口回调，课程侧滑点击ListView的某一项，回传的网址
+     * @param result
+     */
+    @Override
+    public void gettCourseLeftUrl(String result) {
+        setCourseUrl(result);
+        replaceContainerWidget(new CourseFragment(),courseLeftFragment);
+        drwaerLyout.closeDrawer(Gravity.LEFT);
+
     }
 }

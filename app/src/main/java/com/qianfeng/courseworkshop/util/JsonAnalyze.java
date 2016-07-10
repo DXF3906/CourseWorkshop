@@ -42,8 +42,10 @@ public class JsonAnalyze {
                 String name = objTmp.getString("name");
                 String total = objTmp.getString("total");
                 String catalogId = objTmp.getString("catalogId");
+                int isJob=objTmp.getInt("isJob");
 
-                courseLogcatDatas.add(new CourseLogcat(catalogId, "", 0, "", total, name));
+
+                courseLogcatDatas.add(new CourseLogcat(catalogId, "", isJob, "", total, name));
 
             }
             return courseLogcatDatas;
