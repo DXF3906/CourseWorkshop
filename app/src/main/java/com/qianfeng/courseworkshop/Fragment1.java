@@ -338,28 +338,28 @@ public class Fragment1 extends Fragment implements GetFileNameCallBack {
         Picasso.with(getActivity()).load(courses.get(0).getInfo().getNewX().get(2).getPic()).into(img3);
         Picasso.with(getActivity()).load(courses.get(0).getInfo().getNewX().get(3).getPic()).into(img4);
         tv_main_textView1_1.setText(courses.get(0).getInfo().getNewX().get(0).getTitle());
-//        tv_main_textView1_2.setText(courses.get(0).getInfo().getNewX().get(0).getStuNums());
+        tv_main_textView1_2.setText(courses.get(0).getInfo().getNewX().get(0).getStuNums()+"");
         if("0".equals(courses.get(0).getInfo().getNewX().get(0).getBeans())){
             tv_main_textView1_3.setText("免费");
         }else{
             tv_main_textView1_3.setText(courses.get(0).getInfo().getNewX().get(0).getBeans()+"k币");
         }
         tv_main_textView2_1.setText(courses.get(0).getInfo().getNewX().get(1).getTitle());
-//        tv_main_textView2_2.setText(courses.get(0).getInfo().getNewX().get(1).getStuNums());
+        tv_main_textView2_2.setText(courses.get(0).getInfo().getNewX().get(1).getStuNums()+"");
         if("0".equals(courses.get(0).getInfo().getNewX().get(1).getBeans())){
             tv_main_textView2_3.setText("免费");
         }else{
             tv_main_textView2_3.setText(courses.get(0).getInfo().getNewX().get(1).getBeans()+"k币");
         }
         tv_main_textView3_1.setText(courses.get(0).getInfo().getNewX().get(2).getTitle());
-//        tv_main_textView3_2.setText(courses.get(0).getInfo().getNewX().get(2).getStuNums());
+        tv_main_textView3_2.setText(courses.get(0).getInfo().getNewX().get(2).getStuNums()+"");
         if("0".equals(courses.get(0).getInfo().getNewX().get(2).getBeans())){
             tv_main_textView3_3.setText("免费");
         }else{
             tv_main_textView3_3.setText(courses.get(0).getInfo().getNewX().get(2).getBeans()+"k币");
         }
         tv_main_textView4_1.setText(courses.get(0).getInfo().getNewX().get(3).getTitle());
-//        tv_main_textView4_2.setText(courses.get(0).getInfo().getNewX().get(3).getStuNums());
+        tv_main_textView4_2.setText(courses.get(0).getInfo().getNewX().get(3).getStuNums()+"");
         if("0".equals(courses.get(0).getInfo().getNewX().get(3).getBeans())){
             tv_main_textView4_3.setText("免费");
         }else{

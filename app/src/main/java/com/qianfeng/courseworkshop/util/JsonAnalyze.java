@@ -36,6 +36,7 @@ public class JsonAnalyze {
             // 解析
             JSONArray array = obj.getJSONArray("sortdata");
 
+
             for (int index = 0; index < array.length(); index++) {
                 JSONObject objTmp = array.getJSONObject(index);
 

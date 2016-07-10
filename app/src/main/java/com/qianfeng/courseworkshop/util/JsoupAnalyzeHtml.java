@@ -43,6 +43,11 @@ public class JsoupAnalyzeHtml {
                 Element img = imgs.get(0);
                 String imgUrlStr = img.attr("src");
 
+                //课程url
+                Elements cours = courseItem.select("a");
+                Element cour = cours.get(0);
+                String courUrlStr = cour.attr("href");
+
                 //获得学习人数
                 String studyNum = courseItem.select("span").get(1).text();
 
@@ -57,6 +62,7 @@ public class JsoupAnalyzeHtml {
                 course.setStudyNum(studyNum);
                 course.setMoney(money);
                 course.setDescription(description);
+                course.setCourseUrl(courUrlStr);
                 courseDatas.add(course);
 
 

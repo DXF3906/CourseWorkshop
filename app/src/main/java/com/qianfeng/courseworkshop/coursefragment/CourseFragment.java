@@ -1,5 +1,6 @@
 package com.qianfeng.courseworkshop.coursefragment;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -17,34 +18,27 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
-import com.handmark.pulltorefresh.library.PullToRefreshAdapterViewBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
-import com.lidroid.xutils.BitmapUtils;
 import com.qianfeng.courseworkshop.MainActivity;
 import com.qianfeng.courseworkshop.R;
-import com.qianfeng.courseworkshop.TikuFragment;
+import com.qianfeng.courseworkshop.WebViewActivity;
 import com.qianfeng.courseworkshop.asynctask.CommonAsyncTask;
 import com.qianfeng.courseworkshop.asynctask.ImmageAsyncTask;
 import com.qianfeng.courseworkshop.bean.CommonData;
 import com.qianfeng.courseworkshop.bean.Course;
 import com.qianfeng.courseworkshop.filter.ExpandTabView;
 import com.qianfeng.courseworkshop.filter.FilterTabView;
-import com.qianfeng.courseworkshop.inner.GetFileBitmapCallBack;
 import com.qianfeng.courseworkshop.inner.GetFileNameCallBack;
 import com.qianfeng.courseworkshop.util.JsoupAnalyzeHtml;
-import com.squareup.picasso.Picasso;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutionException;
 
 /**
  * 课程对应的Fragmnet
@@ -73,7 +67,7 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
         activity = getActivity();
         MainActivity activity1 = (MainActivity) getActivity();
         courseUrlStr = activity1.getCourseUrl();
-        if (courseUrlStr==null){
+        if (courseUrlStr == null) {
             courseUrlStr = CommonData.allCourse;
         }
 
@@ -82,11 +76,6 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
 
     /**
      * 获得fragment对应的布局文件
-     *
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     * @return
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -113,6 +102,7 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
         ptrlv_course_id = (PullToRefreshListView) view.findViewById(R.id.ptrlv_course_id);
         //关于PullToRefreshListView的操作
         aboutPullToRefreshListView();
+
 
         super.onActivityCreated(savedInstanceState);
     }
@@ -141,7 +131,7 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
         }
 
     }
-
+    //TODO
     //筛选下拉框数据
     private ListView getCourseOrderView() {
         final String[] courseArrayList = new String[]{"最新", "最热"};
@@ -153,6 +143,24 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 expand_tabview_course_id.getTabViews().get(0).setText(courseArrayList[i]);
                 expand_tabview_course_id.closeExpand();
+                //第一次出现"-"的索引
+                int firstindex = courseUrlStr.indexOf('-') + 1;
+                //第二次出现"-"的索引
+                String tempString = courseUrlStr.substring(firstindex);
+                int index = tempString.indexOf('-') + 1 + firstindex;
+                StringBuilder sb = new StringBuilder();
+                sb = sb.append(courseUrlStr);
+                String paixuPage = new String();
+                //
+                if (i == 0) {
+                    paixuPage = "6";
+                } else {
+                    paixuPage = "4";
+                }
+                sb.replace(index, index + 1, paixuPage);
+                courseUrlStr = sb.toString();
+                Log.i("courseUrlStr", courseUrlStr);
+                aboutPullToRefreshListView();
 
             }
         });
@@ -164,12 +172,43 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
         final String[] courseArrayList = new String[]{"全部", "免费", "付费"};
         ListView listView = new ListView(getActivity());
         listView.setAdapter(new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1, Arrays.asList(new String[]{"全部", "免费", "付费"})));
+                android.R.layout.simple_list_item_1, Arrays.asList(courseArrayList)));
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 expand_tabview_course_id.getTabViews().get(1).setText(courseArrayList[i]);
                 expand_tabview_course_id.closeExpand();
+
+                //第一次出现"-"的索引
+                int firstindex = courseUrlStr.indexOf('-') + 1;
+                //第二次出现"-"的索引
+                String tempString = courseUrlStr.substring(firstindex);
+                int twoindex = tempString.indexOf('-') + 1;
+                //第三次出现"-"的索引
+                String tempString2 = tempString.substring(twoindex);
+                int threeindex = tempString2.indexOf('-') + 1 + firstindex + twoindex;
+                StringBuilder sb = new StringBuilder();
+                sb = sb.append(courseUrlStr);
+                String pricePage = new String();
+                //
+                switch (i) {
+                    case 0:
+                        pricePage = "0";
+                        break;
+                    case 1:
+                        pricePage = "1";
+                        break;
+                    case 2:
+                        pricePage = "2";
+                        break;
+                    default:
+                }
+
+                sb.replace(threeindex, threeindex + 1, pricePage);
+                courseUrlStr = sb.toString();
+                Log.i("courseUrlStr", courseUrlStr);
+                aboutPullToRefreshListView();
+
 
             }
         });
@@ -177,21 +216,42 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
     }
 
     private View getCourseDifficultyView() {
-        final String[] courseArrayList = new String[]{"全部", "零基础", "基础", "中级", "高级"};
+        final String[] courseArrayList = new String[]{"零基础", "基础", "中级", "高级", "全部"};
         ListView listView = new ListView(getActivity());
         listView.setAdapter(new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1, Arrays.asList(new String[]{"全部", "零基础", "基础", "中级", "高级"})));
+                android.R.layout.simple_list_item_1, Arrays.asList(courseArrayList)));
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                expand_tabview_course_id.getTabViews().get(1).setText(courseArrayList[i]);
+                expand_tabview_course_id.getTabViews().get(2).setText(courseArrayList[i]);
                 expand_tabview_course_id.closeExpand();
+                //第一次出现"-"的索引
+                int firstindex = courseUrlStr.indexOf('-') + 1;
+                //第二次出现"-"的索引
+                String tempString = courseUrlStr.substring(firstindex);
+                int twoindex = tempString.indexOf('-') + 1;
+                //第三次出现"-"的索引
+                String tempString2 = tempString.substring(twoindex);
+                int threeindex = tempString2.indexOf('-') + 1;
+                //第四次出现"-"的索引
+                String tempString3 = tempString2.substring(threeindex);
+                int fourindex = tempString3.indexOf('-') + 1 + firstindex + twoindex + threeindex;
+
+                StringBuilder sb = new StringBuilder();
+                sb = sb.append(courseUrlStr);
+                String defaultPage = i + 1 + "";
+
+
+                sb.replace(fourindex, fourindex + 1, defaultPage);
+                courseUrlStr = sb.toString();
+                Log.i("courseUrlStr", courseUrlStr);
+                aboutPullToRefreshListView();
 
             }
         });
         return listView;
     }
-    //TODO
+
 
     /**
      * 关于PullToRefreshListView的操作
@@ -254,6 +314,7 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
                 //显示当前系统的时间
+
                 String label = DateUtils.formatDateTime(getActivity(),
                         System.currentTimeMillis(), DateUtils.FORMAT_SHOW_TIME
                                 | DateUtils.FORMAT_SHOW_DATE
@@ -284,8 +345,20 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
                 new GetDownDataTask().execute();
             }
         });
-    }
+        //监听器跳转webView
+        ptrlv_course_id.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+                Intent intent=new Intent();
+                intent.setClass(getActivity(), WebViewActivity.class);
+                String courUrl="http://www.kgc.cn"+(String) data.get(i).get("cour");
+                intent.putExtra("100",courUrl);
+
+                startActivity(intent);
+            }
+        });
+    }
     /**
      * 填充数据源
      */
@@ -318,6 +391,7 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
                     listem.put("description", course.getDescription());
                     listem.put("num", course.getStudyNum());
                     listem.put("price", course.getMoney());
+                    listem.put("cour",course.getCourseUrl());
                     data.add(listem);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -409,39 +483,49 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
     private void fillDownDataSouce(String fileDownName) {
 
         //填充数据源前必须清空
-        courses.clear();
+        //courses.clear();
 
         //本地缓存文件实例获取
         File file = new File(Environment.getExternalStorageDirectory(), fileDownName + ".html");
         //json解析目录数据
-        courses = JsoupAnalyzeHtml.analysCourses(file);
-        Log.i("tag", "①实现了底部加载数据源中解析功能---》" + fileDownName);
-        Log.i("tag", "地步加载course集合内容" + courses.toString());
+        List<Course> coursesTemp = new LinkedList<>();
+        coursesTemp = JsoupAnalyzeHtml.analysCourses(file);
+        if (coursesTemp.size() > 0) {
+            //判断是否还有更多数据，如果没有就不加载，避免加载重复的课程
+            if (!(coursesTemp.get(0).getTitle()).equals(courses.get(0).getTitle())) {
+                courses.clear();
+                courses.addAll(coursesTemp);
 
-        if (courses.size() > 0) {
-            Log.i("tag", "实现了解析的数据的填充");
-            for (int i = 0; i < courses.size(); i++) {
-                Course course = courses.get(i);
 
-                Map<String, Object> listem = new HashMap<String, Object>();
-                String imgUrlStr = course.getImgUrlStr();
+                Log.i("tag", "①实现了底部加载数据源中解析功能---》" + fileDownName);
+                Log.i("tag", "地步加载course集合内容" + courses.toString());
 
-                try {
-                    ImmageAsyncTask asyncTask = new ImmageAsyncTask(activity);
-                    asyncTask.execute(imgUrlStr);
-                    Bitmap bitmap = asyncTask.get();
-                    listem.put("img", bitmap);
-                    listem.put("title", course.getTitle());
-                    listem.put("description", course.getDescription());
-                    listem.put("num", course.getStudyNum());
-                    listem.put("price", course.getMoney());
-                    data.add(listem);
-                } catch (Exception e) {
-                    e.printStackTrace();
+
+                Log.i("tag", "实现了解析的数据的填充");
+                for (int i = 0; i < courses.size(); i++) {
+                    Course course = courses.get(i);
+
+                    Map<String, Object> listem = new HashMap<String, Object>();
+                    String imgUrlStr = course.getImgUrlStr();
+
+                    try {
+                        ImmageAsyncTask asyncTask = new ImmageAsyncTask(activity);
+                        asyncTask.execute(imgUrlStr);
+                        Bitmap bitmap = asyncTask.get();
+                        listem.put("img", bitmap);
+                        listem.put("title", course.getTitle());
+                        listem.put("description", course.getDescription());
+                        listem.put("num", course.getStudyNum());
+                        listem.put("price", course.getMoney());
+                        listem.put("cour",course.getCourseUrl());
+                        data.add(listem);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
+                Log.i("tag", "更新适配器");
+                adapter.notifyDataSetChanged();
             }
-            Log.i("tag", "更新适配器");
-            adapter.notifyDataSetChanged();
         }
 
     }
@@ -461,5 +545,4 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
             fillDownDataSouce(fileName);
         }
     }
-
 }

@@ -23,7 +23,7 @@
         android:layout_height="match_parent">
     </com.handmark.pulltorefresh.library.PullToRefreshListView>
         <com.qianfeng.courseworkshop.filter.ExpandTabView
-        android:id="@+id/expand_tabview"
+        android:id="@+id/expand_tabview_tiku_id"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
     </RelativeLayout>
