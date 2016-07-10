@@ -179,6 +179,35 @@ public class TikuFragment extends Fragment implements ExpandTabView.OnFilterSele
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 expand_tabview_tiku_id.getTabViews().get(1).setText(zuixin[i]);
                 expand_tabview_tiku_id.closeExpand();
+                //第一次出现"-"的索引
+                int firstindex = tikuUrlStr.indexOf('-') + 1;
+                //第二次出现"-"的索引
+                String tikuString = tikuUrlStr.substring(firstindex);
+                int twoindex = tikuString.indexOf('-')  + 1;
+                //第三次出现"-"的索引
+                String tikuString2 = tikuString.substring(twoindex);
+                int threedex = tikuString2.indexOf('-')  + 1;
+                int index=firstindex+twoindex+threedex;
+                StringBuilder sb = new StringBuilder();
+                sb = sb.append(tikuUrlStr);
+                String paixuPage = new String();
+                //
+                switch (i){
+                    case 0:
+                        paixuPage="0";
+                        break;
+                    case 1:
+                        paixuPage="1";
+                        break;
+
+                    default:
+                }
+
+                sb.replace(index, index +1, paixuPage);
+                tikuUrlStr = sb.toString();
+                //tikuUrlStr="http://www.kgc.cn/questions/0-0-0-1-0-0";
+                Log.i("courseUrlStr", tikuUrlStr);
+                aboutPullToRefreshListView();
             }
         });
         return listView;
@@ -194,6 +223,38 @@ public class TikuFragment extends Fragment implements ExpandTabView.OnFilterSele
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 expand_tabview_tiku_id.getTabViews().get(2).setText(zhiming[i]);
                 expand_tabview_tiku_id.closeExpand();
+                //第一次出现"-"的索引
+                int index = tikuUrlStr.indexOf('-') - 1;
+
+                StringBuilder sb = new StringBuilder();
+                sb = sb.append(tikuUrlStr);
+                String paixuPage = new String();
+                //
+                switch (i){
+                    case 0:
+                        paixuPage="0";
+                        break;
+                    case 1:
+                        paixuPage="1";
+                        break;
+                    case 2:
+                        paixuPage="2";
+                        break;
+                    case 3:
+                        paixuPage="3";
+                        break;
+                    case 4:
+                        paixuPage="4";
+                        break;
+
+                    default:
+                }
+
+                sb.replace(index, index +1, paixuPage);
+                tikuUrlStr = sb.toString();
+                //tikuUrlStr="http://www.kgc.cn/questions/1-0-0-0-0-0";
+                Log.i("courseUrlStr", tikuUrlStr);
+                aboutPullToRefreshListView();
 
             }
         });
@@ -210,6 +271,45 @@ public class TikuFragment extends Fragment implements ExpandTabView.OnFilterSele
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 expand_tabview_tiku_id.getTabViews().get(3).setText(nandu[i]);
                 expand_tabview_tiku_id.closeExpand();
+                //第一次出现"-"的索引
+                int firstindex = tikuUrlStr.indexOf('-') + 1;
+                //第二次出现"-"的索引
+                String tikuString = tikuUrlStr.substring(firstindex);
+                int twoindex = tikuString.indexOf('-')  + 1;
+
+                int index=firstindex+twoindex;
+                StringBuilder sb = new StringBuilder();
+                sb = sb.append(tikuUrlStr);
+                String paixuPage = new String();
+                //
+                switch (i){
+                    case 0:
+                        paixuPage="0";
+                        break;
+                    case 1:
+                        paixuPage="1";
+                        break;
+                    case 2:
+                        paixuPage="2";
+                        break;
+                    case 3:
+                        paixuPage="3";
+                        break;
+                    case 4:
+                        paixuPage="4";
+                        break;
+                    case 5:
+                        paixuPage="5";
+                        break;
+
+                    default:
+                }
+
+                sb.replace(index, index +1, paixuPage);
+                tikuUrlStr = sb.toString();
+                //tikuUrlStr="http://www.kgc.cn/questions/0-0-0-1-0-0";
+                Log.i("courseUrlStr", tikuUrlStr);
+                aboutPullToRefreshListView();
             }
         });
         return listView;
