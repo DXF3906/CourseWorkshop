@@ -131,7 +131,6 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
         }
 
     }
-    //TODO
     //筛选下拉框数据
     private ListView getCourseOrderView() {
         final String[] courseArrayList = new String[]{"最新", "最热"};
@@ -259,7 +258,7 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
     private void aboutPullToRefreshListView() {
 
 
-        //开启异步任务下载目录数据
+        //开启异步任务下载课程数据
 
         //courseUrlStr = "http://www.kgc.cn/list/230-1-6-9-9.shtml";
         CommonAsyncTask asyncTask = new CommonAsyncTask(this, fileName);
@@ -269,6 +268,7 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
         ListView actualListView = ptrlv_course_id.getRefreshableView();
         registerForContextMenu(actualListView);
         data = new LinkedList<>();
+        //TODO
 
         // 填充数据源
         fillDataSouce();
@@ -529,6 +529,7 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
         }
 
     }
+
 
     /**
      * 接口回调文件名

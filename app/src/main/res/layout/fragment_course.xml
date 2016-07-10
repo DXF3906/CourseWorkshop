@@ -9,13 +9,14 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:background="#f1000000">
         <!--触发侧滑按钮-->
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="50dp"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
             android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
             android:src="@mipmap/button_catolgue"
             android:onClick="OpenLeftCourseMenu" />
 
@@ -29,11 +30,12 @@
             android:textColor="@color/white" />
         <!--搜索按钮-->
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentEnd="true"
+            android:clickable="true"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:onClick="searchCourse"
             android:src="@mipmap/abc_ic_search_api_mtrl_alpha" />
     </RelativeLayout>
     <RelativeLayout

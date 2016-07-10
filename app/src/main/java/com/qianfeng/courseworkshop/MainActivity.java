@@ -1,5 +1,6 @@
 package com.qianfeng.courseworkshop;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -12,6 +13,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.nineoldandroids.view.ViewHelper;
+import com.qianfeng.courseworkshop.activity.SearchActivity;
 import com.qianfeng.courseworkshop.bean.CommonData;
 import com.qianfeng.courseworkshop.coursefragment.CourseFragment;
 import com.qianfeng.courseworkshop.coursefragment.CourseLeftFragment;
@@ -227,6 +229,14 @@ public class MainActivity extends FragmentActivity implements GetCourseLeftUrlCa
         replaceContainerWidget(new CourseFragment(),courseLeftFragment);
         drwaerLyout.closeDrawer(Gravity.LEFT);
 
+    }
+
+    /**
+     * 课程搜索功能
+     */
+    public void searchCourse(View view){
+        Intent intent=new Intent(MainActivity.this, SearchActivity.class);
+        startActivity(intent);
     }
 
     public  void morefragment(){
