@@ -76,11 +76,6 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
 
     /**
      * 获得fragment对应的布局文件
-     *
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     * @return
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -107,6 +102,7 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
         ptrlv_course_id = (PullToRefreshListView) view.findViewById(R.id.ptrlv_course_id);
         //关于PullToRefreshListView的操作
         aboutPullToRefreshListView();
+
 
         super.onActivityCreated(savedInstanceState);
     }
@@ -135,7 +131,7 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
         }
 
     }
-
+    //TODO
     //筛选下拉框数据
     private ListView getCourseOrderView() {
         final String[] courseArrayList = new String[]{"最新", "最热"};
@@ -318,6 +314,7 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
                 //显示当前系统的时间
+
                 String label = DateUtils.formatDateTime(getActivity(),
                         System.currentTimeMillis(), DateUtils.FORMAT_SHOW_TIME
                                 | DateUtils.FORMAT_SHOW_DATE
@@ -352,7 +349,7 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
         ptrlv_course_id.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //TODO
+
                 Intent intent=new Intent();
                 intent.setClass(getActivity(), WebViewActivity.class);
                 String courUrl="http://www.kgc.cn"+(String) data.get(i).get("cour");
@@ -362,7 +359,6 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
             }
         });
     }
-
     /**
      * 填充数据源
      */

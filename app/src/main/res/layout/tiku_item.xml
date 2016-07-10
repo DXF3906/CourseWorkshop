@@ -9,6 +9,7 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/tv_choosetype_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/text_background"
@@ -16,7 +17,7 @@
             android:textColor="@color/green" />
 
         <TextView
-            android:id="@+id/tk_textView5"
+            android:id="@+id/tv_descrition_tiku_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -32,7 +33,7 @@
         android:layout_marginTop="5dp">
 
         <TextView
-            android:id="@+id/tk_textView3"
+            android:id="@+id/tv_jibie_tiku_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -41,12 +42,12 @@
             android:textColor="@color/blue" />
 
         <TextView
-            android:id="@+id/tk_textView4"
+            android:id="@+id/tv_default_tiku_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@+id/tk_textView3"
+            android:layout_toRightOf="@+id/tv_jibie_tiku_id"
             android:background="@drawable/text_background2"
             android:text="二星"
             android:textColor="@color/blue" />
@@ -57,11 +58,11 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginRight="5dp"
-            android:layout_toLeftOf="@+id/tk_textView1"
+            android:layout_toLeftOf="@+id/tv_study_num_tiku_id"
             android:src="@mipmap/icon_questionviews" />
 
         <TextView
-            android:id="@+id/tk_textView1"
+            android:id="@+id/tv_study_num_tiku_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -76,11 +77,11 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginRight="5dp"
-            android:layout_toLeftOf="@+id/tk_textView2"
+            android:layout_toLeftOf="@+id/tv_pinlun_num_id"
             android:src="@mipmap/icon_questionanswers" />
 
         <TextView
-            android:id="@+id/tk_textView2"
+            android:id="@+id/tv_pinlun_num_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
