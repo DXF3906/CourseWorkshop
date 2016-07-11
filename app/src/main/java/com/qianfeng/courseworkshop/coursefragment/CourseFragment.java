@@ -14,9 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
@@ -61,6 +64,7 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
     private String fileName = "courseContent";//初始显示的文件名
     private String courseUrlStr;//初始的网址
     private int pageInt = 1;//底部加载的页码数，默认为1
+    private TextView textView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -86,7 +90,7 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-
+        textView=(TextView)view.findViewById(R.id.textView);
         //筛选功能控件的获得
         expand_tabview_course_id = (ExpandTabView) view.findViewById(R.id.expand_tabview_course_id);
         expand_tabview_course_id.setOnFilterSelected(this);
@@ -102,7 +106,9 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
         ptrlv_course_id = (PullToRefreshListView) view.findViewById(R.id.ptrlv_course_id);
         //关于PullToRefreshListView的操作
         aboutPullToRefreshListView();
-
+        Bundle data = getArguments();//获得从activity中传递过来的值
+//        Toast.makeText(getActivity(), data.getString("TEXT"), Toast.LENGTH_SHORT).show();
+        textView.setText(data.getString("TEXT"));
 
         super.onActivityCreated(savedInstanceState);
     }

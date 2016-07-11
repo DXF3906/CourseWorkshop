@@ -334,7 +334,30 @@ public class Fragment1 extends Fragment implements GetFileNameCallBack {
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity) getActivity()).morefragment();
+                switch (view.getId()){
+                    case R.id.iv_button_index_id:
+                        ((MainActivity) getActivity()).morefragment(courses.get(0).getCategoryImg().get(0).getCategoryName());
+                        break;
+                    case R.id.iv_button_index_id2:
+                        ((MainActivity) getActivity()).morefragment(courses.get(0).getCategoryImg().get(1).getCategoryName());
+                        break;
+                    case R.id.iv_button_index_id3:
+                        ((MainActivity) getActivity()).morefragment(courses.get(0).getCategoryImg().get(2).getCategoryName());
+                        break;
+                    case R.id.iv_button_index_id4:
+                        ((MainActivity) getActivity()).morefragment(courses.get(0).getCategoryImg().get(3).getCategoryName());
+                        break;
+                    case R.id.tv_icon_edit_id:
+                        ((MainActivity) getActivity()).morefragment("最新课程");
+                        break;
+                    case R.id.tv_icon_edit_id2:
+                        ((MainActivity) getActivity()).morefragment("热门课程");
+                        break;
+                    case R.id.tv_icon_edit_id3:
+                        ((MainActivity) getActivity()).morefragment("免费课程");
+                        break;
+                }
+
             }
         };
         iv_button_index_id.setOnClickListener(listener);

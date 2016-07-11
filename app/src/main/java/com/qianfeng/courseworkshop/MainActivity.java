@@ -12,6 +12,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nineoldandroids.view.ViewHelper;
@@ -22,7 +23,7 @@ import com.qianfeng.courseworkshop.coursefragment.CourseLeftFragment;
 import com.qianfeng.courseworkshop.inner.GetCourseLeftUrlCallBack;
 import com.qianfeng.courseworkshop.shequfragment.ShequFragment;
 
-
+import org.w3c.dom.Text;
 
 
 public class MainActivity extends FragmentActivity implements GetCourseLeftUrlCallBack {
@@ -40,6 +41,8 @@ public class MainActivity extends FragmentActivity implements GetCourseLeftUrlCa
 
     //使用get和set传递值
     private String courseUrl;
+    private TextView textView;
+
     public String getCourseUrl() {
         return courseUrl;
     }
@@ -172,7 +175,6 @@ public class MainActivity extends FragmentActivity implements GetCourseLeftUrlCa
         fragment3 = new ShequFragment();
         fragment4 = new TikuFragment();
         fragment5 = new MeFragment();
-
         courseLeftFragment=new CourseLeftFragment(this);
 
 
@@ -244,8 +246,11 @@ public class MainActivity extends FragmentActivity implements GetCourseLeftUrlCa
         startActivity(intent);
     }
 
-    public  void morefragment(){
+    public void morefragment(String string){
         ((RadioButton) rg_main_id.getChildAt(1)).setChecked(true);
+        Bundle data = new Bundle();
+        data.putString("TEXT", string);
+        fragment2.setArguments(data);//通过Bundle向fragment中传递值
     }
 
     /**
