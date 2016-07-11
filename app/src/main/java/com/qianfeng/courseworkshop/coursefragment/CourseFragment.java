@@ -100,15 +100,45 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
         nameList.add("课程价格");
         nameList.add("难度等级");
         expand_tabview_course_id.setNameList(nameList);
-
-
         //PullToRefreshListView控件的获得
         ptrlv_course_id = (PullToRefreshListView) view.findViewById(R.id.ptrlv_course_id);
         //关于PullToRefreshListView的操作
         aboutPullToRefreshListView();
         Bundle data = getArguments();//获得从activity中传递过来的值
 //        Toast.makeText(getActivity(), data.getString("TEXT"), Toast.LENGTH_SHORT).show();
-        textView.setText(data.getString("TEXT"));
+        if(data!=null){
+
+            textView.setText(data.getString("TEXT"));
+            switch (data.getString("TEXT")){
+                case "研发·编程":
+                    courseUrlStr = "http://www.kgc.cn/list/231-1-6-9-9.shtml";
+                    break;
+                case "运营·推广":
+                    courseUrlStr = "http://www.kgc.cn/list/298-1-6-9-9.shtml";
+                    break;
+                case "视觉·创意":
+                    courseUrlStr = "http://www.kgc.cn/list/240-1-6-9-9.shtml";
+                    break;
+                case "网络·安全":
+                    courseUrlStr = "http://www.kgc.cn/list/246-1-6-9-9.shtml";
+                    break;
+                case "最新课程":
+                    courseUrlStr = "http://www.kgc.cn/list/230-1-6-9-9.shtml";
+                    expand_tabview_course_id.getTabViews().get(0).setText("最新");
+                    break;
+                case "热门课程":
+                    courseUrlStr = "http://www.kgc.cn/list/230-1-4-9-9.shtml";
+                    expand_tabview_course_id.getTabViews().get(0).setText("最热");
+                    break;
+                case "免费课程":
+                    courseUrlStr = "http://www.kgc.cn/list/230-1-4-1-9.shtml";
+                    expand_tabview_course_id.getTabViews().get(1).setText("免费");
+                    break;
+            }
+            aboutPullToRefreshListView();
+        }
+
+
 
         super.onActivityCreated(savedInstanceState);
     }
