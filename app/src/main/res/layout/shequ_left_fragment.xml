@@ -15,6 +15,9 @@
         <!--星广场-->
         <Button
             android:id="@+id/btn_1f_id"
+            android:clickable="true"
+            android:onClick="aboutButtonAction"
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
@@ -28,6 +31,9 @@
         <!--资源分享-->
         <Button
             android:id="@+id/btn_2f_id"
+            android:clickable="true"
+            android:onClick="aboutButtonAction"
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
@@ -43,6 +49,9 @@
         <!--ui设计学院-->
         <Button
             android:id="@+id/btn_3f_id"
+            android:clickable="true"
+            android:onClick="aboutButtonAction"
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
@@ -58,6 +67,9 @@
         <!--4F 前端开发学院-->
         <Button
             android:id="@+id/btn_4f_id"
+            android:clickable="true"
+            android:onClick="aboutButtonAction"
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
@@ -73,6 +85,9 @@
         <!--5F 大数据学院-->
         <Button
             android:id="@+id/btn_5f_id"
+            android:clickable="true"
+            android:onClick="aboutButtonAction"
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
@@ -88,6 +103,9 @@
         <!--6F 云计算学院-->
         <Button
             android:id="@+id/btn_6f_id"
+            android:clickable="true"
+            android:onClick="aboutButtonAction"
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
@@ -102,6 +120,9 @@
         <!--7F 热门技术-->
         <Button
             android:id="@+id/btn_7f_id"
+            android:clickable="true"
+            android:onClick="aboutButtonAction"
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
@@ -116,6 +137,9 @@
         <!--8F 其他-->
         <Button
             android:id="@+id/btn_8f_id"
+            android:clickable="true"
+            android:onClick="aboutButtonAction"
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"

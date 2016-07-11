@@ -34,7 +34,6 @@
             android:id="@+id/ptrsv_shequ_id"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             ptr:ptrMode="both">
 
             <LinearLayout
@@ -262,7 +261,8 @@
                 <ListView
                     android:id="@+id/lv_shequ_content"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
 
                 </ListView>
 

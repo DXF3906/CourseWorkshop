@@ -8,9 +8,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nineoldandroids.view.ViewHelper;
 import com.qianfeng.courseworkshop.activity.SearchActivity;
@@ -20,6 +23,8 @@ import com.qianfeng.courseworkshop.coursefragment.CourseLeftFragment;
 import com.qianfeng.courseworkshop.inner.GetCourseLeftUrlCallBack;
 import com.qianfeng.courseworkshop.shequfragment.ShequFragment;
 import com.qianfeng.courseworkshop.shequfragment.ShequLeftFragment;
+
+import org.w3c.dom.Text;
 
 
 public class MainActivity extends FragmentActivity implements GetCourseLeftUrlCallBack {
@@ -38,6 +43,7 @@ public class MainActivity extends FragmentActivity implements GetCourseLeftUrlCa
 
     //使用get和set传递值
     private String courseUrl;
+    private TextView textView;
 
     public String getCourseUrl() {
         return courseUrl;
@@ -154,11 +160,11 @@ public class MainActivity extends FragmentActivity implements GetCourseLeftUrlCa
                 }
                 //题库
                 if (((RadioButton) radioGroup.getChildAt(3)).isChecked()) {
-                    replaceContainerWidget(fragment4, null);
+                    replaceContainerWidget(fragment4,null);
                 }
                 //我
                 if (((RadioButton) radioGroup.getChildAt(4)).isChecked()) {
-                    replaceContainerWidget(fragment5, null);
+                    replaceContainerWidget(fragment5,null);
                 }
             }
         });
@@ -185,7 +191,7 @@ public class MainActivity extends FragmentActivity implements GetCourseLeftUrlCa
         fragment5 = new MeFragment();
 
         courseLeftFragment = new CourseLeftFragment(this);
-        shequLeftFragment = new ShequLeftFragment(this);
+        shequLeftFragment = new ShequLeftFragment();
 
 
     }
@@ -215,14 +221,14 @@ public class MainActivity extends FragmentActivity implements GetCourseLeftUrlCa
     /**
      * 点击触发侧滑效果(三横线)
      */
-    public void OpenLeftCourseMenu(View view) {
+    public void OpenLeftCourseMenu(View view){
         drwaerLyout.openDrawer(Gravity.LEFT);
     }
 
     /**
      * 课程目录点击监听事件
      */
-    public void CloseLeftCourseMenu(View view) {
+    public void CloseLeftCourseMenu(View view){
         switch (view.getId()) {
             case R.id.ll_allcourse_id:
                 setCourseUrl(CommonData.allCourse);
@@ -244,7 +250,7 @@ public class MainActivity extends FragmentActivity implements GetCourseLeftUrlCa
                 break;
             default:
         }
-        replaceContainerWidget(new CourseFragment(), courseLeftFragment);
+        replaceContainerWidget(new CourseFragment(),courseLeftFragment);
         drwaerLyout.closeDrawer(Gravity.LEFT);
 
     }
@@ -252,13 +258,16 @@ public class MainActivity extends FragmentActivity implements GetCourseLeftUrlCa
     /**
      * 课程搜索功能
      */
-    public void searchCourse(View view) {
-        Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+    public void searchCourse(View view){
+        Intent intent=new Intent(MainActivity.this, SearchActivity.class);
         startActivity(intent);
     }
 
-    public void morefragment() {
+    public void morefragment(String string){
         ((RadioButton) rg_main_id.getChildAt(1)).setChecked(true);
+        Bundle data = new Bundle();
+        data.putString("TEXT", string);
+        fragment2.setArguments(data);//通过Bundle向fragment中传递值
     }
 
     /**
@@ -269,8 +278,26 @@ public class MainActivity extends FragmentActivity implements GetCourseLeftUrlCa
     @Override
     public void gettCourseLeftUrl(String result) {
         setCourseUrl(result);
-        replaceContainerWidget(new CourseFragment(), courseLeftFragment);
+        replaceContainerWidget(new CourseFragment(),courseLeftFragment);
         drwaerLyout.closeDrawer(Gravity.LEFT);
 
+    }
+    private long exitTime = 0;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK
+                && event.getAction() == KeyEvent.ACTION_DOWN) {
+            if ((System.currentTimeMillis() - exitTime) > 2000) {
+                Toast.makeText(getApplicationContext(), "再按一次退出程序",
+                        Toast.LENGTH_SHORT).show();
+                exitTime = System.currentTimeMillis();
+            } else {
+                finish();
+                System.exit(0);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
