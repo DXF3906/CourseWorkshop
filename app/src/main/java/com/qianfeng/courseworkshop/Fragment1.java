@@ -1,37 +1,28 @@
 package com.qianfeng.courseworkshop;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
-import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.google.gson.Gson;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.qianfeng.courseworkshop.asynctask.CommonAsyncTask;
-import com.qianfeng.courseworkshop.bean.Course;
 import com.qianfeng.courseworkshop.bean.MainBeen;
 import com.qianfeng.courseworkshop.inner.GetFileNameCallBack;
 import com.qianfeng.courseworkshop.util.JsonMain;
 import com.squareup.picasso.Picasso;
-
 
 import java.io.File;
 import java.util.LinkedList;
@@ -68,6 +59,22 @@ public class Fragment1 extends Fragment implements GetFileNameCallBack {
     private ImageView img3;
     @ViewInject(R.id.iv_main_4_id)
     private ImageView img4;
+    @ViewInject(R.id.iv_main_5_id)
+    private ImageView img5;
+    @ViewInject(R.id.iv_main_6_id)
+    private ImageView img6;
+    @ViewInject(R.id.iv_main_7_id)
+    private ImageView img7;
+    @ViewInject(R.id.iv_main_8_id)
+    private ImageView img8;
+    @ViewInject(R.id.iv_main_9_id)
+    private ImageView img9;
+    @ViewInject(R.id.iv_main_10_id)
+    private ImageView img10;
+    @ViewInject(R.id.iv_main_11_id)
+    private ImageView img11;
+    @ViewInject(R.id.iv_main_12_id)
+    private ImageView img12;
     @ViewInject(R.id.tv_main_textView1_1)
     private TextView tv_main_textView1_1;
     @ViewInject(R.id.tv_main_textView1_2)
@@ -92,6 +99,54 @@ public class Fragment1 extends Fragment implements GetFileNameCallBack {
     private TextView tv_main_textView4_2;
     @ViewInject(R.id.tv_main_textView4_3)
     private TextView tv_main_textView4_3;
+    @ViewInject(R.id.tv_main_textView5_1)
+    private TextView tv_main_textView5_1;
+    @ViewInject(R.id.tv_main_textView5_2)
+    private TextView tv_main_textView5_2;
+    @ViewInject(R.id.tv_main_textView5_3)
+    private TextView tv_main_textView5_3;
+    @ViewInject(R.id.tv_main_textView6_1)
+    private TextView tv_main_textView6_1;
+    @ViewInject(R.id.tv_main_textView6_2)
+    private TextView tv_main_textView6_2;
+    @ViewInject(R.id.tv_main_textView6_3)
+    private TextView tv_main_textView6_3;
+    @ViewInject(R.id.tv_main_textView7_1)
+    private TextView tv_main_textView7_1;
+    @ViewInject(R.id.tv_main_textView7_2)
+    private TextView tv_main_textView7_2;
+    @ViewInject(R.id.tv_main_textView7_3)
+    private TextView tv_main_textView7_3;
+    @ViewInject(R.id.tv_main_textView8_1)
+    private TextView tv_main_textView8_1;
+    @ViewInject(R.id.tv_main_textView8_2)
+    private TextView tv_main_textView8_2;
+    @ViewInject(R.id.tv_main_textView8_3)
+    private TextView tv_main_textView8_3;
+    @ViewInject(R.id.tv_main_textView9_1)
+    private TextView tv_main_textView9_1;
+    @ViewInject(R.id.tv_main_textView9_2)
+    private TextView tv_main_textView9_2;
+    @ViewInject(R.id.tv_main_textView9_3)
+    private TextView tv_main_textView9_3;
+    @ViewInject(R.id.tv_main_textView10_1)
+    private TextView tv_main_textView10_1;
+    @ViewInject(R.id.tv_main_textView10_2)
+    private TextView tv_main_textView10_2;
+    @ViewInject(R.id.tv_main_textView10_3)
+    private TextView tv_main_textView10_3;
+    @ViewInject(R.id.tv_main_textView11_1)
+    private TextView tv_main_textView11_1;
+    @ViewInject(R.id.tv_main_textView11_2)
+    private TextView tv_main_textView11_2;
+    @ViewInject(R.id.tv_main_textView11_3)
+    private TextView tv_main_textView11_3;
+    @ViewInject(R.id.tv_main_textView12_1)
+    private TextView tv_main_textView12_1;
+    @ViewInject(R.id.tv_main_textView12_2)
+    private TextView tv_main_textView12_2;
+    @ViewInject(R.id.tv_main_textView12_3)
+    private TextView tv_main_textView12_3;
     private CommonAsyncTask asyncTask;
 
     @Override
@@ -100,10 +155,54 @@ public class Fragment1 extends Fragment implements GetFileNameCallBack {
         super.onCreate(savedInstanceState);
     }
 
-    @OnClick({R.id.iv_main_1_id})
+    @OnClick({R.id.iv_main_1_id,R.id.iv_main_2_id,R.id.iv_main_3_id,R.id.iv_main_4_id,R.id.iv_main_5_id,R.id.iv_main_6_id,R.id.iv_main_7_id,R.id.iv_main_8_id,R.id.iv_main_9_id,R.id.iv_main_10_id,R.id.iv_main_11_id,R.id.iv_main_12_id})
     public void clickMethod(View v) {
-        Toast.makeText(getActivity(), "you clicked button!",
-                Toast.LENGTH_SHORT).show();
+//        http://www.kgc.cn/course/16028.shtml
+
+        String id=null;
+        Intent intent = new Intent();
+        intent.setClass(getActivity(), WebViewActivity.class);
+       switch (v.getId()){
+           case R.id.iv_main_1_id:
+            id=courses.get(0).getInfo().getNewX().get(0).getId();
+               break;
+           case R.id.iv_main_2_id:
+            id=courses.get(0).getInfo().getNewX().get(1).getId();
+               break;
+           case R.id.iv_main_3_id:
+            id=courses.get(0).getInfo().getNewX().get(2).getId();
+               break;
+           case R.id.iv_main_4_id:
+            id=courses.get(0).getInfo().getNewX().get(3).getId();
+               break;
+           case R.id.iv_main_5_id:
+            id=courses.get(0).getInfo().getHot().get(0).getId();
+               break;
+           case R.id.iv_main_6_id:
+            id=courses.get(0).getInfo().getHot().get(1).getId();
+               break;
+           case R.id.iv_main_7_id:
+            id=courses.get(0).getInfo().getHot().get(2).getId();
+               break;
+           case R.id.iv_main_8_id:
+            id=courses.get(0).getInfo().getHot().get(3).getId();
+               break;
+           case R.id.iv_main_9_id:
+            id=courses.get(0).getInfo().getFree().get(0).getId();
+               break;
+           case R.id.iv_main_10_id:
+            id=courses.get(0).getInfo().getFree().get(1).getId();
+               break;
+           case R.id.iv_main_11_id:
+            id=courses.get(0).getInfo().getFree().get(2).getId();
+               break;
+           case R.id.iv_main_12_id:
+            id=courses.get(0).getInfo().getFree().get(3).getId();
+               break;
+       }
+        intent.putExtra("100", "http://www.kgc.cn/course/"+id+".shtml");
+
+        startActivity(intent);
     }
 
     @Override
@@ -337,6 +436,14 @@ public class Fragment1 extends Fragment implements GetFileNameCallBack {
         Picasso.with(getActivity()).load(courses.get(0).getInfo().getNewX().get(1).getPic()).into(img2);
         Picasso.with(getActivity()).load(courses.get(0).getInfo().getNewX().get(2).getPic()).into(img3);
         Picasso.with(getActivity()).load(courses.get(0).getInfo().getNewX().get(3).getPic()).into(img4);
+        Picasso.with(getActivity()).load(courses.get(0).getInfo().getHot().get(0).getPic()).into(img5);
+        Picasso.with(getActivity()).load(courses.get(0).getInfo().getHot().get(1).getPic()).into(img6);
+        Picasso.with(getActivity()).load(courses.get(0).getInfo().getHot().get(2).getPic()).into(img7);
+        Picasso.with(getActivity()).load(courses.get(0).getInfo().getHot().get(3).getPic()).into(img8);
+        Picasso.with(getActivity()).load(courses.get(0).getInfo().getFree().get(0).getPic()).into(img9);
+        Picasso.with(getActivity()).load(courses.get(0).getInfo().getFree().get(1).getPic()).into(img10);
+        Picasso.with(getActivity()).load(courses.get(0).getInfo().getFree().get(2).getPic()).into(img11);
+        Picasso.with(getActivity()).load(courses.get(0).getInfo().getFree().get(3).getPic()).into(img12);
         tv_main_textView1_1.setText(courses.get(0).getInfo().getNewX().get(0).getTitle());
         tv_main_textView1_2.setText(courses.get(0).getInfo().getNewX().get(0).getStuNums()+"");
         if("0".equals(courses.get(0).getInfo().getNewX().get(0).getBeans())){
@@ -364,6 +471,62 @@ public class Fragment1 extends Fragment implements GetFileNameCallBack {
             tv_main_textView4_3.setText("免费");
         }else{
             tv_main_textView4_3.setText(courses.get(0).getInfo().getNewX().get(3).getBeans()+"k币");
+        }
+        tv_main_textView5_1.setText(courses.get(0).getInfo().getHot().get(0).getTitle());
+        tv_main_textView5_2.setText(courses.get(0).getInfo().getHot().get(0).getStuNums()+"");
+        if("0".equals(courses.get(0).getInfo().getHot().get(0).getBeans())){
+            tv_main_textView5_3.setText("免费");
+        }else{
+            tv_main_textView5_3.setText(courses.get(0).getInfo().getHot().get(0).getBeans()+"k币");
+        }
+        tv_main_textView6_1.setText(courses.get(0).getInfo().getHot().get(1).getTitle());
+        tv_main_textView6_2.setText(courses.get(0).getInfo().getHot().get(1).getStuNums()+"");
+        if("0".equals(courses.get(0).getInfo().getHot().get(1).getBeans())){
+            tv_main_textView6_3.setText("免费");
+        }else{
+            tv_main_textView6_3.setText(courses.get(0).getInfo().getHot().get(1).getBeans()+"k币");
+        }
+        tv_main_textView7_1.setText(courses.get(0).getInfo().getHot().get(2).getTitle());
+        tv_main_textView7_2.setText(courses.get(0).getInfo().getHot().get(2).getStuNums()+"");
+        if("0".equals(courses.get(0).getInfo().getHot().get(2).getBeans())){
+            tv_main_textView7_3.setText("免费");
+        }else{
+            tv_main_textView7_3.setText(courses.get(0).getInfo().getHot().get(2).getBeans()+"k币");
+        }
+        tv_main_textView8_1.setText(courses.get(0).getInfo().getHot().get(3).getTitle());
+        tv_main_textView8_2.setText(courses.get(0).getInfo().getHot().get(3).getStuNums()+"");
+        if("0".equals(courses.get(0).getInfo().getHot().get(3).getBeans())){
+            tv_main_textView8_3.setText("免费");
+        }else{
+            tv_main_textView8_3.setText(courses.get(0).getInfo().getHot().get(3).getBeans()+"k币");
+        }
+        tv_main_textView9_1.setText(courses.get(0).getInfo().getFree().get(0).getTitle());
+        tv_main_textView9_2.setText(courses.get(0).getInfo().getFree().get(0).getStuNums()+"");
+        if("0".equals(courses.get(0).getInfo().getFree().get(0).getBeans())){
+            tv_main_textView9_3.setText("免费");
+        }else{
+            tv_main_textView9_3.setText(courses.get(0).getInfo().getFree().get(0).getBeans()+"k币");
+        }
+        tv_main_textView10_1.setText(courses.get(0).getInfo().getFree().get(1).getTitle());
+        tv_main_textView10_2.setText(courses.get(0).getInfo().getFree().get(1).getStuNums()+"");
+        if("0".equals(courses.get(0).getInfo().getFree().get(1).getBeans())){
+            tv_main_textView10_3.setText("免费");
+        }else{
+            tv_main_textView10_3.setText(courses.get(0).getInfo().getFree().get(1).getBeans()+"k币");
+        }
+        tv_main_textView11_1.setText(courses.get(0).getInfo().getFree().get(2).getTitle());
+        tv_main_textView11_2.setText(courses.get(0).getInfo().getFree().get(2).getStuNums()+"");
+        if("0".equals(courses.get(0).getInfo().getFree().get(2).getBeans())){
+            tv_main_textView11_3.setText("免费");
+        }else{
+            tv_main_textView11_3.setText(courses.get(0).getInfo().getFree().get(2).getBeans()+"k币");
+        }
+        tv_main_textView12_1.setText(courses.get(0).getInfo().getFree().get(3).getTitle());
+        tv_main_textView12_2.setText(courses.get(0).getInfo().getFree().get(3).getStuNums()+"");
+        if("0".equals(courses.get(0).getInfo().getFree().get(3).getBeans())){
+            tv_main_textView12_3.setText("免费");
+        }else{
+            tv_main_textView12_3.setText(courses.get(0).getInfo().getFree().get(3).getBeans()+"k币");
         }
     }
 
