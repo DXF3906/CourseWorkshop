@@ -19,6 +19,7 @@ import com.qianfeng.courseworkshop.coursefragment.CourseFragment;
 import com.qianfeng.courseworkshop.coursefragment.CourseLeftFragment;
 import com.qianfeng.courseworkshop.inner.GetCourseLeftUrlCallBack;
 import com.qianfeng.courseworkshop.shequfragment.ShequFragment;
+import com.qianfeng.courseworkshop.shequfragment.ShequLeftFragment;
 
 
 public class MainActivity extends FragmentActivity implements GetCourseLeftUrlCallBack {
@@ -32,6 +33,7 @@ public class MainActivity extends FragmentActivity implements GetCourseLeftUrlCa
     private FragmentManager supportFragmentManager;
 
     private Fragment courseLeftFragment;
+    private Fragment shequLeftFragment;
 
 
     //使用get和set传递值
@@ -148,7 +150,7 @@ public class MainActivity extends FragmentActivity implements GetCourseLeftUrlCa
                 }
                 //社区
                 if (((RadioButton) radioGroup.getChildAt(2)).isChecked()) {
-                    replaceContainerWidget(fragment3, courseLeftFragment);
+                    replaceContainerWidget(fragment3, shequLeftFragment);
                 }
                 //题库
                 if (((RadioButton) radioGroup.getChildAt(3)).isChecked()) {
@@ -183,6 +185,7 @@ public class MainActivity extends FragmentActivity implements GetCourseLeftUrlCa
         fragment5 = new MeFragment();
 
         courseLeftFragment = new CourseLeftFragment(this);
+        shequLeftFragment = new ShequLeftFragment(this);
 
 
     }

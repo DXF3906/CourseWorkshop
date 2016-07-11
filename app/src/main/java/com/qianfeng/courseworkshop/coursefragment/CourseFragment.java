@@ -312,7 +312,6 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
                 //显示当前系统的时间
-                //TODO
                 String label = DateUtils.formatDateTime(getActivity(),
                         System.currentTimeMillis(), DateUtils.FORMAT_SHOW_TIME
                                 | DateUtils.FORMAT_SHOW_DATE

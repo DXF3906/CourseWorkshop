@@ -7,6 +7,8 @@ package com.qianfeng.courseworkshop.bean;
 public class CommonData {
     //课程目录对应的json数据网址
     public static final String CourseCatalog = "http://api.kgc.cn/services/youke?mechanism=kgc&method=categoryList&osType=android&osVersion=3.9.1&showJob=true&auth=0512189fcb654856996950ed47c1d77e";
+    //社区目录对应的json数据网址
+    public static final String ShequCatalog = "";
     //全部课程
     public static final String allCourse ="http://www.kgc.cn/list/230-1-6-9-9.shtml";
     //编程

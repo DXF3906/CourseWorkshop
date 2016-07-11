@@ -10,18 +10,18 @@
         android:background="#f1000000">
 
         <ImageView
-            android:layout_width="40dp"
+            android:layout_width="30dp"
             android:layout_height="40dp"
-            android:onClick="OpenLeftMenu"
+            android:onClick="OpenLeftCourseMenu"
             android:src="@mipmap/button_catolgue" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_centerInParent="true"
             android:text="微社区"
-            android:textColor="@color/white"
-            android:textSize="30sp" />
+            android:textColor="@color/white" />
 
     </RelativeLayout>
 
@@ -46,12 +46,16 @@
                     android:id="@+id/iv_ui_id"
                     android:clickable="true"
                     android:layout_width="match_parent"
-                    android:layout_height="120dp"
+                    android:layout_height="130dp"
                     android:background="@mipmap/ui_jiaocai" />
-
-                <HorizontalScrollView
+                <View
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="5dp"
+                    android:background="@color/white" />
+                <HorizontalScrollView
+                    android:id="@+id/hsv_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
                     android:scrollbars="none">
 
                     <LinearLayout
@@ -65,69 +69,90 @@
                             android:layout_marginTop="5dp">
 
                             <ImageView
+                                android:clickable="true"
+                                android:id="@+id/iv_hsv_java_id"
                                 android:layout_width="60dp"
-                                android:layout_height="35dp"
+                                android:layout_height="45dp"
                                 android:layout_gravity="center"
-                                android:src="@mipmap/icon_program_java" />
+                                android:src="@mipmap/icon_hsv_java" />
 
                             <ImageView
+                                android:clickable="true"
+                                android:id="@+id/iv_hsv_youjiang_id"
                                 android:layout_width="60dp"
-                                android:layout_height="35dp"
+                                android:layout_height="45dp"
                                 android:layout_gravity="center"
-                                android:src="@mipmap/icon_program" />
+                                android:src="@mipmap/icon_hsv_youjiang" />
 
                             <ImageView
+                                android:clickable="true"
+                                android:id="@+id/iv_hsv_guanshui_id"
                                 android:layout_width="60dp"
-                                android:layout_height="35dp"
+                                android:layout_height="45dp"
                                 android:layout_gravity="center"
-                                android:src="@mipmap/icon_program_java" />
+                                android:src="@mipmap/icon_hsv_guanshui" />
 
                             <ImageView
+                                android:clickable="true"
+                                android:id="@+id/iv_hsv_xinshou_id"
                                 android:layout_width="60dp"
-                                android:layout_height="35dp"
+                                android:layout_height="45dp"
                                 android:layout_gravity="center"
-                                android:src="@mipmap/icon_program_java" />
+                                android:src="@mipmap/icon_hsv_xinshou" />
 
                             <ImageView
+                                android:clickable="true"
+                                android:id="@+id/iv_hsv_txt_id"
                                 android:layout_width="60dp"
-                                android:layout_height="35dp"
+                                android:layout_height="45dp"
                                 android:layout_gravity="center"
-                                android:src="@mipmap/icon_program_java" />
+                                android:src="@mipmap/icon_hsv_txt" />
 
                             <ImageView
+                                android:clickable="true"
+                                android:id="@+id/iv_hsv_ui_id"
                                 android:layout_width="60dp"
-                                android:layout_height="35dp"
+                                android:layout_height="45dp"
                                 android:layout_gravity="center"
-                                android:src="@mipmap/icon_program_java" />
+                                android:src="@mipmap/icon_hsv_ui" />
 
                             <ImageView
+                                android:clickable="true"
+                                android:id="@+id/iv_hsv_android_id"
                                 android:layout_width="60dp"
-                                android:layout_height="35dp"
+                                android:layout_height="45dp"
                                 android:layout_gravity="center"
-                                android:src="@mipmap/icon_program_java" />
+                                android:src="@mipmap/icon_hsv_android" />
 
                             <ImageView
+                                android:clickable="true"
+                                android:id="@+id/iv_hsv_soft_id"
                                 android:layout_width="60dp"
-                                android:layout_height="35dp"
+                                android:layout_height="45dp"
                                 android:layout_gravity="center"
-                                android:src="@mipmap/icon_program_java" />
+                                android:src="@mipmap/icon_hsv_soft" />
 
                             <ImageView
+                                android:clickable="true"
+                                android:id="@+id/iv_hsv_design_id"
                                 android:layout_width="60dp"
-                                android:layout_height="35dp"
+                                android:layout_height="45dp"
                                 android:layout_gravity="center"
-                                android:src="@mipmap/icon_program_java" />
+                                android:src="@mipmap/icon_hsv_design" />
 
                             <ImageView
+                                android:clickable="true"
+                                android:id="@+id/iv_hsv_suggestion_id"
                                 android:layout_width="60dp"
-                                android:layout_height="35dp"
+                                android:layout_height="45dp"
                                 android:layout_gravity="center"
-                                android:src="@mipmap/icon_program_java" />
+                                android:src="@mipmap/icon_hsv_suggestion" />
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp">
 
                             <TextView
                                 android:layout_width="60dp"
@@ -195,8 +220,8 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="5dp"
-                    android:background="@color/gray" />
+                    android:layout_height="10dp"
+                    android:background="@color/whitesmoke" />
 
                 <RadioGroup
                     android:id="@+id/rg_shequ_id"
@@ -206,21 +231,26 @@
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/rb_tiezi_id"
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_weight="1"
                         android:background="@drawable/sq_rb_selector"
                         android:button="@null"
                         android:gravity="center"
+                        android:textSize="15sp"
+                        android:textColor="#00C957"
                         android:text="全部帖子" />
 
                     <RadioButton
+                        android:id="@+id/rb_wenti_id"
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_weight="1"
                         android:background="@drawable/sq_rb_selector"
                         android:button="@null"
                         android:gravity="center"
+                        android:textSize="15sp"
                         android:text="待解决问题" />
                 </RadioGroup>
 
