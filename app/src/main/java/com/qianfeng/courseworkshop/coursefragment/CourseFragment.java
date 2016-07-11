@@ -66,6 +66,7 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
     public void onCreate(Bundle savedInstanceState) {
         activity = getActivity();
         MainActivity activity1 = (MainActivity) getActivity();
+
         courseUrlStr = activity1.getCourseUrl();
         if (courseUrlStr == null) {
             courseUrlStr = CommonData.allCourse;
@@ -257,9 +258,7 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
      */
     private void aboutPullToRefreshListView() {
 
-
         //开启异步任务下载课程数据
-
         //courseUrlStr = "http://www.kgc.cn/list/230-1-6-9-9.shtml";
         CommonAsyncTask asyncTask = new CommonAsyncTask(this, fileName);
         asyncTask.execute(courseUrlStr);
@@ -268,7 +267,6 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
         ListView actualListView = ptrlv_course_id.getRefreshableView();
         registerForContextMenu(actualListView);
         data = new LinkedList<>();
-        //TODO
 
         // 填充数据源
         fillDataSouce();
@@ -314,7 +312,7 @@ public class CourseFragment extends Fragment implements ExpandTabView.OnFilterSe
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
                 //显示当前系统的时间
-
+                //TODO
                 String label = DateUtils.formatDateTime(getActivity(),
                         System.currentTimeMillis(), DateUtils.FORMAT_SHOW_TIME
                                 | DateUtils.FORMAT_SHOW_DATE

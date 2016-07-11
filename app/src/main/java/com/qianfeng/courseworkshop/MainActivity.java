@@ -21,8 +21,6 @@ import com.qianfeng.courseworkshop.inner.GetCourseLeftUrlCallBack;
 import com.qianfeng.courseworkshop.shequfragment.ShequFragment;
 
 
-
-
 public class MainActivity extends FragmentActivity implements GetCourseLeftUrlCallBack {
     private DrawerLayout drwaerLyout;//抽屉控件
     private Fragment fragment1;//首页
@@ -38,11 +36,24 @@ public class MainActivity extends FragmentActivity implements GetCourseLeftUrlCa
 
     //使用get和set传递值
     private String courseUrl;
+
     public String getCourseUrl() {
         return courseUrl;
     }
+
     public void setCourseUrl(String courseUrl) {
         this.courseUrl = courseUrl;
+    }
+
+    //使用get和set传递值
+    private String shequUrl;
+
+    public String getShequUrl() {
+        return shequUrl;
+    }
+
+    public void setShequUrl(String shequUrl) {
+        this.shequUrl = shequUrl;
     }
 
     @Override
@@ -141,11 +152,11 @@ public class MainActivity extends FragmentActivity implements GetCourseLeftUrlCa
                 }
                 //题库
                 if (((RadioButton) radioGroup.getChildAt(3)).isChecked()) {
-                    replaceContainerWidget(fragment4,null);
+                    replaceContainerWidget(fragment4, null);
                 }
                 //我
                 if (((RadioButton) radioGroup.getChildAt(4)).isChecked()) {
-                    replaceContainerWidget(fragment5,null);
+                    replaceContainerWidget(fragment5, null);
                 }
             }
         });
@@ -171,7 +182,7 @@ public class MainActivity extends FragmentActivity implements GetCourseLeftUrlCa
         fragment4 = new TikuFragment();
         fragment5 = new MeFragment();
 
-        courseLeftFragment=new CourseLeftFragment(this);
+        courseLeftFragment = new CourseLeftFragment(this);
 
 
     }
@@ -197,17 +208,18 @@ public class MainActivity extends FragmentActivity implements GetCourseLeftUrlCa
 
 
     }
+
     /**
      * 点击触发侧滑效果(三横线)
      */
-    public void OpenLeftCourseMenu(View view){
+    public void OpenLeftCourseMenu(View view) {
         drwaerLyout.openDrawer(Gravity.LEFT);
     }
 
     /**
      * 课程目录点击监听事件
      */
-    public void CloseLeftCourseMenu(View view){
+    public void CloseLeftCourseMenu(View view) {
         switch (view.getId()) {
             case R.id.ll_allcourse_id:
                 setCourseUrl(CommonData.allCourse);
@@ -229,7 +241,7 @@ public class MainActivity extends FragmentActivity implements GetCourseLeftUrlCa
                 break;
             default:
         }
-        replaceContainerWidget(new CourseFragment(),courseLeftFragment);
+        replaceContainerWidget(new CourseFragment(), courseLeftFragment);
         drwaerLyout.closeDrawer(Gravity.LEFT);
 
     }
@@ -237,23 +249,24 @@ public class MainActivity extends FragmentActivity implements GetCourseLeftUrlCa
     /**
      * 课程搜索功能
      */
-    public void searchCourse(View view){
-        Intent intent=new Intent(MainActivity.this, SearchActivity.class);
+    public void searchCourse(View view) {
+        Intent intent = new Intent(MainActivity.this, SearchActivity.class);
         startActivity(intent);
     }
 
-    public  void morefragment(){
+    public void morefragment() {
         ((RadioButton) rg_main_id.getChildAt(1)).setChecked(true);
     }
 
     /**
      * 接口回调，课程侧滑点击ListView的某一项，回传的网址
+     *
      * @param result
      */
     @Override
     public void gettCourseLeftUrl(String result) {
         setCourseUrl(result);
-        replaceContainerWidget(new CourseFragment(),courseLeftFragment);
+        replaceContainerWidget(new CourseFragment(), courseLeftFragment);
         drwaerLyout.closeDrawer(Gravity.LEFT);
 
     }
