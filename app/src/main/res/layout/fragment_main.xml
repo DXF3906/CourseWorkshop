@@ -32,6 +32,7 @@
     </RelativeLayout>
 
     <com.handmark.pulltorefresh.library.PullToRefreshScrollView
+        android:id="@+id/ptrsv_main_id"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

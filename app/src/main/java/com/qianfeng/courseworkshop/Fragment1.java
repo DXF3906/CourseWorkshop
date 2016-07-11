@@ -2,6 +2,7 @@ package com.qianfeng.courseworkshop;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -10,14 +11,19 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -159,6 +165,8 @@ public class Fragment1 extends Fragment implements GetFileNameCallBack {
     private TextView tv_main_textView12_3;
     @ViewInject(R.id.iv_main_search_id)
     private ImageView iv_main_search_id;
+    @ViewInject(R.id.ptrsv_main_id)
+    private PullToRefreshScrollView ptrsv_main_id;
     private CommonAsyncTask asyncTask;
     private static final String PICASSO_CACHE = "picasso-cache";
     @Override
@@ -358,10 +366,61 @@ public class Fragment1 extends Fragment implements GetFileNameCallBack {
             fillDataSouce();
         }
 
+        ptrsv_main_id.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ScrollView>() {
+            @Override
+            public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
+                String label = DateUtils.formatDateTime(getActivity(),
+                        System.currentTimeMillis(), DateUtils.FORMAT_SHOW_TIME
+                                | DateUtils.FORMAT_SHOW_DATE
+                                | DateUtils.FORMAT_ABBREV_ALL);
+
+                // Update the LastUpdatedLabel
+                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                //刷新当前的界面
+                new GetDataTask().execute();
+            }
+
+
+
+        });
 
         super.onActivityCreated(savedInstanceState);
     }
 
+    private class GetDataTask extends AsyncTask<Void, Void, String[]> implements GetFileNameCallBack{
+
+        @Override
+        protected String[] doInBackground(Void... params) {
+            // Simulates a background job.
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String[] result) {
+            //刷新增加数据
+
+            asyncTask = new CommonAsyncTask(this, "main");
+            asyncTask.execute("http://api.kgc.cn/services/youke?free_num=4&hot_num=4&mechanism=kgc&method=homepage&new_num=4&osType=android&osVersion=3.9.1&showJob=true&auth=3afd110774603f7121276fd4fb9fd706");
+
+            if (asyncTask.isCancelled()) {
+
+                fillDataSouce();
+            }
+            // Call onRefreshComplete when the list has been refreshed.
+            ptrsv_main_id.onRefreshComplete();
+
+            super.onPostExecute(result);
+        }
+
+        @Override
+        public void getFileName(String fileName) {
+            fillDataSouce();
+        }
+    }
     @Override
     public void onStart() {
         //用一个定时器  来完成图片切换
