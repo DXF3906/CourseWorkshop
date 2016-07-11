@@ -22,6 +22,7 @@
             android:src="@mipmap/logo_welcome" />
 
         <ImageView
+            android:id="@+id/iv_main_search_id"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentEnd="true"

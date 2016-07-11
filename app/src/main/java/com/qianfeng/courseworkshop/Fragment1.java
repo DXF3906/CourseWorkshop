@@ -1,6 +1,7 @@
 package com.qianfeng.courseworkshop;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -9,27 +10,36 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.qianfeng.courseworkshop.Adapter.MyAdapter;
+import com.qianfeng.courseworkshop.activity.SearchActivity;
+import com.qianfeng.courseworkshop.activity.SearchView;
 import com.qianfeng.courseworkshop.asynctask.CommonAsyncTask;
+import com.qianfeng.courseworkshop.asynctask.ImmageAsyncTask;
 import com.qianfeng.courseworkshop.bean.MainBeen;
 import com.qianfeng.courseworkshop.inner.GetFileNameCallBack;
 import com.qianfeng.courseworkshop.util.JsonMain;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+
 
 
 public class Fragment1 extends Fragment implements GetFileNameCallBack {
@@ -147,60 +157,63 @@ public class Fragment1 extends Fragment implements GetFileNameCallBack {
     private TextView tv_main_textView12_2;
     @ViewInject(R.id.tv_main_textView12_3)
     private TextView tv_main_textView12_3;
+    @ViewInject(R.id.iv_main_search_id)
+    private ImageView iv_main_search_id;
     private CommonAsyncTask asyncTask;
-
+    private static final String PICASSO_CACHE = "picasso-cache";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         activity = getActivity();
         super.onCreate(savedInstanceState);
     }
 
-    @OnClick({R.id.iv_main_1_id,R.id.iv_main_2_id,R.id.iv_main_3_id,R.id.iv_main_4_id,R.id.iv_main_5_id,R.id.iv_main_6_id,R.id.iv_main_7_id,R.id.iv_main_8_id,R.id.iv_main_9_id,R.id.iv_main_10_id,R.id.iv_main_11_id,R.id.iv_main_12_id})
+    @OnClick({R.id.iv_main_1_id, R.id.iv_main_2_id, R.id.iv_main_3_id, R.id.iv_main_4_id, R.id.iv_main_5_id, R.id.iv_main_6_id, R.id.iv_main_7_id, R.id.iv_main_8_id, R.id.iv_main_9_id, R.id.iv_main_10_id, R.id.iv_main_11_id, R.id.iv_main_12_id})
     public void clickMethod(View v) {
 //        http://www.kgc.cn/course/16028.shtml
 
-        String id=null;
+        String id = null;
         Intent intent = new Intent();
         intent.setClass(getActivity(), WebViewActivity.class);
-       switch (v.getId()){
-           case R.id.iv_main_1_id:
-            id=courses.get(0).getInfo().getNewX().get(0).getId();
-               break;
-           case R.id.iv_main_2_id:
-            id=courses.get(0).getInfo().getNewX().get(1).getId();
-               break;
-           case R.id.iv_main_3_id:
-            id=courses.get(0).getInfo().getNewX().get(2).getId();
-               break;
-           case R.id.iv_main_4_id:
-            id=courses.get(0).getInfo().getNewX().get(3).getId();
-               break;
-           case R.id.iv_main_5_id:
-            id=courses.get(0).getInfo().getHot().get(0).getId();
-               break;
-           case R.id.iv_main_6_id:
-            id=courses.get(0).getInfo().getHot().get(1).getId();
-               break;
-           case R.id.iv_main_7_id:
-            id=courses.get(0).getInfo().getHot().get(2).getId();
-               break;
-           case R.id.iv_main_8_id:
-            id=courses.get(0).getInfo().getHot().get(3).getId();
-               break;
-           case R.id.iv_main_9_id:
-            id=courses.get(0).getInfo().getFree().get(0).getId();
-               break;
-           case R.id.iv_main_10_id:
-            id=courses.get(0).getInfo().getFree().get(1).getId();
-               break;
-           case R.id.iv_main_11_id:
-            id=courses.get(0).getInfo().getFree().get(2).getId();
-               break;
-           case R.id.iv_main_12_id:
-            id=courses.get(0).getInfo().getFree().get(3).getId();
-               break;
-       }
-        intent.putExtra("100", "http://www.kgc.cn/course/"+id+".shtml");
+        switch (v.getId()) {
+            case R.id.iv_main_1_id:
+                id = courses.get(0).getInfo().getNewX().get(0).getId();
+                break;
+            case R.id.iv_main_2_id:
+                id = courses.get(0).getInfo().getNewX().get(1).getId();
+                break;
+            case R.id.iv_main_3_id:
+                id = courses.get(0).getInfo().getNewX().get(2).getId();
+                break;
+            case R.id.iv_main_4_id:
+                id = courses.get(0).getInfo().getNewX().get(3).getId();
+                break;
+            case R.id.iv_main_5_id:
+                id = courses.get(0).getInfo().getHot().get(0).getId();
+                break;
+            case R.id.iv_main_6_id:
+                id = courses.get(0).getInfo().getHot().get(1).getId();
+                break;
+            case R.id.iv_main_7_id:
+                id = courses.get(0).getInfo().getHot().get(2).getId();
+                break;
+            case R.id.iv_main_8_id:
+                id = courses.get(0).getInfo().getHot().get(3).getId();
+                break;
+            case R.id.iv_main_9_id:
+                id = courses.get(0).getInfo().getFree().get(0).getId();
+                break;
+            case R.id.iv_main_10_id:
+                id = courses.get(0).getInfo().getFree().get(1).getId();
+                break;
+            case R.id.iv_main_11_id:
+                id = courses.get(0).getInfo().getFree().get(2).getId();
+                break;
+            case R.id.iv_main_12_id:
+                id = courses.get(0).getInfo().getFree().get(3).getId();
+                break;
+
+        }
+        intent.putExtra("100", "http://www.kgc.cn/course/" + id + ".shtml");
 
         startActivity(intent);
     }
@@ -323,7 +336,14 @@ public class Fragment1 extends Fragment implements GetFileNameCallBack {
         tv_icon_edit_id.setOnClickListener(listener);
         tv_icon_edit_id2.setOnClickListener(listener);
         tv_icon_edit_id3.setOnClickListener(listener);
-
+        iv_main_search_id.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), SearchActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return view;
     }
@@ -333,11 +353,10 @@ public class Fragment1 extends Fragment implements GetFileNameCallBack {
         asyncTask = new CommonAsyncTask(this, "main");
         asyncTask.execute("http://api.kgc.cn/services/youke?free_num=4&hot_num=4&mechanism=kgc&method=homepage&new_num=4&osType=android&osVersion=3.9.1&showJob=true&auth=3afd110774603f7121276fd4fb9fd706");
 
-        if(asyncTask.isCancelled()){
+        if (asyncTask.isCancelled()) {
 
             fillDataSouce();
         }
-
 
 
         super.onActivityCreated(savedInstanceState);
@@ -431,7 +450,8 @@ public class Fragment1 extends Fragment implements GetFileNameCallBack {
 
 
         courses = JsonMain.mainBeen(file);
-        ;
+        Log.i("课程1111", courses.toString());
+
         Picasso.with(getActivity()).load(courses.get(0).getInfo().getNewX().get(0).getPic()).into(img1);
         Picasso.with(getActivity()).load(courses.get(0).getInfo().getNewX().get(1).getPic()).into(img2);
         Picasso.with(getActivity()).load(courses.get(0).getInfo().getNewX().get(2).getPic()).into(img3);
@@ -445,88 +465,88 @@ public class Fragment1 extends Fragment implements GetFileNameCallBack {
         Picasso.with(getActivity()).load(courses.get(0).getInfo().getFree().get(2).getPic()).into(img11);
         Picasso.with(getActivity()).load(courses.get(0).getInfo().getFree().get(3).getPic()).into(img12);
         tv_main_textView1_1.setText(courses.get(0).getInfo().getNewX().get(0).getTitle());
-        tv_main_textView1_2.setText(courses.get(0).getInfo().getNewX().get(0).getStuNums()+"");
-        if("0".equals(courses.get(0).getInfo().getNewX().get(0).getBeans())){
+        tv_main_textView1_2.setText(courses.get(0).getInfo().getNewX().get(0).getStuNums() + "");
+        if ("0".equals(courses.get(0).getInfo().getNewX().get(0).getBeans())) {
             tv_main_textView1_3.setText("免费");
-        }else{
-            tv_main_textView1_3.setText(courses.get(0).getInfo().getNewX().get(0).getBeans()+"k币");
+        } else {
+            tv_main_textView1_3.setText(courses.get(0).getInfo().getNewX().get(0).getBeans() + "k币");
         }
         tv_main_textView2_1.setText(courses.get(0).getInfo().getNewX().get(1).getTitle());
-        tv_main_textView2_2.setText(courses.get(0).getInfo().getNewX().get(1).getStuNums()+"");
-        if("0".equals(courses.get(0).getInfo().getNewX().get(1).getBeans())){
+        tv_main_textView2_2.setText(courses.get(0).getInfo().getNewX().get(1).getStuNums() + "");
+        if ("0".equals(courses.get(0).getInfo().getNewX().get(1).getBeans())) {
             tv_main_textView2_3.setText("免费");
-        }else{
-            tv_main_textView2_3.setText(courses.get(0).getInfo().getNewX().get(1).getBeans()+"k币");
+        } else {
+            tv_main_textView2_3.setText(courses.get(0).getInfo().getNewX().get(1).getBeans() + "k币");
         }
         tv_main_textView3_1.setText(courses.get(0).getInfo().getNewX().get(2).getTitle());
-        tv_main_textView3_2.setText(courses.get(0).getInfo().getNewX().get(2).getStuNums()+"");
-        if("0".equals(courses.get(0).getInfo().getNewX().get(2).getBeans())){
+        tv_main_textView3_2.setText(courses.get(0).getInfo().getNewX().get(2).getStuNums() + "");
+        if ("0".equals(courses.get(0).getInfo().getNewX().get(2).getBeans())) {
             tv_main_textView3_3.setText("免费");
-        }else{
-            tv_main_textView3_3.setText(courses.get(0).getInfo().getNewX().get(2).getBeans()+"k币");
+        } else {
+            tv_main_textView3_3.setText(courses.get(0).getInfo().getNewX().get(2).getBeans() + "k币");
         }
         tv_main_textView4_1.setText(courses.get(0).getInfo().getNewX().get(3).getTitle());
-        tv_main_textView4_2.setText(courses.get(0).getInfo().getNewX().get(3).getStuNums()+"");
-        if("0".equals(courses.get(0).getInfo().getNewX().get(3).getBeans())){
+        tv_main_textView4_2.setText(courses.get(0).getInfo().getNewX().get(3).getStuNums() + "");
+        if ("0".equals(courses.get(0).getInfo().getNewX().get(3).getBeans())) {
             tv_main_textView4_3.setText("免费");
-        }else{
-            tv_main_textView4_3.setText(courses.get(0).getInfo().getNewX().get(3).getBeans()+"k币");
+        } else {
+            tv_main_textView4_3.setText(courses.get(0).getInfo().getNewX().get(3).getBeans() + "k币");
         }
         tv_main_textView5_1.setText(courses.get(0).getInfo().getHot().get(0).getTitle());
-        tv_main_textView5_2.setText(courses.get(0).getInfo().getHot().get(0).getStuNums()+"");
-        if("0".equals(courses.get(0).getInfo().getHot().get(0).getBeans())){
+        tv_main_textView5_2.setText(courses.get(0).getInfo().getHot().get(0).getStuNums() + "");
+        if ("0".equals(courses.get(0).getInfo().getHot().get(0).getBeans())) {
             tv_main_textView5_3.setText("免费");
-        }else{
-            tv_main_textView5_3.setText(courses.get(0).getInfo().getHot().get(0).getBeans()+"k币");
+        } else {
+            tv_main_textView5_3.setText(courses.get(0).getInfo().getHot().get(0).getBeans() + "k币");
         }
         tv_main_textView6_1.setText(courses.get(0).getInfo().getHot().get(1).getTitle());
-        tv_main_textView6_2.setText(courses.get(0).getInfo().getHot().get(1).getStuNums()+"");
-        if("0".equals(courses.get(0).getInfo().getHot().get(1).getBeans())){
+        tv_main_textView6_2.setText(courses.get(0).getInfo().getHot().get(1).getStuNums() + "");
+        if ("0".equals(courses.get(0).getInfo().getHot().get(1).getBeans())) {
             tv_main_textView6_3.setText("免费");
-        }else{
-            tv_main_textView6_3.setText(courses.get(0).getInfo().getHot().get(1).getBeans()+"k币");
+        } else {
+            tv_main_textView6_3.setText(courses.get(0).getInfo().getHot().get(1).getBeans() + "k币");
         }
         tv_main_textView7_1.setText(courses.get(0).getInfo().getHot().get(2).getTitle());
-        tv_main_textView7_2.setText(courses.get(0).getInfo().getHot().get(2).getStuNums()+"");
-        if("0".equals(courses.get(0).getInfo().getHot().get(2).getBeans())){
+        tv_main_textView7_2.setText(courses.get(0).getInfo().getHot().get(2).getStuNums() + "");
+        if ("0".equals(courses.get(0).getInfo().getHot().get(2).getBeans())) {
             tv_main_textView7_3.setText("免费");
-        }else{
-            tv_main_textView7_3.setText(courses.get(0).getInfo().getHot().get(2).getBeans()+"k币");
+        } else {
+            tv_main_textView7_3.setText(courses.get(0).getInfo().getHot().get(2).getBeans() + "k币");
         }
         tv_main_textView8_1.setText(courses.get(0).getInfo().getHot().get(3).getTitle());
-        tv_main_textView8_2.setText(courses.get(0).getInfo().getHot().get(3).getStuNums()+"");
-        if("0".equals(courses.get(0).getInfo().getHot().get(3).getBeans())){
+        tv_main_textView8_2.setText(courses.get(0).getInfo().getHot().get(3).getStuNums() + "");
+        if ("0".equals(courses.get(0).getInfo().getHot().get(3).getBeans())) {
             tv_main_textView8_3.setText("免费");
-        }else{
-            tv_main_textView8_3.setText(courses.get(0).getInfo().getHot().get(3).getBeans()+"k币");
+        } else {
+            tv_main_textView8_3.setText(courses.get(0).getInfo().getHot().get(3).getBeans() + "k币");
         }
         tv_main_textView9_1.setText(courses.get(0).getInfo().getFree().get(0).getTitle());
-        tv_main_textView9_2.setText(courses.get(0).getInfo().getFree().get(0).getStuNums()+"");
-        if("0".equals(courses.get(0).getInfo().getFree().get(0).getBeans())){
+        tv_main_textView9_2.setText(courses.get(0).getInfo().getFree().get(0).getStuNums() + "");
+        if ("0".equals(courses.get(0).getInfo().getFree().get(0).getBeans())) {
             tv_main_textView9_3.setText("免费");
-        }else{
-            tv_main_textView9_3.setText(courses.get(0).getInfo().getFree().get(0).getBeans()+"k币");
+        } else {
+            tv_main_textView9_3.setText(courses.get(0).getInfo().getFree().get(0).getBeans() + "k币");
         }
         tv_main_textView10_1.setText(courses.get(0).getInfo().getFree().get(1).getTitle());
-        tv_main_textView10_2.setText(courses.get(0).getInfo().getFree().get(1).getStuNums()+"");
-        if("0".equals(courses.get(0).getInfo().getFree().get(1).getBeans())){
+        tv_main_textView10_2.setText(courses.get(0).getInfo().getFree().get(1).getStuNums() + "");
+        if ("0".equals(courses.get(0).getInfo().getFree().get(1).getBeans())) {
             tv_main_textView10_3.setText("免费");
-        }else{
-            tv_main_textView10_3.setText(courses.get(0).getInfo().getFree().get(1).getBeans()+"k币");
+        } else {
+            tv_main_textView10_3.setText(courses.get(0).getInfo().getFree().get(1).getBeans() + "k币");
         }
         tv_main_textView11_1.setText(courses.get(0).getInfo().getFree().get(2).getTitle());
-        tv_main_textView11_2.setText(courses.get(0).getInfo().getFree().get(2).getStuNums()+"");
-        if("0".equals(courses.get(0).getInfo().getFree().get(2).getBeans())){
+        tv_main_textView11_2.setText(courses.get(0).getInfo().getFree().get(2).getStuNums() + "");
+        if ("0".equals(courses.get(0).getInfo().getFree().get(2).getBeans())) {
             tv_main_textView11_3.setText("免费");
-        }else{
-            tv_main_textView11_3.setText(courses.get(0).getInfo().getFree().get(2).getBeans()+"k币");
+        } else {
+            tv_main_textView11_3.setText(courses.get(0).getInfo().getFree().get(2).getBeans() + "k币");
         }
         tv_main_textView12_1.setText(courses.get(0).getInfo().getFree().get(3).getTitle());
-        tv_main_textView12_2.setText(courses.get(0).getInfo().getFree().get(3).getStuNums()+"");
-        if("0".equals(courses.get(0).getInfo().getFree().get(3).getBeans())){
+        tv_main_textView12_2.setText(courses.get(0).getInfo().getFree().get(3).getStuNums() + "");
+        if ("0".equals(courses.get(0).getInfo().getFree().get(3).getBeans())) {
             tv_main_textView12_3.setText("免费");
-        }else{
-            tv_main_textView12_3.setText(courses.get(0).getInfo().getFree().get(3).getBeans()+"k币");
+        } else {
+            tv_main_textView12_3.setText(courses.get(0).getInfo().getFree().get(3).getBeans() + "k币");
         }
     }
 
