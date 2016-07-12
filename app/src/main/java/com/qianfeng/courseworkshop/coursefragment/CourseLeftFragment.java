@@ -305,7 +305,7 @@ public class CourseLeftFragment extends Fragment implements GetFileNameCallBack 
      * 初始化所有子控件
      */
     private void initView(View view) {
-        //TODO
+
         ll_allcourse_id=(LinearLayout) view.findViewById(R.id.ll_allcourse_id);
         tv_allcourse_id = (TextView) view.findViewById(R.id.tv_allcourse_id);//全部课程数
 

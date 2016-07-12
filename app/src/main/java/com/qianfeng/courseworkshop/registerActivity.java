@@ -54,7 +54,7 @@ public class registerActivity extends Activity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         //用来登录的Button
-        loginButton = (ImageView) findViewById(R.id.iv_qq_login);
+
         loginButton.setOnClickListener(this);
         //用来显示OpenID的textView
         //openidTextView=(TextView)findViewById(R.id.user_openid);
@@ -68,7 +68,7 @@ public class registerActivity extends Activity implements OnClickListener {
     public void onClick(View v) {
         // TODO Auto-generated method stub
         switch (v.getId()) {
-            case R.id.iv_qq_login:
+            case R.id.imageView:
                 LoginQQ();
                 break;
 

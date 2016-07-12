@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sv_id"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/background_course"
+    android:orientation="vertical"
+    android:scrollbars="none">
+    <!--android:scrollbars="none"取消滚动条-->
+    <!--android:background="#00000000"-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <!--星广场-->
+        <Button
+            android:id="@+id/btn_1f_id"
+            android:clickable="true"
+            android:onClick="aboutButtonAction"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:drawableLeft="@drawable/shequ_logcat_selector"
+            android:text="1F Ke星广场" />
+
+        <ListView
+            android:id="@+id/lv_xing_id"
+            android:layout_width="match_parent"
+            android:layout_height="247dp"></ListView>
+        <!--资源分享-->
+        <Button
+            android:id="@+id/btn_2f_id"
+            android:clickable="true"
+            android:onClick="aboutButtonAction"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:drawableLeft="@drawable/shequ_logcat_selector"
+            android:text="2F 资源分享" />
+
+        <ListView
+            android:id="@+id/lv_resource_id"
+            android:layout_width="match_parent"
+            android:layout_height="141dp">
+
+        </ListView>
+        <!--ui设计学院-->
+        <Button
+            android:id="@+id/btn_3f_id"
+            android:clickable="true"
+            android:onClick="aboutButtonAction"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:drawableLeft="@drawable/shequ_logcat_selector"
+            android:text="3F UI设计学院" />
+
+        <ListView
+            android:id="@+id/lv_ui_id"
+            android:layout_width="match_parent"
+            android:layout_height="211dp">
+
+        </ListView>
+        <!--4F 前端开发学院-->
+        <Button
+            android:id="@+id/btn_4f_id"
+            android:clickable="true"
+            android:onClick="aboutButtonAction"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:drawableLeft="@drawable/shequ_logcat_selector"
+            android:text="4F 前端开发学院" />
+
+        <ListView
+            android:id="@+id/lv_web_id"
+            android:layout_width="match_parent"
+            android:layout_height="176dp">
+
+        </ListView>
+        <!--5F 大数据学院-->
+        <Button
+            android:id="@+id/btn_5f_id"
+            android:clickable="true"
+            android:onClick="aboutButtonAction"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:drawableLeft="@drawable/shequ_logcat_selector"
+            android:text="5F 大数据学院" />
+
+        <ListView
+            android:id="@+id/lv_big_id"
+            android:layout_width="match_parent"
+            android:layout_height="282dp">
+
+        </ListView>
+        <!--6F 云计算学院-->
+        <Button
+            android:id="@+id/btn_6f_id"
+            android:clickable="true"
+            android:onClick="aboutButtonAction"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:drawableLeft="@drawable/shequ_logcat_selector"
+            android:text="6F 云计算学院" />
+
+        <ListView
+            android:id="@+id/lv_yun_id"
+            android:layout_width="match_parent"
+            android:layout_height="176dp"></ListView>
+
+        <!--7F 热门技术-->
+        <Button
+            android:id="@+id/btn_7f_id"
+            android:clickable="true"
+            android:onClick="aboutButtonAction"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:drawableLeft="@drawable/shequ_logcat_selector"
+            android:text="7F 热门技术" />
+
+        <ListView
+            android:id="@+id/lv_re_id"
+            android:layout_width="match_parent"
+            android:layout_height="706dp"></ListView>
+
+        <!--8F 其他-->
+        <Button
+            android:id="@+id/btn_8f_id"
+            android:clickable="true"
+            android:onClick="aboutButtonAction"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:drawableLeft="@drawable/shequ_logcat_selector"
+            android:text="8F 其他" />
+
+        <ListView
+            android:id="@+id/lv_other_id"
+            android:layout_width="match_parent"
+            android:layout_height="212dp"></ListView>
+    </LinearLayout>
+</ScrollView>

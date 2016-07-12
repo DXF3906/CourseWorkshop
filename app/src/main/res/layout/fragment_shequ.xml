@@ -10,18 +10,18 @@
         android:background="#f1000000">
 
         <ImageView
-            android:layout_width="40dp"
+            android:layout_width="30dp"
             android:layout_height="40dp"
-            android:onClick="OpenLeftMenu"
+            android:onClick="OpenLeftCourseMenu"
             android:src="@mipmap/button_catolgue" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:gravity="center"
             android:text="微社区"
-            android:textColor="@color/white"
-            android:textSize="30sp" />
+            android:textColor="@color/white" />
 
     </RelativeLayout>
 
@@ -34,7 +34,6 @@
             android:id="@+id/ptrsv_shequ_id"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             ptr:ptrMode="both">
 
             <LinearLayout
@@ -42,200 +41,243 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    android:background="@mipmap/ui_jiaocai" />
-
-                <HorizontalScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:scrollbars="none">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp">
-
-                            <ImageView
-                                android:layout_width="60dp"
-                                android:layout_height="35dp"
-                                android:layout_gravity="center"
-                                android:src="@mipmap/icon_program_java" />
-
-                            <ImageView
-                                android:layout_width="60dp"
-                                android:layout_height="35dp"
-                                android:layout_gravity="center"
-                                android:src="@mipmap/icon_program" />
-
-                            <ImageView
-                                android:layout_width="60dp"
-                                android:layout_height="35dp"
-                                android:layout_gravity="center"
-                                android:src="@mipmap/icon_program_java" />
-
-                            <ImageView
-                                android:layout_width="60dp"
-                                android:layout_height="35dp"
-                                android:layout_gravity="center"
-                                android:src="@mipmap/icon_program_java" />
-
-                            <ImageView
-                                android:layout_width="60dp"
-                                android:layout_height="35dp"
-                                android:layout_gravity="center"
-                                android:src="@mipmap/icon_program_java" />
-
-                            <ImageView
-                                android:layout_width="60dp"
-                                android:layout_height="35dp"
-                                android:layout_gravity="center"
-                                android:src="@mipmap/icon_program_java" />
-
-                            <ImageView
-                                android:layout_width="60dp"
-                                android:layout_height="35dp"
-                                android:layout_gravity="center"
-                                android:src="@mipmap/icon_program_java" />
-
-                            <ImageView
-                                android:layout_width="60dp"
-                                android:layout_height="35dp"
-                                android:layout_gravity="center"
-                                android:src="@mipmap/icon_program_java" />
-
-                            <ImageView
-                                android:layout_width="60dp"
-                                android:layout_height="35dp"
-                                android:layout_gravity="center"
-                                android:src="@mipmap/icon_program_java" />
-
-                            <ImageView
-                                android:layout_width="60dp"
-                                android:layout_height="35dp"
-                                android:layout_gravity="center"
-                                android:src="@mipmap/icon_program_java" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:layout_width="60dp"
-                                android:layout_height="25dp"
-                                android:gravity="center"
-                                android:text="java" />
-
-                            <TextView
-                                android:layout_width="60dp"
-                                android:layout_height="25dp"
-                                android:gravity="center"
-                                android:text="有奖活动" />
-
-                            <TextView
-                                android:layout_width="60dp"
-                                android:layout_height="25dp"
-                                android:gravity="center"
-                                android:text="灌水贴图" />
-
-                            <TextView
-                                android:layout_width="60dp"
-                                android:layout_height="25dp"
-                                android:gravity="center"
-                                android:text="新手报到" />
-
-                            <TextView
-                                android:layout_width="60dp"
-                                android:layout_height="25dp"
-                                android:gravity="center"
-                                android:text="电子书籍" />
-
-                            <TextView
-                                android:layout_width="60dp"
-                                android:layout_height="25dp"
-                                android:gravity="center"
-                                android:text="UI设计" />
-
-                            <TextView
-                                android:layout_width="60dp"
-                                android:layout_height="25dp"
-                                android:gravity="center"
-                                android:text="Android" />
-
-                            <TextView
-                                android:layout_width="60dp"
-                                android:layout_height="25dp"
-                                android:gravity="center"
-                                android:text="软件下载" />
-
-                            <TextView
-                                android:layout_width="60dp"
-                                android:layout_height="25dp"
-                                android:gravity="center"
-                                android:text="设计大赛" />
-
-                            <TextView
-                                android:layout_width="60dp"
-                                android:layout_height="25dp"
-                                android:gravity="center"
-                                android:text="提个建议" />
-                        </LinearLayout>
-
-                    </LinearLayout>
-                </HorizontalScrollView>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="5dp"
-                    android:background="@color/gray" />
-
-                <RadioGroup
-                    android:id="@+id/rg_shequ_id"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/sq_rb_selector"
-                        android:button="@null"
-                        android:gravity="center"
-                        android:text="全部帖子" />
-
-                    <RadioButton
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/sq_rb_selector"
-                        android:button="@null"
-                        android:gravity="center"
-                        android:text="待解决问题" />
-                </RadioGroup>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/gray" />
-
                 <LinearLayout
-                    android:id="@+id/ll_shequ_content"
+                    android:id="@+id/ll_top_id"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                </LinearLayout>
+                    <ImageView
+                        android:id="@+id/iv_ui_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="130dp"
+                        android:background="@mipmap/ui_jiaocai"
+                        android:clickable="true" />
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp"
+                        android:background="@color/white" />
+
+                    <HorizontalScrollView
+                        android:id="@+id/hsv_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:scrollbars="none">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp">
+
+                                <ImageView
+                                    android:id="@+id/iv_hsv_java_id"
+                                    android:layout_width="60dp"
+                                    android:layout_height="45dp"
+                                    android:layout_gravity="center"
+                                    android:clickable="true"
+                                    android:src="@mipmap/icon_hsv_java" />
+
+                                <ImageView
+                                    android:id="@+id/iv_hsv_youjiang_id"
+                                    android:layout_width="60dp"
+                                    android:layout_height="45dp"
+                                    android:layout_gravity="center"
+                                    android:clickable="true"
+                                    android:src="@mipmap/icon_hsv_youjiang" />
+
+                                <ImageView
+                                    android:id="@+id/iv_hsv_guanshui_id"
+                                    android:layout_width="60dp"
+                                    android:layout_height="45dp"
+                                    android:layout_gravity="center"
+                                    android:clickable="true"
+                                    android:src="@mipmap/icon_hsv_guanshui" />
+
+                                <ImageView
+                                    android:id="@+id/iv_hsv_xinshou_id"
+                                    android:layout_width="60dp"
+                                    android:layout_height="45dp"
+                                    android:layout_gravity="center"
+                                    android:clickable="true"
+                                    android:src="@mipmap/icon_hsv_xinshou" />
+
+                                <ImageView
+                                    android:id="@+id/iv_hsv_txt_id"
+                                    android:layout_width="60dp"
+                                    android:layout_height="45dp"
+                                    android:layout_gravity="center"
+                                    android:clickable="true"
+                                    android:src="@mipmap/icon_hsv_txt" />
+
+                                <ImageView
+                                    android:id="@+id/iv_hsv_ui_id"
+                                    android:layout_width="60dp"
+                                    android:layout_height="45dp"
+                                    android:layout_gravity="center"
+                                    android:clickable="true"
+                                    android:src="@mipmap/icon_hsv_ui" />
+
+                                <ImageView
+                                    android:id="@+id/iv_hsv_android_id"
+                                    android:layout_width="60dp"
+                                    android:layout_height="45dp"
+                                    android:layout_gravity="center"
+                                    android:clickable="true"
+                                    android:src="@mipmap/icon_hsv_android" />
+
+                                <ImageView
+                                    android:id="@+id/iv_hsv_soft_id"
+                                    android:layout_width="60dp"
+                                    android:layout_height="45dp"
+                                    android:layout_gravity="center"
+                                    android:clickable="true"
+                                    android:src="@mipmap/icon_hsv_soft" />
+
+                                <ImageView
+                                    android:id="@+id/iv_hsv_design_id"
+                                    android:layout_width="60dp"
+                                    android:layout_height="45dp"
+                                    android:layout_gravity="center"
+                                    android:clickable="true"
+                                    android:src="@mipmap/icon_hsv_design" />
+
+                                <ImageView
+                                    android:id="@+id/iv_hsv_suggestion_id"
+                                    android:layout_width="60dp"
+                                    android:layout_height="45dp"
+                                    android:layout_gravity="center"
+                                    android:clickable="true"
+                                    android:src="@mipmap/icon_hsv_suggestion" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="4dp">
+
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="25dp"
+                                    android:gravity="center"
+                                    android:text="java" />
+
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="25dp"
+                                    android:gravity="center"
+                                    android:text="有奖活动" />
+
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="25dp"
+                                    android:gravity="center"
+                                    android:text="灌水贴图" />
+
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="25dp"
+                                    android:gravity="center"
+                                    android:text="新手报到" />
+
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="25dp"
+                                    android:gravity="center"
+                                    android:text="电子书籍" />
+
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="25dp"
+                                    android:gravity="center"
+                                    android:text="UI设计" />
+
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="25dp"
+                                    android:gravity="center"
+                                    android:text="Android" />
+
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="25dp"
+                                    android:gravity="center"
+                                    android:text="软件下载" />
+
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="25dp"
+                                    android:gravity="center"
+                                    android:text="设计大赛" />
+
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="25dp"
+                                    android:gravity="center"
+                                    android:text="提个建议" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </HorizontalScrollView>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:background="@color/whitesmoke" />
+
+                    <RadioGroup
+                        android:id="@+id/rg_shequ_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rb_tiezi_id"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/sq_rb_selector"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="全部帖子"
+                            android:textColor="#00C957"
+                            android:textSize="15sp" />
+
+                        <RadioButton
+                            android:id="@+id/rb_wenti_id"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/sq_rb_selector"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="待解决问题"
+                            android:textSize="15sp" />
+                    </RadioGroup>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gray" />
+
+
+
+                </LinearLayout>
+                <ListView
+                    android:id="@+id/lv_shequ_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                </ListView>
             </LinearLayout>
+
         </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
 
         <RadioGroup

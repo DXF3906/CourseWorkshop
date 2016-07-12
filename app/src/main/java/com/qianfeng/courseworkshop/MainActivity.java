@@ -22,6 +22,7 @@ import com.qianfeng.courseworkshop.coursefragment.CourseFragment;
 import com.qianfeng.courseworkshop.coursefragment.CourseLeftFragment;
 import com.qianfeng.courseworkshop.inner.GetCourseLeftUrlCallBack;
 import com.qianfeng.courseworkshop.shequfragment.ShequFragment;
+import com.qianfeng.courseworkshop.shequfragment.ShequLeftFragment;
 
 import org.w3c.dom.Text;
 
@@ -37,6 +38,7 @@ public class MainActivity extends FragmentActivity implements GetCourseLeftUrlCa
     private FragmentManager supportFragmentManager;
 
     private Fragment courseLeftFragment;
+    private Fragment shequLeftFragment;
 
 
     //使用get和set传递值
@@ -46,8 +48,20 @@ public class MainActivity extends FragmentActivity implements GetCourseLeftUrlCa
     public String getCourseUrl() {
         return courseUrl;
     }
+
     public void setCourseUrl(String courseUrl) {
         this.courseUrl = courseUrl;
+    }
+
+    //使用get和set传递值
+    private String shequUrl;
+
+    public String getShequUrl() {
+        return shequUrl;
+    }
+
+    public void setShequUrl(String shequUrl) {
+        this.shequUrl = shequUrl;
     }
 
     @Override
@@ -142,7 +156,7 @@ public class MainActivity extends FragmentActivity implements GetCourseLeftUrlCa
                 }
                 //社区
                 if (((RadioButton) radioGroup.getChildAt(2)).isChecked()) {
-                    replaceContainerWidget(fragment3, courseLeftFragment);
+                    replaceContainerWidget(fragment3, shequLeftFragment);
                 }
                 //题库
                 if (((RadioButton) radioGroup.getChildAt(3)).isChecked()) {
@@ -175,7 +189,9 @@ public class MainActivity extends FragmentActivity implements GetCourseLeftUrlCa
         fragment3 = new ShequFragment();
         fragment4 = new TikuFragment();
         fragment5 = new MeFragment();
-        courseLeftFragment=new CourseLeftFragment(this);
+
+        courseLeftFragment = new CourseLeftFragment(this);
+        shequLeftFragment = new ShequLeftFragment();
 
 
     }
@@ -201,6 +217,7 @@ public class MainActivity extends FragmentActivity implements GetCourseLeftUrlCa
 
 
     }
+
     /**
      * 点击触发侧滑效果(三横线)
      */
@@ -255,6 +272,7 @@ public class MainActivity extends FragmentActivity implements GetCourseLeftUrlCa
 
     /**
      * 接口回调，课程侧滑点击ListView的某一项，回传的网址
+     *
      * @param result
      */
     @Override
