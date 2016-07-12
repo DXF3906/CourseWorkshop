@@ -29,12 +29,13 @@
             android:id="@+id/imageView7" />
 
         <TextView
-            android:layout_width="20dp"
-            android:layout_height="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="15dp"
             android:text="注册"
             android:textColor="@color/white"
-            android:textSize="8dp"
+            android:textSize="13dp"
             android:id="@+id/textView6"
+            android:layout_marginRight="5dp"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
@@ -48,7 +49,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="请输入您的密码"
+            android:hint="请输入您的密码"
             android:id="@+id/editText2"
             android:layout_marginLeft="18dp"
             android:layout_marginRight="18dp"
@@ -59,7 +60,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="输入您的邮箱或手机号"
+            android:hint="输入您的邮箱或手机号"
             android:id="@+id/editText"
             android:layout_marginLeft="18dp"
             android:layout_marginRight="18dp"
