@@ -29,11 +29,11 @@
             android:id="@+id/imageView7" />
 
         <TextView
-            android:layout_width="20dp"
-            android:layout_height="10dp"
+            android:layout_width="30dp"
+            android:layout_height="20dp"
             android:text="注册"
             android:textColor="@color/white"
-            android:textSize="8dp"
+            android:textSize="12dp"
             android:id="@+id/textView6"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
@@ -115,26 +115,26 @@
             android:layout_alignParentStart="true"
             android:layout_marginLeft="12dp"
             android:layout_marginStart="12dp"
-            android:id="@+id/imageView2" />
+            android:id="@+id/iv_qq_login" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/weibo_click_default"
-            android:layout_alignTop="@+id/imageView2"
+            android:layout_alignTop="@+id/iv_qq_login"
             android:layout_centerHorizontal="true"
-            android:id="@+id/imageView3" />
+            android:id="@+id/iv_sina_login" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/wx_click_default"
-            android:layout_alignTop="@+id/imageView3"
+            android:layout_alignTop="@+id/iv_sina_login"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_marginRight="12dp"
             android:layout_marginEnd="12dp"
-            android:id="@+id/imageView4" />
+            android:id="@+id/iv_wechat_login" />
     </RelativeLayout>
 
 </LinearLayout>
