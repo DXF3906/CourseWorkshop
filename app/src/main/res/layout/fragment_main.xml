@@ -23,11 +23,10 @@
 
         <ImageView
             android:id="@+id/iv_main_search_id"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentEnd="true"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
             android:src="@mipmap/abc_ic_search_api_mtrl_alpha" />
     </RelativeLayout>
 
@@ -54,8 +53,8 @@
 
                 <ImageView
                     android:id="@+id/iv_main_dot_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true"
                     android:layout_marginBottom="10dp"
@@ -63,8 +62,8 @@
 
                 <ImageView
                     android:id="@+id/iv_main_dot2_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="10dp"
                     android:layout_toLeftOf="@+id/iv_main_dot_id"
@@ -72,8 +71,8 @@
 
                 <ImageView
                     android:id="@+id/iv_main_dot3_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="10dp"
                     android:layout_toLeftOf="@+id/iv_main_dot2_id"
@@ -81,6 +80,8 @@
             </RelativeLayout>
 
             <LinearLayout
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -120,6 +121,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:layout_marginBottom="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -155,9 +157,10 @@
             </LinearLayout>
 
             <View
+                android:layout_marginBottom="12dp"
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/gray" />
+                android:layout_height="3dp"
+                android:background="@color/whitesmoke" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -169,10 +172,12 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:layout_marginLeft="8dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:text="新的课程"
+                        android:textSize="17sp"
                         android:textColor="@color/black" />
 
                     <TextView
@@ -199,8 +204,7 @@
                     android:columnCount="2">
 
                     <LinearLayout
-                        android:paddingLeft="15dp"
-                        android:paddingTop="5dp"
+                        android:paddingLeft="8dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -208,8 +212,9 @@
 
                         <ImageView
                             android:id="@+id/iv_main_1_id"
-                            android:layout_width="160dp"
-                            android:layout_height="130dp"
+                            android:layout_width="168dp"
+                            android:layout_height="120dp"
+                            android:src="@mipmap/course_img"
                              />
 
                         <TextView
@@ -248,16 +253,17 @@
 
                     </LinearLayout>
                     <LinearLayout
-                        android:paddingLeft="15dp"
-                        android:paddingTop="5dp"
+                        android:paddingLeft="8dp"
+                        android:layout_marginRight="8dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <ImageView
                             android:id="@+id/iv_main_2_id"
-                            android:layout_width="160dp"
-                            android:layout_height="130dp"
+                            android:layout_width="168dp"
+                            android:layout_height="120dp"
+                            android:src="@mipmap/course_img"
                              />
 
                         <TextView
@@ -296,7 +302,7 @@
 
                     </LinearLayout>
                     <LinearLayout
-                        android:paddingLeft="15dp"
+                        android:paddingLeft="8dp"
                         android:paddingTop="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -304,8 +310,9 @@
 
                         <ImageView
                             android:id="@+id/iv_main_3_id"
-                            android:layout_width="160dp"
-                            android:layout_height="130dp"
+                            android:layout_width="168dp"
+                            android:layout_height="120dp"
+                            android:src="@mipmap/course_img"
                              />
 
                         <TextView
@@ -344,16 +351,18 @@
 
                     </LinearLayout>
                     <LinearLayout
-                        android:paddingLeft="15dp"
+                        android:paddingLeft="8dp"
                         android:paddingTop="5dp"
+                        android:layout_marginRight="8dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <ImageView
                             android:id="@+id/iv_main_4_id"
-                            android:layout_width="160dp"
-                            android:layout_height="130dp"
+                            android:layout_width="168dp"
+                            android:layout_height="120dp"
+                            android:src="@mipmap/course_img"
                              />
 
                         <TextView
@@ -396,8 +405,10 @@
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/gray" />
+                android:layout_height="3dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/whitesmoke" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -408,6 +419,8 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:textSize="17sp"
+                        android:layout_marginLeft="8dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -438,8 +451,7 @@
                     android:columnCount="2">
 
                     <LinearLayout
-                        android:paddingLeft="15dp"
-                        android:paddingTop="5dp"
+                        android:paddingLeft="8dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -447,8 +459,8 @@
 
                         <ImageView
                             android:id="@+id/iv_main_5_id"
-                            android:layout_width="160dp"
-                            android:layout_height="130dp"
+                            android:layout_width="168dp"
+                            android:layout_height="120dp"
                              />
 
                         <TextView
@@ -487,16 +499,16 @@
 
                     </LinearLayout>
                     <LinearLayout
-                        android:paddingLeft="15dp"
-                        android:paddingTop="5dp"
+                        android:paddingLeft="8dp"
+                        android:layout_marginRight="8dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <ImageView
                             android:id="@+id/iv_main_6_id"
-                            android:layout_width="160dp"
-                            android:layout_height="130dp"
+                            android:layout_width="168dp"
+                            android:layout_height="120dp"
                              />
 
                         <TextView
@@ -535,7 +547,7 @@
 
                     </LinearLayout>
                     <LinearLayout
-                        android:paddingLeft="15dp"
+                        android:paddingLeft="8dp"
                         android:paddingTop="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -543,8 +555,8 @@
 
                         <ImageView
                             android:id="@+id/iv_main_7_id"
-                            android:layout_width="160dp"
-                            android:layout_height="130dp"
+                            android:layout_width="168dp"
+                            android:layout_height="120dp"
                              />
 
                         <TextView
@@ -583,7 +595,8 @@
 
                     </LinearLayout>
                     <LinearLayout
-                        android:paddingLeft="15dp"
+                        android:paddingLeft="8dp"
+                        android:layout_marginRight="8dp"
                         android:paddingTop="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -591,8 +604,8 @@
 
                         <ImageView
                             android:id="@+id/iv_main_8_id"
-                            android:layout_width="160dp"
-                            android:layout_height="130dp"
+                            android:layout_width="168dp"
+                            android:layout_height="120dp"
                              />
 
                         <TextView
@@ -636,7 +649,9 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/gray" />
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/whitesmoke" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -647,6 +662,8 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:textSize="17sp"
+                        android:layout_marginLeft="8dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -677,8 +694,7 @@
                     android:columnCount="2">
 
                     <LinearLayout
-                        android:paddingLeft="15dp"
-                        android:paddingTop="5dp"
+                        android:paddingLeft="8dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -686,8 +702,8 @@
 
                         <ImageView
                             android:id="@+id/iv_main_9_id"
-                            android:layout_width="160dp"
-                            android:layout_height="130dp"
+                            android:layout_width="168dp"
+                            android:layout_height="120dp"
                              />
 
                         <TextView
@@ -726,16 +742,16 @@
 
                     </LinearLayout>
                     <LinearLayout
-                        android:paddingLeft="15dp"
-                        android:paddingTop="5dp"
+                        android:paddingLeft="8dp"
+                        android:layout_marginRight="8dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <ImageView
                             android:id="@+id/iv_main_10_id"
-                            android:layout_width="160dp"
-                            android:layout_height="130dp"
+                            android:layout_width="168dp"
+                            android:layout_height="120dp"
                              />
 
                         <TextView
@@ -774,7 +790,7 @@
 
                     </LinearLayout>
                     <LinearLayout
-                        android:paddingLeft="15dp"
+                        android:paddingLeft="8dp"
                         android:paddingTop="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -782,8 +798,8 @@
 
                         <ImageView
                             android:id="@+id/iv_main_11_id"
-                            android:layout_width="160dp"
-                            android:layout_height="130dp"
+                            android:layout_width="168dp"
+                            android:layout_height="120dp"
                              />
 
                         <TextView
@@ -822,7 +838,8 @@
 
                     </LinearLayout>
                     <LinearLayout
-                        android:paddingLeft="15dp"
+                        android:paddingLeft="8dp"
+                        android:layout_marginRight="8dp"
                         android:paddingTop="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -830,8 +847,8 @@
 
                         <ImageView
                             android:id="@+id/iv_main_12_id"
-                            android:layout_width="160dp"
-                            android:layout_height="130dp"
+                            android:layout_width="168dp"
+                            android:layout_height="120dp"
                              />
 
                         <TextView
