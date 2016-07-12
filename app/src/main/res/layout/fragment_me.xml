@@ -76,6 +76,15 @@
             android:background="@mipmap/background_exam_progress"
             android:text="登录"
             android:textColor="@color/white" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/imageView6"
+            android:src="@mipmap/qrcode_regist"
+            android:layout_alignTop="@+id/btn_regist_id"
+            android:layout_toRightOf="@+id/tv_login_name_id"
+            android:layout_toEndOf="@+id/tv_login_name_id" />
     </RelativeLayout>
 
     <LinearLayout
