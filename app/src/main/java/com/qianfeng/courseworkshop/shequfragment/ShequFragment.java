@@ -3,6 +3,8 @@ package com.qianfeng.courseworkshop.shequfragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -22,10 +24,12 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.SimpleAdapter;
 import android.support.v4.app.FragmentManager;
@@ -79,6 +83,7 @@ public class ShequFragment extends Fragment implements GetFileNameCallBack {
     int[] location2 = new int[2];
 
     private ImageView iv_ui_id;//最上面ui控件
+    private LinearLayout ll_top_id;
     private ListView lv_shequ_content;
     private String shequUrl;
     private String fileName = "shequContent";
@@ -110,16 +115,28 @@ public class ShequFragment extends Fragment implements GetFileNameCallBack {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         view = inflater.inflate(R.layout.fragment_shequ, null);
 
-
         return view;
+    }
+
+    @Override
+    public void onPause() {
+        //TODO
+
+        super.onPause();
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         //初始化控件
         initView();
+        //重要代码，如果不加，侧滑回来后listView会占全屏幕
+        lv_shequ_content.setFocusable(false);
+        lv_shequ_content.setFocusableInTouchMode(false);
+
+
         //关于水平滚动控件的操作
         aboutHorizontalScroll();
 
@@ -152,7 +169,7 @@ public class ShequFragment extends Fragment implements GetFileNameCallBack {
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if (((RadioButton) radioGroup.getChildAt(0)).isChecked()) {
                     //TODO
-                    rb_tiezi_id.setTextColor(Color.rgb(0,210,87));
+                    rb_tiezi_id.setTextColor(Color.rgb(0, 210, 87));
                     rb_wenti_id.setTextColor(Color.BLACK);
                     shequUrl = "http://www.kgc.cn/bbs/list/959/0-7-1.shtml";
                     aboutShequListView();
@@ -160,7 +177,7 @@ public class ShequFragment extends Fragment implements GetFileNameCallBack {
                 }
                 if (((RadioButton) radioGroup.getChildAt(1)).isChecked()) {
                     rb_tiezi_id.setTextColor(Color.BLACK);
-                    rb_wenti_id.setTextColor(Color.rgb(0,210,87));
+                    rb_wenti_id.setTextColor(Color.rgb(0, 210, 87));
                     shequUrl = "http://www.kgc.cn/bbs/list/959/1-7-1.shtml";
                     aboutShequListView();
                 }
@@ -236,105 +253,104 @@ public class ShequFragment extends Fragment implements GetFileNameCallBack {
         iv_hsv_java_id.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent();
+                Intent intent = new Intent();
                 intent.setClass(getActivity(), WebViewActivity.class);
-                String courUrl="http://www.kgc.cn/bbs/list/951/0-7-1.shtml";
-                intent.putExtra("100",courUrl);
+                String courUrl = "http://www.kgc.cn/bbs/list/951/0-7-1.shtml";
+                intent.putExtra("100", courUrl);
                 startActivity(intent);
             }
         });
         iv_hsv_youjiang_id.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent();
+                Intent intent = new Intent();
                 intent.setClass(getActivity(), WebViewActivity.class);
-                String courUrl="http://www.kgc.cn/bbs/list/1029/0-7-1.shtml";
-                intent.putExtra("100",courUrl);
+                String courUrl = "http://www.kgc.cn/bbs/list/1029/0-7-1.shtml";
+                intent.putExtra("100", courUrl);
                 startActivity(intent);
             }
         });
         iv_hsv_guanshui_id.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent();
+                Intent intent = new Intent();
                 intent.setClass(getActivity(), WebViewActivity.class);
-                String courUrl="http://www.kgc.cn/bbs/list/1005/0-7-1.shtml";
-                intent.putExtra("100",courUrl);
+                String courUrl = "http://www.kgc.cn/bbs/list/1005/0-7-1.shtml";
+                intent.putExtra("100", courUrl);
                 startActivity(intent);
             }
         });
         iv_hsv_xinshou_id.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent();
+                Intent intent = new Intent();
                 intent.setClass(getActivity(), WebViewActivity.class);
-                String courUrl="http://www.kgc.cn/bbs/list/1011/0-7-1.shtml";
-                intent.putExtra("100",courUrl);
+                String courUrl = "http://www.kgc.cn/bbs/list/1011/0-7-1.shtml";
+                intent.putExtra("100", courUrl);
                 startActivity(intent);
             }
         });
         iv_hsv_txt_id.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent();
+                Intent intent = new Intent();
                 intent.setClass(getActivity(), WebViewActivity.class);
-                String courUrl="http://www.kgc.cn/bbs/list/1009/0-7-1.shtml";
-                intent.putExtra("100",courUrl);
+                String courUrl = "http://www.kgc.cn/bbs/list/1009/0-7-1.shtml";
+                intent.putExtra("100", courUrl);
                 startActivity(intent);
             }
         });
         iv_hsv_ui_id.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent();
+                Intent intent = new Intent();
                 intent.setClass(getActivity(), WebViewActivity.class);
-                String courUrl="http://www.kgc.cn/bbs/list/979/0-7-1.shtml";
-                intent.putExtra("100",courUrl);
+                String courUrl = "http://www.kgc.cn/bbs/list/979/0-7-1.shtml";
+                intent.putExtra("100", courUrl);
                 startActivity(intent);
             }
         });
         iv_hsv_android_id.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent();
+                Intent intent = new Intent();
                 intent.setClass(getActivity(), WebViewActivity.class);
-                String courUrl="http://www.kgc.cn/bbs/list/959/0-7-1.shtml";
-                intent.putExtra("100",courUrl);
+                String courUrl = "http://www.kgc.cn/bbs/list/959/0-7-1.shtml";
+                intent.putExtra("100", courUrl);
                 startActivity(intent);
             }
         });
         iv_hsv_soft_id.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent();
+                Intent intent = new Intent();
                 intent.setClass(getActivity(), WebViewActivity.class);
-                String courUrl="http://www.kgc.cn/bbs/list/1010/0-7-1.shtml";
-                intent.putExtra("100",courUrl);
+                String courUrl = "http://www.kgc.cn/bbs/list/1010/0-7-1.shtml";
+                intent.putExtra("100", courUrl);
                 startActivity(intent);
             }
         });
         iv_hsv_design_id.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent();
+                Intent intent = new Intent();
                 intent.setClass(getActivity(), WebViewActivity.class);
-                String courUrl="http://www.kgc.cn/bbs/list/1153/0-7-1.shtml";
-                intent.putExtra("100",courUrl);
+                String courUrl = "http://www.kgc.cn/bbs/list/1153/0-7-1.shtml";
+                intent.putExtra("100", courUrl);
                 startActivity(intent);
             }
         });
         iv_hsv_suggestion_id.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent();
+                Intent intent = new Intent();
                 intent.setClass(getActivity(), WebViewActivity.class);
-                String courUrl="http://www.kgc.cn/bbs/list/1008/0-7-1.shtml";
-                intent.putExtra("100",courUrl);
+                String courUrl = "http://www.kgc.cn/bbs/list/1008/0-7-1.shtml";
+                intent.putExtra("100", courUrl);
                 startActivity(intent);
             }
         });
     }
-
 
 
     /**
@@ -377,24 +393,25 @@ public class ShequFragment extends Fragment implements GetFileNameCallBack {
     private void initView() {
         //图片ui控件的获得
         iv_ui_id = (ImageView) view.findViewById(R.id.iv_ui_id);
+        ll_top_id = (LinearLayout) view.findViewById(R.id.ll_top_id);
         //水平滚动
-        iv_hsv_java_id=(ImageView)view.findViewById(R.id.iv_hsv_java_id);
-        iv_hsv_youjiang_id=(ImageView)view.findViewById(R.id.iv_hsv_youjiang_id);
-        iv_hsv_guanshui_id=(ImageView)view.findViewById(R.id.iv_hsv_guanshui_id);
-        iv_hsv_xinshou_id=(ImageView)view.findViewById(R.id.iv_hsv_xinshou_id);
-        iv_hsv_txt_id=(ImageView)view.findViewById(R.id.iv_hsv_txt_id);
+        iv_hsv_java_id = (ImageView) view.findViewById(R.id.iv_hsv_java_id);
+        iv_hsv_youjiang_id = (ImageView) view.findViewById(R.id.iv_hsv_youjiang_id);
+        iv_hsv_guanshui_id = (ImageView) view.findViewById(R.id.iv_hsv_guanshui_id);
+        iv_hsv_xinshou_id = (ImageView) view.findViewById(R.id.iv_hsv_xinshou_id);
+        iv_hsv_txt_id = (ImageView) view.findViewById(R.id.iv_hsv_txt_id);
 
-        iv_hsv_ui_id=(ImageView)view.findViewById(R.id.iv_hsv_ui_id);
-        iv_hsv_android_id=(ImageView)view.findViewById(R.id.iv_hsv_android_id);
-        iv_hsv_soft_id=(ImageView)view.findViewById(R.id.iv_hsv_soft_id);
-        iv_hsv_design_id=(ImageView)view.findViewById(R.id.iv_hsv_design_id);
-        iv_hsv_suggestion_id=(ImageView)view.findViewById(R.id.iv_hsv_suggestion_id);
+        iv_hsv_ui_id = (ImageView) view.findViewById(R.id.iv_hsv_ui_id);
+        iv_hsv_android_id = (ImageView) view.findViewById(R.id.iv_hsv_android_id);
+        iv_hsv_soft_id = (ImageView) view.findViewById(R.id.iv_hsv_soft_id);
+        iv_hsv_design_id = (ImageView) view.findViewById(R.id.iv_hsv_design_id);
+        iv_hsv_suggestion_id = (ImageView) view.findViewById(R.id.iv_hsv_suggestion_id);
 
 
         //RadioGroup控件
         rg_shequ_id = (RadioGroup) view.findViewById(R.id.rg_shequ_id);
-        rb_tiezi_id=(RadioButton) view.findViewById(R.id.rb_tiezi_id);
-        rb_wenti_id=(RadioButton) view.findViewById(R.id.rb_wenti_id);
+        rb_tiezi_id = (RadioButton) view.findViewById(R.id.rb_tiezi_id);
+        rb_wenti_id = (RadioButton) view.findViewById(R.id.rb_wenti_id);
         lv_shequ_content = (ListView) view.findViewById(R.id.lv_shequ_content);
         rg2_shequ_id = (RadioGroup) view.findViewById(R.id.rg2_shequ_id);
         ptrsv_shequ_id = (PullToRefreshScrollView) view.findViewById(R.id.ptrsv_shequ_id);
@@ -451,10 +468,10 @@ public class ShequFragment extends Fragment implements GetFileNameCallBack {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                Intent intent=new Intent();
+                Intent intent = new Intent();
                 intent.setClass(getActivity(), WebViewActivity.class);
-                String courUrl="http://www.kgc.cn"+(String) data.get(i).get("url");
-                intent.putExtra("100",courUrl);
+                String courUrl = "http://www.kgc.cn" + (String) data.get(i).get("url");
+                intent.putExtra("100", courUrl);
 
                 startActivity(intent);
             }
@@ -601,7 +618,7 @@ public class ShequFragment extends Fragment implements GetFileNameCallBack {
         List<Tiezi> TiezisTemp2 = new LinkedList<>();
         TiezisTemp2 = JsoupAnalyzeShequHtml.analysTiezis(file);
         TiezisTemp = JsoupAnalyzeShequHtml2.analysTiezis(file);
-        if (TiezisTemp.size()>3) {
+        if (TiezisTemp.size() > 3) {
             TiezisTemp.remove(0);
             TiezisTemp.remove(0);
             TiezisTemp.remove(0);
@@ -620,8 +637,6 @@ public class ShequFragment extends Fragment implements GetFileNameCallBack {
                 tiezis2.clear();
                 tiezis.addAll(TiezisTemp);
                 tiezis2.addAll(TiezisTemp2);
-
-
 
 
                 Log.i("tag", "①实现了底部加载数据源中解析功能---》" + fileDownName);
@@ -689,6 +704,7 @@ public class ShequFragment extends Fragment implements GetFileNameCallBack {
 
     /**
      * 下载完成接口回调
+     *
      * @param fileName
      */
     @Override
@@ -701,4 +717,6 @@ public class ShequFragment extends Fragment implements GetFileNameCallBack {
             fillDownDataSouce(fileName);
         }
     }
+
+
 }
