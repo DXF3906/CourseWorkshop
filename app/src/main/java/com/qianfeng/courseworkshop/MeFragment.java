@@ -35,6 +35,7 @@ public class MeFragment extends Fragment {
     private Button btn_login_id;
     private Button btn_regist_id;
     private ImageView iv_login_touxiang_id;
+    private ImageView iv_setting_id;
     private TextView tv_login_name_id;
 
     private RelativeLayout rl_mycourse_id;
@@ -145,6 +146,13 @@ public class MeFragment extends Fragment {
 
             }
         });
+        iv_setting_id.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(context,settingActivity.class);
+                startActivity(intent);
+            }
+        });
 
         super.onActivityCreated(savedInstanceState);
 
@@ -160,6 +168,8 @@ public class MeFragment extends Fragment {
         btn_regist_id=(Button)view.findViewById(R.id.btn_regist_id);
         //头像
         iv_login_touxiang_id=(ImageView)view.findViewById(R.id.iv_login_touxiang_id);
+
+        iv_setting_id=(ImageView)view.findViewById(R.id.iv_setting_id);
         //登陆用户名
         tv_login_name_id=(TextView)view.findViewById(R.id.tv_login_name_id);
 
