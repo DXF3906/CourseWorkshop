@@ -193,11 +193,13 @@ public class MeFragment extends Fragment {
      *分别表示第三方登录成功，取消 ，错误。*/
     private class BaseUiListener implements IUiListener {
 
+        @Override
         public void onCancel() {
-
+            Toast.makeText(context, "登录成功", Toast.LENGTH_SHORT).show();
         }
+        @Override
         public void onComplete(Object response) {
-            Toast.makeText(activity.getApplicationContext(), "登录成功", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "登录成功", Toast.LENGTH_SHORT).show();
             try {
                 //获得的数据是JSON格式的，获得你想获得的内容
                 //如果你不知道你能获得什么，看一下下面的LOG
@@ -244,18 +246,19 @@ public class MeFragment extends Fragment {
                     }.start();
                 }
                 public void onCancel() {
+                    Toast.makeText(context, "登录成功2", Toast.LENGTH_SHORT).show();
                 }
                 public void onError(UiError arg0) {
+                    Toast.makeText(context, "登录成功1", Toast.LENGTH_SHORT).show();
                 }
 
             });
 
         }
-
+        @Override
         public void onError(UiError arg0) {
-
+            Toast.makeText(context, "登录成功", Toast.LENGTH_SHORT).show();
         }
-
     }
     Handler mHandler = new Handler() {
 
@@ -266,7 +269,6 @@ public class MeFragment extends Fragment {
                 if (response.has("nickname")) {
                     try {
                         nicknameString=response.getString("nickname");
-
                         tv_login_name_id.setText(nicknameString);
                     } catch (JSONException e) {
                         e.printStackTrace();
