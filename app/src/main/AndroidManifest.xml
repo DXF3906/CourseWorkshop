@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -37,21 +39,38 @@
             android:screenOrientation="portrait">
 
         </activity>
+
         <activity
             android:name=".WebViewActivity"
             android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".WebViewActivity2"
+            android:screenOrientation="portrait">
 
         </activity>
-        <activity android:name=".registerActivity">
-        </activity>
-        <activity android:name=".loginActivity">
-        </activity>
-        <activity android:name=".settingActivity">
-        </activity>
-        <activity android:name=".activity.SearchActivity">
-        </activity>
+        <activity android:name=".registerActivity"></activity>
+        <activity android:name=".loginActivity"></activity>
+        <activity android:name=".settingActivity"></activity>
+        <activity android:name=".activity.SearchActivity"></activity>
 
+        <activity
+        android:name="com.tencent.tauth.AuthActivity"
+        android:noHistory="true"
+        android:launchMode="singleTask" >
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="tencent1105464007" />
+        </intent-filter>
+    </activity>
 
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
     </application>
 
 </manifest>
