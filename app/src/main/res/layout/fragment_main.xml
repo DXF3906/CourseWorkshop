@@ -100,7 +100,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="50dp"
-                    android:src="@mipmap/button_index_tab4" />
+                    android:src="@mipmap/button_index_tab4"/>
 
                 <ImageView
                     android:onClick="goNext"
@@ -210,7 +210,7 @@
                             android:id="@+id/iv_main_1_id"
                             android:layout_width="160dp"
                             android:layout_height="130dp"
-                            android:src="@mipmap/button_index_tab4" />
+                             />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -258,7 +258,7 @@
                             android:id="@+id/iv_main_2_id"
                             android:layout_width="160dp"
                             android:layout_height="130dp"
-                            android:src="@mipmap/button_index_tab4" />
+                             />
 
                         <TextView
                             android:id="@+id/tv_main_textView2_1"
@@ -306,7 +306,7 @@
                             android:id="@+id/iv_main_3_id"
                             android:layout_width="160dp"
                             android:layout_height="130dp"
-                            android:src="@mipmap/button_index_tab4" />
+                             />
 
                         <TextView
                             android:id="@+id/tv_main_textView3_1"
@@ -354,7 +354,7 @@
                             android:id="@+id/iv_main_4_id"
                             android:layout_width="160dp"
                             android:layout_height="130dp"
-                            android:src="@mipmap/button_index_tab4" />
+                             />
 
                         <TextView
                             android:id="@+id/tv_main_textView4_1"
@@ -449,7 +449,7 @@
                             android:id="@+id/iv_main_5_id"
                             android:layout_width="160dp"
                             android:layout_height="130dp"
-                            android:src="@mipmap/button_index_tab4" />
+                             />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -497,7 +497,7 @@
                             android:id="@+id/iv_main_6_id"
                             android:layout_width="160dp"
                             android:layout_height="130dp"
-                            android:src="@mipmap/button_index_tab4" />
+                             />
 
                         <TextView
                             android:id="@+id/tv_main_textView6_1"
@@ -545,7 +545,7 @@
                             android:id="@+id/iv_main_7_id"
                             android:layout_width="160dp"
                             android:layout_height="130dp"
-                            android:src="@mipmap/button_index_tab4" />
+                             />
 
                         <TextView
                             android:id="@+id/tv_main_textView7_1"
@@ -593,7 +593,7 @@
                             android:id="@+id/iv_main_8_id"
                             android:layout_width="160dp"
                             android:layout_height="130dp"
-                            android:src="@mipmap/button_index_tab4" />
+                             />
 
                         <TextView
                             android:id="@+id/tv_main_textView8_1"
@@ -688,7 +688,7 @@
                             android:id="@+id/iv_main_9_id"
                             android:layout_width="160dp"
                             android:layout_height="130dp"
-                            android:src="@mipmap/button_index_tab4" />
+                             />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -736,7 +736,7 @@
                             android:id="@+id/iv_main_10_id"
                             android:layout_width="160dp"
                             android:layout_height="130dp"
-                            android:src="@mipmap/button_index_tab4" />
+                             />
 
                         <TextView
                             android:id="@+id/tv_main_textView10_1"
@@ -784,7 +784,7 @@
                             android:id="@+id/iv_main_11_id"
                             android:layout_width="160dp"
                             android:layout_height="130dp"
-                            android:src="@mipmap/button_index_tab4" />
+                             />
 
                         <TextView
                             android:id="@+id/tv_main_textView11_1"
@@ -832,7 +832,7 @@
                             android:id="@+id/iv_main_12_id"
                             android:layout_width="160dp"
                             android:layout_height="130dp"
-                            android:src="@mipmap/button_index_tab4" />
+                             />
 
                         <TextView
                             android:id="@+id/tv_main_textView12_1"
